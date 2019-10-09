@@ -27,7 +27,7 @@ class Kernel extends BaseKernel
 
     public function getProjectDir(): string
     {
-        return \dirname(__DIR__).'/../../../';
+        return \realpath(__DIR__).'/../../../../';
     }
 
     protected function configureContainer(ContainerBuilder $container, LoaderInterface $loader): void
@@ -49,15 +49,5 @@ class Kernel extends BaseKernel
         $routes->import($confDir.'/{routes}/'.$this->environment.'/**/*'.self::CONFIG_EXTS, '/', 'glob');
         $routes->import($confDir.'/{routes}/*'.self::CONFIG_EXTS, '/', 'glob');
         $routes->import($confDir.'/{routes}'.self::CONFIG_EXTS, '/', 'glob');
-    }
-
-    public function getCacheDir()
-    {
-        return dirname(__DIR__).'/../../../var/'.$this->environment.'/cache';
-    }
-
-    public function getLogDir()
-    {
-        return dirname(__DIR__).'/../../../var/'.$this->environment.'/log';
     }
 }
