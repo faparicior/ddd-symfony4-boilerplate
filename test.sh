@@ -1,1 +1,1 @@
-bin/phpunit -c phpunit.xml
+bin/phpunit -c phpunit.xml $1
