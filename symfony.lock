@@ -81,6 +81,9 @@
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },
+    "nesbot/carbon": {
+        "version": "2.25.1"
+    },
     "nikic/php-parser": {
         "version": "v4.2.4"
     },
@@ -98,6 +101,9 @@
     },
     "psr/log": {
         "version": "1.1.0"
+    },
+    "ramsey/uuid": {
+        "version": "3.8.0"
     },
     "symfony/apache-pack": {
         "version": "1.0",
@@ -269,6 +275,22 @@
     },
     "symfony/test-pack": {
         "version": "v1.0.6"
+    },
+    "symfony/translation": {
+        "version": "3.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.3",
+            "ref": "2ad9d2545bce8ca1a863e50e92141f0b9d87ffcd"
+        },
+        "files": [
+            "config/packages/translation.yaml",
+            "translations/.gitignore"
+        ]
+    },
+    "symfony/translation-contracts": {
+        "version": "v1.1.7"
     },
     "symfony/var-exporter": {
         "version": "v4.3.5"
