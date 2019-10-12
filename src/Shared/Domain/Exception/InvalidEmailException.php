@@ -6,12 +6,12 @@ use Throwable;
 
 class InvalidEmailException extends \Exception
 {
-    protected function __construct(string $message = "", int $code = 0, Throwable $previous = null)
+    private function __construct(string $message = "", int $code = 0, Throwable $previous = null)
     {
         parent::__construct($message, $code, $previous);
     }
 
-    public static function build()
+    public static function build(): self
     {
         return new static();
     }
