@@ -4,7 +4,7 @@ namespace App\Shared\Domain\ValueObject;
 
 use Carbon\Carbon;
 
-class DateValue
+abstract class DateValue
 {
     /** @var string */
     private $date;
@@ -14,7 +14,7 @@ class DateValue
      * @param string $date
      * @throws \Exception
      */
-    private function __construct(string $date)
+    final private function __construct(string $date)
     {
         $this->date = Carbon::parse($date);
     }
@@ -24,13 +24,18 @@ class DateValue
      * @return DateValue
      * @throws \Exception
      */
-    public static function build(string $date): self
+    final public static function build(string $date): self
     {
         return new static($date);
     }
 
-    public function value(): string
+    final public function value(): string
     {
         return $this->date->toISOString();
+    }
+
+    final public function equals(self $valueObject): bool
+    {
+        return $this->date->toISOString() === $valueObject->value();
     }
 }

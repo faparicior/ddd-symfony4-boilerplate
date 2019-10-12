@@ -2,26 +2,28 @@
 
 namespace App\Shared\Domain\ValueObject;
 
-class StringValue
+abstract class StringValue
 {
     /** @var string */
     private $value;
 
-    private function __construct(string $value)
+    final private function __construct(string $value)
     {
         $this->value = $value;
     }
 
-    public static function build(string $value)
+    final public static function build(string $value)
     {
         return new static($value);
     }
 
-    /**
-     * @return string
-     */
-    public function value(): string
+    final public function value(): string
     {
         return $this->value;
+    }
+
+    final public function equals(self $valueObject): bool
+    {
+        return $this->value === $valueObject->value();
     }
 }

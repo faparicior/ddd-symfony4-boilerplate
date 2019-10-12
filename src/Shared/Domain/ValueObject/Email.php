@@ -4,12 +4,12 @@ namespace App\Shared\Domain\ValueObject;
 
 use App\Shared\Domain\Exception\InvalidEmailException;
 
-class Email
+abstract class Email
 {
     /** @var string */
     private $email;
 
-    private function __construct(string $email)
+    final private function __construct(string $email)
     {
         $this->email = $email;
     }
@@ -19,7 +19,7 @@ class Email
      * @return Email
      * @throws InvalidEmailException
      */
-    public static function build(string $email): Email
+    final public static function build(string $email): Email
     {
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             throw InvalidEmailException::build();
@@ -28,8 +28,13 @@ class Email
         return new static($email);
     }
 
-    public function value(): string
+    final public function value(): string
     {
         return $this->email;
+    }
+
+    final public function equals(self $valueObject): bool
+    {
+        return $this->email === $valueObject->value();
     }
 }

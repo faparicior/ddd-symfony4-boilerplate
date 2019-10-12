@@ -6,14 +6,14 @@ use App\Shared\Domain\Exception\InvalidArgumentException;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
-class UniqueIdentifier
+abstract class UniqueIdentifier
 {
     const UUID4_PATTERN = "/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/";
 
     /** @var UuidInterface */
     private $uuid;
 
-    private function __construct(UuidInterface $uuid)
+    final private function __construct(UuidInterface $uuid)
     {
         $this->uuid = $uuid;
     }
@@ -22,7 +22,7 @@ class UniqueIdentifier
      * @return UniqueIdentifier
      * @throws \Exception
      */
-    public static function build(): self
+    final public static function build(): self
     {
         return new static(Uuid::uuid4());
     }
@@ -32,17 +32,22 @@ class UniqueIdentifier
      * @return UniqueIdentifier
      * @throws InvalidArgumentException
      */
-    public static function fromString($uuid): self
+    final public static function fromString($uuid): self
     {
         if (!preg_match(self::UUID4_PATTERN, $uuid)) {
             throw new InvalidArgumentException();
         }
 
-        return new self(Uuid::fromString($uuid));
+        return new static(Uuid::fromString($uuid));
     }
 
-    public function value(): string
+    final public function value(): string
     {
         return $this->uuid->toString();
+    }
+
+    final public function equals(self $valueObject): bool
+    {
+        return $this->uuid->toString() === $valueObject->value();
     }
 }

@@ -2,26 +2,28 @@
 
 namespace App\Shared\Domain\ValueObject;
 
-class IntegerValue
+abstract class IntegerValue
 {
     /** @var int */
     private $value;
 
-    private function __construct(int $value)
+    final private function __construct(int $value)
     {
         $this->value = $value;
     }
 
-    public static function build(int $value)
+    final public static function build(int $value)
     {
         return new static($value);
     }
 
-    /**
-     * @return int
-     */
-    public function value(): int
+    final public function value(): int
     {
         return $this->value;
+    }
+
+    final public function equals(self $valueObject): bool
+    {
+        return $this->value === $valueObject->value();
     }
 }

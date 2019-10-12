@@ -6,9 +6,15 @@ use App\Shared\Domain\Exception\InvalidEmailException;
 use App\Shared\Domain\ValueObject\Email;
 use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
 
+class EmailForTest extends Email
+{
+
+}
+
 class EmailTest extends TestCase
 {
     private const VALID_EMAIL = 'test@test.de';
+    private const VALID_EMAIL_DIFFERENT = 'different@test.de';
     private const INVALID_EMAIL = 'test,@test.de';
 
     /**
@@ -18,7 +24,7 @@ class EmailTest extends TestCase
     public function testEmailCannotBeInstantiated()
     {
         self::expectException(\Error::class);
-        new Email();
+        new EmailForTest();
     }
 
     /**
@@ -29,9 +35,9 @@ class EmailTest extends TestCase
      */
     public function testEmailCanBeCreated()
     {
-        $email = Email::build(self::VALID_EMAIL);
+        $email = EmailForTest::build(self::VALID_EMAIL);
 
-        self::assertInstanceOf(Email::class, $email);
+        self::assertInstanceOf(EmailForTest::class, $email);
     }
 
     /**
@@ -43,7 +49,7 @@ class EmailTest extends TestCase
     public function testCreateEmailFailsForBadStringFormat()
     {
         self::expectException(InvalidEmailException::class);
-        Email::build(self::INVALID_EMAIL);
+        EmailForTest::build(self::INVALID_EMAIL);
     }
 
     /**
@@ -54,8 +60,22 @@ class EmailTest extends TestCase
      */
     public function testEmailStoresCorrectValue()
     {
-        $email = Email::build(self::VALID_EMAIL);
+        $email = EmailForTest::build(self::VALID_EMAIL);
 
         self::assertEquals(self::VALID_EMAIL, $email->value());
+    }
+
+    /**
+     * @group Shared
+     * @group Domain
+     *
+     * @throws InvalidEmailException
+     */
+    public function testEqualsFunction()
+    {
+        $integer = EmailForTest::build(self::VALID_EMAIL);
+
+        self::assertTrue($integer->equals(EmailForTest::build(self::VALID_EMAIL)));
+        self::assertFalse($integer->equals(EmailForTest::build(self::VALID_EMAIL_DIFFERENT)));
     }
 }

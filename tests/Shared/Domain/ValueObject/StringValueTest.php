@@ -5,6 +5,12 @@ namespace App\Tests\Shared\Domain\ValueObject;
 use App\Shared\Domain\ValueObject\StringValue;
 use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
 
+
+class StringForTest extends StringValue
+{
+
+}
+
 class StringValueTest extends TestCase
 {
     /**
@@ -15,7 +21,7 @@ class StringValueTest extends TestCase
     {
         self::expectException(\Error::class);
 
-        new StringValue();
+        new StringForTest();
     }
 
     /**
@@ -24,8 +30,20 @@ class StringValueTest extends TestCase
      */
     public function testStringValueIsAccessible()
     {
-        $string = StringValue::build('test');
+        $string = StringForTest::build('test');
 
         self::assertEquals('test', $string->value());
+    }
+
+    /**
+     * @group Shared
+     * @group Domain
+     */
+    public function testEqualsFunction()
+    {
+        $integer = StringForTest::build('test');
+
+        self::assertTrue($integer->equals(StringForTest::build('test')));
+        self::assertFalse($integer->equals(StringForTest::build('test_not_equal')));
     }
 }

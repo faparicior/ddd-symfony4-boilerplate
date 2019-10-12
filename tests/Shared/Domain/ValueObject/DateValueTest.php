@@ -5,17 +5,28 @@ namespace App\Tests\Shared\Domain\ValueObject;
 use App\Shared\Domain\ValueObject\DateValue;
 use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
 
+class DateValueForTest extends DateValue {
+
+}
+
 class DateValueTest extends TestCase
 {
+    const DATE = '2018-01-01';
+    const DATE_DIFFERENT = '2018-01-02';
+
     /**
      * @group Shared
      * @group Domain
      */
+    const DATE_WITH_TIMEZONE = '2018-02-01T00:00:00.000000Z';
+
+    const DATE2 = '2018-02-01';
+
     public function testDateCannotBeInstantiated()
     {
         self::expectException(\Error::class);
 
-        new DateValue();
+        new DateValueForTest();
     }
 
     /**
@@ -26,7 +37,7 @@ class DateValueTest extends TestCase
      */
     public function testDateCanBeCreated()
     {
-        $date = DateValue::build('2018-01-01');
+        $date = DateValueForTest::build(self::DATE);
 
         self::assertInstanceOf(DateValue::class, $date);
     }
@@ -40,7 +51,7 @@ class DateValueTest extends TestCase
     public function testCreateDateFailsForBadStringFormat()
     {
         self::expectException(\Exception::class);
-        DateValue::build('2018-15-32');
+        DateValueForTest::build('2018-15-32');
     }
 
     /**
@@ -51,8 +62,21 @@ class DateValueTest extends TestCase
      */
     public function testDateStoresCorrectValue()
     {
-        $date = DateValue::build('2018-02-01');
+        $date = DateValueForTest::build(self::DATE2);
 
-        self::assertEquals('2018-02-01T00:00:00.000000Z', $date->value());
+        self::assertEquals(self::DATE_WITH_TIMEZONE, $date->value());
+    }
+
+    /**
+     * @group Shared
+     * @group Domain
+     * @throws \Exception
+     */
+    public function testEqualsFunction()
+    {
+        $integer = DateValueForTest::build(self::DATE);
+
+        self::assertTrue($integer->equals(DateValueForTest::build(self::DATE)));
+        self::assertFalse($integer->equals(DateValueForTest::build(self::DATE2)));
     }
 }
