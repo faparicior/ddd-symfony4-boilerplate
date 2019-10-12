@@ -12,11 +12,12 @@ abstract class DateValue
     /**
      * Date constructor.
      * @param string $date
-     * @throws \Exception
+     * @param string $timezone
      */
-    final private function __construct(string $date)
+    final private function __construct(string $date, string $timezone = 'UTC')
     {
-        $this->date = Carbon::parse($date);
+        // TODO: Test timezone
+        $this->date = Carbon::parse($date, $timezone);
     }
 
     /**
