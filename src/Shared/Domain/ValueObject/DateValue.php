@@ -9,25 +9,28 @@ abstract class DateValue
     /** @var string */
     private $date;
 
+    /** @var string  */
+    private $timezone;
+
     /**
      * Date constructor.
      * @param string $date
      * @param string $timezone
      */
-    final private function __construct(string $date, string $timezone = 'UTC')
+    final private function __construct(string $date, string $timezone)
     {
-        // TODO: Test timezone
         $this->date = Carbon::parse($date, $timezone);
+        $this->timezone = $timezone;
     }
 
     /**
      * @param string $date
+     * @param string $timezone
      * @return DateValue
-     * @throws \Exception
      */
-    final public static function build(string $date): self
+    final public static function build(string $date, string $timezone = 'UTC'): self
     {
-        return new static($date);
+        return new static($date, $timezone);
     }
 
     final public function value(): string
@@ -35,8 +38,25 @@ abstract class DateValue
         return $this->date->toISOString();
     }
 
+    public function timezone(): string
+    {
+        return $this->timezone;
+    }
+
     final public function equals(self $valueObject): bool
     {
         return $this->date->toISOString() === $valueObject->value();
+    }
+
+    final public function addHours(int $hours)
+    {
+        $newDate = $this->date->copy()->addHours($hours);
+
+        return new static($newDate->toISOString(), $this->timezone);
+    }
+
+    final public function diffInHours(self $dateToCompare): int
+    {
+        return $this->date->diffInHours(Carbon::parse($dateToCompare->value(), $dateToCompare->timezone()));
     }
 }
