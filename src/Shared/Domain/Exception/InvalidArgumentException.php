@@ -2,7 +2,7 @@
 
 namespace App\Shared\Domain\Exception;
 
-class InvalidArgumentException extends \Exception
+final class InvalidArgumentException extends DomainException
 {
 
 }

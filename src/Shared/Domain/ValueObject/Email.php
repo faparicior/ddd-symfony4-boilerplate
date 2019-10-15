@@ -17,7 +17,7 @@ abstract class Email
     /**
      * @param string $email
      * @return Email
-     * @throws InvalidEmailException
+     * @throws \App\Shared\Domain\Exception\DomainException
      */
     final public static function build(string $email): Email
     {

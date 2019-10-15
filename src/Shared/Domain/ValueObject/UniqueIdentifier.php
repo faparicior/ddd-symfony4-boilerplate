@@ -30,12 +30,12 @@ abstract class UniqueIdentifier
     /**
      * @param $uuid
      * @return UniqueIdentifier
-     * @throws InvalidArgumentException
+     * @throws \App\Shared\Domain\Exception\DomainException
      */
     final public static function fromString($uuid): self
     {
         if (!preg_match(self::UUID4_PATTERN, $uuid)) {
-            throw new InvalidArgumentException();
+            throw InvalidArgumentException::build();
         }
 
         return new static(Uuid::fromString($uuid));
