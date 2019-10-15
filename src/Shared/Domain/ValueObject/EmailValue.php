@@ -4,7 +4,7 @@ namespace App\Shared\Domain\ValueObject;
 
 use App\Shared\Domain\Exception\InvalidEmailException;
 
-abstract class Email
+abstract class EmailValue
 {
     /** @var string */
     private $email;
@@ -16,10 +16,10 @@ abstract class Email
 
     /**
      * @param string $email
-     * @return Email
+     * @return EmailValue
      * @throws \App\Shared\Domain\Exception\DomainException
      */
-    final public static function build(string $email): Email
+    final public static function build(string $email): EmailValue
     {
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             throw InvalidEmailException::build();

@@ -3,10 +3,10 @@
 namespace App\Tests\Shared\Domain\ValueObject;
 
 use App\Shared\Domain\Exception\InvalidEmailException;
-use App\Shared\Domain\ValueObject\Email;
+use App\Shared\Domain\ValueObject\EmailValue;
 use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
 
-class EmailForTest extends Email
+class EmailValueForTest extends EmailValue
 {
 
 }
@@ -24,7 +24,7 @@ class EmailTest extends TestCase
     public function testEmailCannotBeInstantiated()
     {
         self::expectException(\Error::class);
-        new EmailForTest();
+        new EmailValueForTest();
     }
 
     /**
@@ -35,9 +35,9 @@ class EmailTest extends TestCase
      */
     public function testEmailCanBeCreated()
     {
-        $email = EmailForTest::build(self::VALID_EMAIL);
+        $email = EmailValueForTest::build(self::VALID_EMAIL);
 
-        self::assertInstanceOf(EmailForTest::class, $email);
+        self::assertInstanceOf(EmailValueForTest::class, $email);
     }
 
     /**
@@ -49,7 +49,7 @@ class EmailTest extends TestCase
     public function testCreateEmailFailsForBadStringFormat()
     {
         self::expectException(InvalidEmailException::class);
-        EmailForTest::build(self::INVALID_EMAIL);
+        EmailValueForTest::build(self::INVALID_EMAIL);
     }
 
     /**
@@ -60,7 +60,7 @@ class EmailTest extends TestCase
      */
     public function testEmailStoresCorrectValue()
     {
-        $email = EmailForTest::build(self::VALID_EMAIL);
+        $email = EmailValueForTest::build(self::VALID_EMAIL);
 
         self::assertEquals(self::VALID_EMAIL, $email->value());
     }
@@ -73,9 +73,9 @@ class EmailTest extends TestCase
      */
     public function testEqualsFunction()
     {
-        $integer = EmailForTest::build(self::VALID_EMAIL);
+        $integer = EmailValueForTest::build(self::VALID_EMAIL);
 
-        self::assertTrue($integer->equals(EmailForTest::build(self::VALID_EMAIL)));
-        self::assertFalse($integer->equals(EmailForTest::build(self::VALID_EMAIL_DIFFERENT)));
+        self::assertTrue($integer->equals(EmailValueForTest::build(self::VALID_EMAIL)));
+        self::assertFalse($integer->equals(EmailValueForTest::build(self::VALID_EMAIL_DIFFERENT)));
     }
 }
