@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace App\Flats\Domain\User;
+namespace App\Flats\User\Domain;
 
-use App\Flats\Domain\User\ValueObject\Email;
-use App\Flats\Domain\User\ValueObject\Password;
-use App\Flats\Domain\User\ValueObject\UserName;
+use App\Flats\User\Domain\ValueObject\Email;
+use App\Flats\User\Domain\ValueObject\Password;
+use App\Flats\User\Domain\ValueObject\UserName;
 
 final class User
 {

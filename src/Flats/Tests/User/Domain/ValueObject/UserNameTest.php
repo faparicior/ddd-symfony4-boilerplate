@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace App\Flats\Tests\Domain\User\ValueObject;
+namespace App\Flats\Tests\User\Domain\ValueObject;
 
-use App\Flats\Domain\User\ValueObject\UserName;
+use App\Flats\User\Domain\ValueObject\UserName;
 use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
 
 class UserNameTest extends TestCase

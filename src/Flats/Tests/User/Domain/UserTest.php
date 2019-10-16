@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace App\Flats\Tests\Domain\User;
+namespace App\Flats\Tests\User\Domain;
 
-use App\Flats\Domain\User\User;
-use App\Flats\Domain\User\ValueObject\Email;
-use App\Flats\Domain\User\ValueObject\Password;
-use App\Flats\Domain\User\ValueObject\UserName;
+use App\Flats\User\Domain\User;
+use App\Flats\User\Domain\ValueObject\Email;
+use App\Flats\User\Domain\ValueObject\Password;
+use App\Flats\User\Domain\ValueObject\UserName;
 use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
 
 class UserTest extends TestCase

@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace App\Flats\Tests\Domain\User\ValueObject;
+namespace App\Flats\Tests\User\Domain\ValueObject;
 
-use App\Flats\Domain\User\ValueObject\Email;
+use App\Flats\User\Domain\ValueObject\Email;
 use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
 
 class EmailTest extends TestCase
