@@ -3,10 +3,17 @@
 namespace App\Flats\Tests\Domain\User;
 
 use App\Flats\Domain\User\User;
+use App\Flats\Domain\User\ValueObject\Email;
+use App\Flats\Domain\User\ValueObject\Password;
+use App\Flats\Domain\User\ValueObject\UserName;
 use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
 
 class UserTest extends TestCase
 {
+    private const USERNAME = 'Test User';
+    private const EMAIL = 'test@test.de';
+    private const PASSWORD = 'userpass';
+
     /**
      * @group Flats
      * @group Domain
@@ -24,9 +31,17 @@ class UserTest extends TestCase
      */
     public function testUserCanBeBuilt()
     {
-        $user = User::build();
+        /** @var User $user */
+        $user = User::build(
+            UserName::build(self::USERNAME),
+            Email::build(self::EMAIL),
+            Password::build(self::PASSWORD)
+        );
 
         self::assertInstanceOf(User::class, $user);
+        self::assertEquals(self::USERNAME, $user->username()->value());
+        self::assertEquals(self::EMAIL, $user->email()->value());
+        self::assertEquals(self::PASSWORD, $user->password()->value());
     }
 
 }
