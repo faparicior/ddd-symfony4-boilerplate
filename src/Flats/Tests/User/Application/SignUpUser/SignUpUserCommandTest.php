@@ -3,9 +3,6 @@
 namespace App\Flats\Tests\User\Application\SignUpUser;
 
 use App\Flats\User\Application\SignUpUser\SignUpUserCommand;
-use App\Flats\User\Domain\ValueObject\Email;
-use App\Flats\User\Domain\ValueObject\Password;
-use App\Flats\User\Domain\ValueObject\UserName;
 use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
 
 class SignUpUserCommandTest extends TestCase

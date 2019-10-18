@@ -1,15 +1,15 @@
 <?php declare(strict_types=1);
 
-namespace App\Flats\Tests\User\Domain;
+namespace App\Flats\Tests\User\Application\SignUpUser;
 
-use App\Flats\User\Domain\User;
+use App\Flats\User\Application\Service\UserBuilder;
 use App\Flats\User\Domain\ValueObject\Email;
 use App\Flats\User\Domain\ValueObject\Password;
 use App\Flats\User\Domain\ValueObject\UserId;
 use App\Flats\User\Domain\ValueObject\UserName;
 use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
 
-class UserTest extends TestCase
+class UserBuilderTest extends TestCase
 {
     private const USER_UUID = '73f2791e-eaa7-4f81-a8cc-7cc601cda30e';
     private const USERNAME = 'Test User';
@@ -18,34 +18,20 @@ class UserTest extends TestCase
 
     /**
      * @group Flats
-     * @group Domain
+     * @group Application
      */
-    public function testUserCannotBeInstantiatedDirectly()
+    public function testUserCreatorCanCreateAnUser()
     {
-        self::expectException(\Error::class);
-
-        new User();
-    }
-
-    /**
-     * @group Flats
-     * @group Domain
-     */
-    public function testUserCanBeBuilt()
-    {
-        /** @var User $user */
-        $user = User::build(
+        $user = UserBuilder::build(
             UserId::fromString(self::USER_UUID),
             UserName::build(self::USERNAME),
             Email::build(self::EMAIL),
             Password::build(self::PASSWORD)
         );
 
-        self::assertInstanceOf(User::class, $user);
         self::assertEquals(self::USER_UUID, $user->userId()->value());
         self::assertEquals(self::USERNAME, $user->username()->value());
         self::assertEquals(self::EMAIL, $user->email()->value());
         self::assertEquals(self::PASSWORD, $user->password()->value());
     }
-
 }

@@ -28,5 +28,4 @@ class PasswordTest extends TestCase
         self::assertInstanceOf(Password::class, $Password);
         self::assertEquals('UserTest', $Password->value());
     }
-
 }

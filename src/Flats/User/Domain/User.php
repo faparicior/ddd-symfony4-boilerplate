@@ -4,6 +4,7 @@ namespace App\Flats\User\Domain;
 
 use App\Flats\User\Domain\ValueObject\Email;
 use App\Flats\User\Domain\ValueObject\Password;
+use App\Flats\User\Domain\ValueObject\UserId;
 use App\Flats\User\Domain\ValueObject\UserName;
 
 final class User
@@ -17,16 +18,28 @@ final class User
     /** @var Password */
     private $password;
 
-    private function __construct(UserName $userName, Email $email, Password $password)
+    /** @var UserId  */
+    private $userId;
+
+    private function __construct(UserId $userId, UserName $userName, Email $email, Password $password)
     {
+        $this->userId = $userId;
         $this->userName = $userName;
         $this->email = $email;
         $this->password = $password;
     }
 
-    public static function build(UserName $userName, Email $email, Password $password): self
+    public static function build(UserId $userId, UserName $userName, Email $email, Password $password): self
     {
-        return new static($userName, $email, $password);
+        return new static($userId, $userName, $email, $password);
+    }
+
+    /**
+     * @return UserId
+     */
+    public function userId(): UserId
+    {
+        return $this->userId;
     }
 
     /**
