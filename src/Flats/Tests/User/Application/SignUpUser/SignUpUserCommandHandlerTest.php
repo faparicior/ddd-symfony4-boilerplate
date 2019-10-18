@@ -4,7 +4,7 @@ namespace App\Flats\Tests\User\Application\SignUpUser;
 
 use App\Flats\User\Application\SignUpUser\SignUpUserCommand;
 use App\Flats\User\Application\SignUpUser\SignUpUserCommandHandler;
-use App\Shared\Domain\Service\UniqueUuidProviderService;
+use App\Shared\Domain\Service\UniqueIdProviderServiceDummy;
 use Ramsey\Uuid\UuidFactory;
 use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
 
@@ -26,7 +26,10 @@ class SignUpUserCommandHandlerTest extends TestCase
             self::PASSWORD
         );
 
-        $commandHandler = new SignUpUserCommandHandler(new UniqueUuidProviderService(new UuidFactory()));
+        $uuidService = new UniqueIdProviderServiceDummy(new UuidFactory());
+        $uuidService->setUuidToReturn('73f2791e-eaa7-4f81-a8cc-7cc601cda30e');
+
+        $commandHandler = new SignUpUserCommandHandler($uuidService);
 
         $response = $commandHandler->handle($command);
 
