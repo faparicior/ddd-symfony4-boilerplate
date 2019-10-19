@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
 class EmailTest extends TestCase
 {
     /**
-     * @group Flats
+     * @group Users
      * @group Domain
      */
     public function testEmailCannotBeInstantiatedDirectly()
@@ -19,7 +19,7 @@ class EmailTest extends TestCase
     }
 
     /**
-     * @group Flats
+     * @group Users
      * @group Domain
      */
     public function testEmailCanBeBuilt()
