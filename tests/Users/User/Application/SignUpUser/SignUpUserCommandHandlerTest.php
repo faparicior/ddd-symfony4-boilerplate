@@ -75,6 +75,11 @@ class SignUpUserCommandHandlerTest extends TestCase
         $response = $this->handleCommand($command);
     }
 
+    /**
+     * @param $command
+     * @return array
+     * @throws \Exception
+     */
     private function handleCommand($command)
     {
         $commandHandler = new SignUpUserCommandHandler($this->uuidService, $this->userRepository);
