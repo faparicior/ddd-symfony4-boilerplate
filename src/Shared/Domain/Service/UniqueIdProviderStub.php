@@ -5,7 +5,7 @@ namespace App\Shared\Domain\Service;
 use Ramsey\Uuid\UuidFactory;
 use Ramsey\Uuid\UuidInterface;
 
-final class UniqueIdProviderServiceDummy implements UniqueIdProviderServiceInterface
+final class UniqueIdProviderStub implements UniqueIdProviderInterface
 {
     private $uuidToReturn;
 

@@ -7,14 +7,14 @@ use App\Users\User\Domain\ValueObject\Email;
 use App\Users\User\Domain\ValueObject\Password;
 use App\Users\User\Domain\ValueObject\UserId;
 use App\Users\User\Domain\ValueObject\UserName;
-use App\Shared\Domain\Service\UniqueIdProviderServiceInterface;
+use App\Shared\Domain\Service\UniqueIdProviderInterface;
 
 final class SignUpUserCommandHandler
 {
-    /** @var UniqueIdProviderServiceInterface */
+    /** @var UniqueIdProviderInterface */
     private $uniqueUuidProviderService;
 
-    public function __construct(UniqueIdProviderServiceInterface $uniqueUuidProviderService)
+    public function __construct(UniqueIdProviderInterface $uniqueUuidProviderService)
     {
         $this->uniqueUuidProviderService = $uniqueUuidProviderService;
     }

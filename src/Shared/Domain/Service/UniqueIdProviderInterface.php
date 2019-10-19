@@ -2,9 +2,8 @@
 
 namespace App\Shared\Domain\Service;
 
-interface UniqueIdProviderServiceInterface
+interface UniqueIdProviderInterface
 {
-
     /**
      * @return string
      * @throws \Exception
