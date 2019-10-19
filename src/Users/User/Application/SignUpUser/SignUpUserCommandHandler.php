@@ -3,6 +3,7 @@
 namespace App\Users\User\Application\SignUpUser;
 
 use App\Users\User\Application\Service\UserBuilder;
+use App\Users\User\Domain\UserRepositoryInterface;
 use App\Users\User\Domain\ValueObject\Email;
 use App\Users\User\Domain\ValueObject\Password;
 use App\Users\User\Domain\ValueObject\UserId;
@@ -14,9 +15,13 @@ final class SignUpUserCommandHandler
     /** @var UniqueIdProviderInterface */
     private $uniqueUuidProviderService;
 
-    public function __construct(UniqueIdProviderInterface $uniqueUuidProviderService)
+    /** @var UserRepositoryInterface */
+    private $userRepository;
+
+    public function __construct(UniqueIdProviderInterface $uniqueUuidProviderService, UserRepositoryInterface $userRepository)
     {
         $this->uniqueUuidProviderService = $uniqueUuidProviderService;
+        $this->userRepository = $userRepository;
     }
 
     /**

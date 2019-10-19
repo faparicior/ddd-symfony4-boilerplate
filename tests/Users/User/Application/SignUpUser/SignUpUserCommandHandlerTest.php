@@ -2,9 +2,12 @@
 
 namespace App\Tests\Users\User\Application\SignUpUser;
 
+use App\Shared\Domain\Service\UniqueIdProviderInterface;
 use App\Users\User\Application\SignUpUser\SignUpUserCommand;
 use App\Users\User\Application\SignUpUser\SignUpUserCommandHandler;
 use App\Shared\Domain\Service\UniqueIdProviderStub;
+use App\Users\User\Domain\UserRepositoryInterface;
+use App\Users\User\Infrastructure\Persistence\InMemoryUserRepository;
 use Ramsey\Uuid\UuidFactory;
 use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
 
@@ -14,6 +17,22 @@ class SignUpUserCommandHandlerTest extends TestCase
     private const USERNAME = 'JohnDoe';
     private const EMAIL = 'test.email@gmail.com';
     private const PASSWORD = ",&+3RjwAu88(tyC'";
+
+    /** @var UniqueIdProviderInterface */
+    private $uuidService;
+
+    /** @var UserRepositoryInterface */
+    private $userRepository;
+
+    public function setUp()
+    {
+        parent::setUp();
+
+        $this->uuidService = new UniqueIdProviderStub(new UuidFactory());
+        $this->uuidService->setUuidToReturn(self::USER_UUID);
+
+        $this->userRepository = new InMemoryUserRepository();
+    }
 
     /**
      * @group Users
@@ -28,12 +47,7 @@ class SignUpUserCommandHandlerTest extends TestCase
             self::PASSWORD
         );
 
-        $uuidService = new UniqueIdProviderStub(new UuidFactory());
-        $uuidService->setUuidToReturn(self::USER_UUID);
-
-        $commandHandler = new SignUpUserCommandHandler($uuidService);
-
-        $response = $commandHandler->handle($command);
+        $response = $this->handleCommand($command);
 
         $responseExpected = [
             "id" => self::USER_UUID,
@@ -43,5 +57,28 @@ class SignUpUserCommandHandlerTest extends TestCase
         ];
 
         self::assertEquals($responseExpected, $response);
+    }
+
+    /**
+     * @group Users
+     * @group Application
+     * @throws \Exception
+     */
+    public function testSignUpUserCommandHandlerStoreAnUser()
+    {
+        $command = SignUpUserCommand::build(
+            self::USERNAME,
+            self::EMAIL,
+            self::PASSWORD
+        );
+
+        $response = $this->handleCommand($command);
+    }
+
+    private function handleCommand($command)
+    {
+        $commandHandler = new SignUpUserCommandHandler($this->uuidService, $this->userRepository);
+
+        return $commandHandler->handle($command);
     }
 }
