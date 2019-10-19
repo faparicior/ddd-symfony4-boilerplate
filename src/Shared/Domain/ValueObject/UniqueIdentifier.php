@@ -19,7 +19,6 @@ abstract class UniqueIdentifier
     }
 
     /**
-     * @return UniqueIdentifier
      * @throws \Exception
      */
     final public static function build(): self
@@ -28,11 +27,9 @@ abstract class UniqueIdentifier
     }
 
     /**
-     * @param $uuid
-     * @return UniqueIdentifier
      * @throws \App\Shared\Domain\Exception\DomainException
      */
-    final public static function fromString($uuid): self
+    final public static function fromString($uuid)
     {
         if (!preg_match(self::UUID4_PATTERN, $uuid)) {
             throw InvalidArgumentException::build();

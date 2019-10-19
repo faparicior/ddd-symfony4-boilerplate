@@ -15,11 +15,9 @@ abstract class EmailValue
     }
 
     /**
-     * @param string $email
-     * @return EmailValue
      * @throws \App\Shared\Domain\Exception\DomainException
      */
-    final public static function build(string $email): EmailValue
+    final public static function build(string $email)
     {
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             throw InvalidEmailException::build();
