@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
 class PasswordTest extends TestCase
 {
     /**
-     * @group Flats
+     * @group Users
      * @group Domain
      */
     public function testPasswordCannotBeInstantiatedDirectly()
@@ -19,7 +19,7 @@ class PasswordTest extends TestCase
     }
 
     /**
-     * @group Flats
+     * @group Users
      * @group Domain
      */    public function testPasswordCanBeBuilt()
     {

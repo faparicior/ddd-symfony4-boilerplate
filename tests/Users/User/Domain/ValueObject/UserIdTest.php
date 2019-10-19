@@ -10,7 +10,7 @@ class UserIdTest extends TestCase
     private const USER_ID = '00000000-0000-4000-8000-000000000000';
 
     /**
-     * @group Flats
+     * @group Users
      * @group Domain
      */
     public function testUserIdCannotBeInstantiatedDirectly()
@@ -21,7 +21,7 @@ class UserIdTest extends TestCase
     }
 
     /**
-     * @group Flats
+     * @group Users
      * @group Domain
      */
     public function testUserIdCanBeBuilt()

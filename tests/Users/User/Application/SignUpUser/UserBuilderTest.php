@@ -17,7 +17,7 @@ class UserBuilderTest extends TestCase
     private const PASSWORD = 'userpass';
 
     /**
-     * @group Flats
+     * @group Users
      * @group Application
      */
     public function testUserCreatorCanCreateAnUser()

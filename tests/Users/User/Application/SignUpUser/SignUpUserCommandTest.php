@@ -12,7 +12,7 @@ class SignUpUserCommandTest extends TestCase
     private const PASSWORD = 'userpass';
 
     /**
-     * @group Flats
+     * @group Users
      * @group Application
      */
     public function testSignUpUserCommandCannotBeInstantiatedDirectly()
@@ -23,7 +23,7 @@ class SignUpUserCommandTest extends TestCase
     }
 
     /**
-     * @group Flats
+     * @group Users
      * @group Application
      */
     public function testSignUpUserCommandCanBeBuilt()

@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
 class UserNameTest extends TestCase
 {
     /**
-     * @group Flats
+     * @group Users
      * @group Domain
      */
     public function testUserNameCannotBeInstantiatedDirectly()
@@ -19,7 +19,7 @@ class UserNameTest extends TestCase
     }
 
     /**
-     * @group Flats
+     * @group Users
      * @group Domain
      */    public function testUserNameCanBeBuilt()
     {

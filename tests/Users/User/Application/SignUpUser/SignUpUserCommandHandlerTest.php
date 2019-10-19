@@ -16,7 +16,7 @@ class SignUpUserCommandHandlerTest extends TestCase
     private const PASSWORD = ",&+3RjwAu88(tyC'";
 
     /**
-     * @group Flats
+     * @group Users
      * @group Application
      * @throws \Exception
      */

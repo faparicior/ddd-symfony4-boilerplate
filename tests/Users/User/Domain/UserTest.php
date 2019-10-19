@@ -17,7 +17,7 @@ class UserTest extends TestCase
     private const PASSWORD = 'userpass';
 
     /**
-     * @group Flats
+     * @group Users
      * @group Domain
      */
     public function testUserCannotBeInstantiatedDirectly()
@@ -28,7 +28,7 @@ class UserTest extends TestCase
     }
 
     /**
-     * @group Flats
+     * @group Users
      * @group Domain
      */
     public function testUserCanBeBuilt()
