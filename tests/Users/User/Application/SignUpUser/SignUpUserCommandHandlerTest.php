@@ -18,6 +18,7 @@ class SignUpUserCommandHandlerTest extends TestCase
     /**
      * @group Flats
      * @group Application
+     * @throws \Exception
      */
     public function testSignUpUserCommandHandlerReturnsAValidResponse()
     {
