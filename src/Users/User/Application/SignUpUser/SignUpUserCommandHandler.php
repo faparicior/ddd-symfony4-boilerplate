@@ -40,6 +40,8 @@ final class SignUpUserCommandHandler
             Password::build($command->password())
         );
 
+        $this->userRepository->create($user);
+
         return [
             "id" => $user->userId()->value(),
             "userName" => $user->username()->value(),
