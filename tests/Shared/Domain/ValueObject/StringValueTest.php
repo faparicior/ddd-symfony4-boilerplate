@@ -5,7 +5,6 @@ namespace App\Tests\Shared\Domain\ValueObject;
 use App\Shared\Domain\ValueObject\StringValue;
 use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
 
-
 class StringForTest extends StringValue
 {
 
