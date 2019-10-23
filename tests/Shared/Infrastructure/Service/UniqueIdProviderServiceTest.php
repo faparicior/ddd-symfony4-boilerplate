@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Tests\Shared\Domain\Service;
+namespace App\Tests\Shared\Infrastrucure\Service;
 
 use App\Shared\Infrastructure\Service\UniqueIdProvider;
 use Ramsey\Uuid\UuidFactory;
@@ -11,7 +11,7 @@ class UniqueIdProviderServiceTest extends TestCase
 
     /**
      * @group Shared
-     * @group Domain
+     * @group Infrastructure
      * @throws \Exception
      */
     public function testUniqueUuidProvideCanCreateValidUuids()
