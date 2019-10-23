@@ -2,7 +2,7 @@
 
 namespace App\Tests\Shared\Domain\Service;
 
-use App\Shared\Domain\Service\UniqueIdProvider;
+use App\Shared\Infrastructure\Service\UniqueIdProvider;
 use Ramsey\Uuid\UuidFactory;
 use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
 

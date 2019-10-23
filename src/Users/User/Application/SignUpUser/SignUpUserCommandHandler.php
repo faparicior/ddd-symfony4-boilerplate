@@ -8,7 +8,7 @@ use App\Users\User\Domain\ValueObject\Email;
 use App\Users\User\Domain\ValueObject\Password;
 use App\Users\User\Domain\ValueObject\UserId;
 use App\Users\User\Domain\ValueObject\UserName;
-use App\Shared\Domain\Service\UniqueIdProviderInterface;
+use App\Shared\Infrastructure\Service\UniqueIdProviderInterface;
 
 final class SignUpUserCommandHandler
 {

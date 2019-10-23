@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Shared\Domain\Service;
+namespace App\Shared\Infrastructure\Service;
 
 use Ramsey\Uuid\UuidFactory;
 use Ramsey\Uuid\UuidInterface;

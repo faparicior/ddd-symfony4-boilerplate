@@ -2,10 +2,10 @@
 
 namespace App\Tests\Users\User\Application\SignUpUser;
 
-use App\Shared\Domain\Service\UniqueIdProviderInterface;
+use App\Shared\Infrastructure\Service\UniqueIdProviderInterface;
 use App\Users\User\Application\SignUpUser\SignUpUserCommand;
 use App\Users\User\Application\SignUpUser\SignUpUserCommandHandler;
-use App\Shared\Domain\Service\UniqueIdProviderStub;
+use App\Shared\Infrastructure\Service\UniqueIdProviderStub;
 use App\Users\User\Domain\UserRepositoryInterface;
 use App\Users\User\Domain\ValueObject\UserId;
 use App\Users\User\Infrastructure\Persistence\InMemoryUserRepository;
