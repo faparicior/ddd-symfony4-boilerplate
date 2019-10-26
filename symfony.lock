@@ -81,6 +81,9 @@
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },
+    "league/tactician": {
+        "version": "v1.0.3"
+    },
     "nesbot/carbon": {
         "version": "2.25.1"
     },
