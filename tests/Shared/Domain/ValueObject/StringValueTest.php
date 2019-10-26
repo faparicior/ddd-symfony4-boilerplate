@@ -13,6 +13,7 @@ class StringForTest extends StringValue
 class StringValueTest extends TestCase
 {
     /**
+     * @group UnitTests
      * @group Shared
      * @group Domain
      */
@@ -24,6 +25,7 @@ class StringValueTest extends TestCase
     }
 
     /**
+     * @group UnitTests
      * @group Shared
      * @group Domain
      */
@@ -35,6 +37,7 @@ class StringValueTest extends TestCase
     }
 
     /**
+     * @group UnitTests
      * @group Shared
      * @group Domain
      */

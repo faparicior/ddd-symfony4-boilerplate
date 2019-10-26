@@ -13,6 +13,7 @@ class IntegerValueTest extends TestCase
 {
 
     /**
+     * @group UnitTests
      * @group Shared
      * @group Domain
      */
@@ -24,6 +25,7 @@ class IntegerValueTest extends TestCase
     }
 
     /**
+     * @group UnitTests
      * @group Shared
      * @group Domain
      */
@@ -35,6 +37,7 @@ class IntegerValueTest extends TestCase
     }
 
     /**
+     * @group UnitTests
      * @group Shared
      * @group Domain
      */

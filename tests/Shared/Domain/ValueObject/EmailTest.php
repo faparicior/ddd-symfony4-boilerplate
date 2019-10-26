@@ -18,6 +18,7 @@ class EmailTest extends TestCase
     private const INVALID_EMAIL = 'test,@test.de';
 
     /**
+     * @group UnitTests
      * @group Shared
      * @group Domain
      */
@@ -28,6 +29,7 @@ class EmailTest extends TestCase
     }
 
     /**
+     * @group UnitTests
      * @group Shared
      * @group Domain
      *
@@ -41,6 +43,7 @@ class EmailTest extends TestCase
     }
 
     /**
+     * @group UnitTests
      * @group Shared
      * @group Domain
      *
@@ -53,6 +56,7 @@ class EmailTest extends TestCase
     }
 
     /**
+     * @group UnitTests
      * @group Shared
      * @group Domain
      *
@@ -66,6 +70,7 @@ class EmailTest extends TestCase
     }
 
     /**
+     * @group UnitTests
      * @group Shared
      * @group Domain
      *

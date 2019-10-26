@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
 class PasswordTest extends TestCase
 {
     /**
+     * @group UnitTests
      * @group Users
      * @group Domain
      */
@@ -19,6 +20,7 @@ class PasswordTest extends TestCase
     }
 
     /**
+     * @group UnitTests
      * @group Users
      * @group Domain
      */    public function testPasswordCanBeBuilt()

@@ -25,8 +25,10 @@ class UniqueIdentifierTest extends TestCase
     }
 
     /**
+     * @group UnitTests
      * @group Shared
      * @group Domain
+     *
      * @throws \Exception
      */
     public function testUserIdCanBeCreated()
@@ -37,6 +39,7 @@ class UniqueIdentifierTest extends TestCase
     }
 
     /**
+     * @group UnitTests
      * @group Shared
      * @group Domain
      *
@@ -51,6 +54,7 @@ class UniqueIdentifierTest extends TestCase
     }
 
     /**
+     * @group UnitTests
      * @group Shared
      * @group Domain
      *
@@ -65,6 +69,7 @@ class UniqueIdentifierTest extends TestCase
     }
 
     /**
+     * @group UnitTests
      * @group Shared
      * @group Domain
      *
@@ -77,6 +82,7 @@ class UniqueIdentifierTest extends TestCase
     }
 
     /**
+     * @group UnitTests
      * @group Shared
      * @group Domain
      *

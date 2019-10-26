@@ -36,6 +36,7 @@ class SignUpUserCommandHandlerTest extends TestCase
     }
 
     /**
+     * @group UnitTests
      * @group Users
      * @group Application
      * @throws \Exception
@@ -61,6 +62,7 @@ class SignUpUserCommandHandlerTest extends TestCase
     }
 
     /**
+     * @group UnitTests
      * @group Users
      * @group Application
      * @throws \Exception

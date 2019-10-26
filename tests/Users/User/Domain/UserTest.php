@@ -17,6 +17,7 @@ class UserTest extends TestCase
     private const PASSWORD = 'userpass';
 
     /**
+     * @group UnitTests
      * @group Users
      * @group Domain
      */
@@ -28,6 +29,7 @@ class UserTest extends TestCase
     }
 
     /**
+     * @group UnitTests
      * @group Users
      * @group Domain
      */

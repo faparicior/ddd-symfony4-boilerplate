@@ -16,6 +16,7 @@ class DomainExceptionTest extends TestCase
     const TEST_CODE = 2;
 
     /**
+     * @group UnitTests
      * @group Shared
      * @group Domain
      */
@@ -27,6 +28,7 @@ class DomainExceptionTest extends TestCase
     }
 
     /**
+     * @group UnitTests
      * @group Shared
      * @group Domain
      */
@@ -38,6 +40,7 @@ class DomainExceptionTest extends TestCase
     }
 
     /**
+     * @group UnitTests
      * @group Shared
      * @group Domain
      */

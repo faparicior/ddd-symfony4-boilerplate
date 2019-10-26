@@ -22,6 +22,7 @@ class DateValueTest extends TestCase
     const ASIA_SHANGHAI_UTC_DIFF_HOURS = 8;
 
     /**
+     * @group UnitTests
      * @group Shared
      * @group Domain
      */
@@ -33,6 +34,7 @@ class DateValueTest extends TestCase
     }
 
     /**
+     * @group UnitTests
      * @group Shared
      * @group Domain
      *
@@ -46,6 +48,7 @@ class DateValueTest extends TestCase
     }
 
     /**
+     * @group UnitTests
      * @group Shared
      * @group Domain
      *
@@ -58,6 +61,7 @@ class DateValueTest extends TestCase
     }
 
     /**
+     * @group UnitTests
      * @group Shared
      * @group Domain
      *
@@ -71,8 +75,10 @@ class DateValueTest extends TestCase
     }
 
     /**
+     * @group UnitTests
      * @group Shared
      * @group Domain
+     *
      * @throws \Exception
      */
     public function testEqualsFunction()
@@ -84,6 +90,7 @@ class DateValueTest extends TestCase
     }
 
     /**
+     * @group UnitTests
      * @group Shared
      * @group Domain
      *
@@ -98,6 +105,7 @@ class DateValueTest extends TestCase
     }
 
     /**
+     * @group UnitTests
      * @group Shared
      * @group Domain
      *
@@ -115,6 +123,7 @@ class DateValueTest extends TestCase
     }
 
     /**
+     * @group UnitTests
      * @group Shared
      * @group Domain
      *

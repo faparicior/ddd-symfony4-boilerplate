@@ -10,6 +10,7 @@ class UserIdTest extends TestCase
     private const USER_ID = '00000000-0000-4000-8000-000000000000';
 
     /**
+     * @group UnitTests
      * @group Users
      * @group Domain
      */
@@ -21,6 +22,7 @@ class UserIdTest extends TestCase
     }
 
     /**
+     * @group UnitTests
      * @group Users
      * @group Domain
      */

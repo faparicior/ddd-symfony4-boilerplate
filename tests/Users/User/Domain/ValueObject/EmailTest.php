@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
 class EmailTest extends TestCase
 {
     /**
+     * @group UnitTests
      * @group Users
      * @group Domain
      */
@@ -19,6 +20,7 @@ class EmailTest extends TestCase
     }
 
     /**
+     * @group UnitTests
      * @group Users
      * @group Domain
      */

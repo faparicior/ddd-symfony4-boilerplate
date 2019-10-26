@@ -12,6 +12,7 @@ class SignUpUserCommandTest extends TestCase
     private const PASSWORD = 'userpass';
 
     /**
+     * @group UnitTests
      * @group Users
      * @group Application
      */
@@ -23,6 +24,7 @@ class SignUpUserCommandTest extends TestCase
     }
 
     /**
+     * @group UnitTests
      * @group Users
      * @group Application
      */
