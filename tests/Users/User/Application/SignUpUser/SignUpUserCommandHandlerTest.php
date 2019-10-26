@@ -53,9 +53,9 @@ class SignUpUserCommandHandlerTest extends TestCase
 
         $responseExpected = [
             "id" => self::USER_UUID,
-            "userName" => "JohnDoe",
-            "email" => "test.email@gmail.com",
-            "password" => ",&+3RjwAu88(tyC'"
+            "userName" => self::USERNAME,
+            "email" => self::EMAIL,
+            "password" => self::PASSWORD
         ];
 
         self::assertEquals($responseExpected, $response);
