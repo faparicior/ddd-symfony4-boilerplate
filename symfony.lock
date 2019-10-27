@@ -1,4 +1,16 @@
 {
+    "behat/behat": {
+        "version": "v3.5.0"
+    },
+    "behat/gherkin": {
+        "version": "v4.6.0"
+    },
+    "behat/transliterator": {
+        "version": "v1.2.0"
+    },
+    "container-interop/container-interop": {
+        "version": "1.2.0"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -78,6 +90,21 @@
     "doctrine/reflection": {
         "version": "v1.0.0"
     },
+    "friends-of-behat/symfony-extension": {
+        "version": "2.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "2.0",
+            "ref": "3d21344765fd3440a85bdd27d4cada186ec628bd"
+        },
+        "files": [
+            "behat.yml.dist",
+            "config/services_test.yaml",
+            "features/demo.feature",
+            "tests/Behat/DemoContext.php"
+        ]
+    },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },
@@ -128,6 +155,9 @@
     },
     "symfony/cache-contracts": {
         "version": "v1.1.7"
+    },
+    "symfony/class-loader": {
+        "version": "v3.4.32"
     },
     "symfony/config": {
         "version": "v4.3.5"
@@ -254,6 +284,9 @@
     },
     "symfony/polyfill-php73": {
         "version": "v1.12.0"
+    },
+    "symfony/proxy-manager-bridge": {
+        "version": "v4.3.5"
     },
     "symfony/routing": {
         "version": "4.2",
