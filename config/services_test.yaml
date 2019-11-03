@@ -5,3 +5,9 @@ services:
 
     App\Tests\Behat\:
         resource: '../tests/Behat/*'
+
+    App\Tests\Behat\DemoContext:
+        public: true
+        arguments:
+            - "@kernel"
+            - "%kernel.environment%"
