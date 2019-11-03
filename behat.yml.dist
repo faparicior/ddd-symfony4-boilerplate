@@ -3,7 +3,7 @@ default:
         default:
 #            mink_session: selenium2
             contexts:
-                - App\Tests\Behat\DemoContext
+                - App\Tests\Behat\BehatTestEnvironmentContext
 #                - Behat\MinkExtension\Context\MinkContext
 
     extensions:

@@ -20,6 +20,7 @@ class UserBuilderTest extends TestCase
      * @group UnitTests
      * @group Users
      * @group Application
+     * @throws \App\Shared\Domain\Exception\DomainException
      */
     public function testUserCreatorCanCreateAnUser()
     {

@@ -6,7 +6,7 @@ services:
     App\Tests\Behat\:
         resource: '../tests/Behat/*'
 
-    App\Tests\Behat\DemoContext:
+    App\Tests\Behat\BehatTestEnvironmentContext:
         public: true
         arguments:
             - "@kernel"
