@@ -64,14 +64,14 @@ final class BehatTestEnvironmentContext extends MinkContext implements Context
     }
 
     /**
-     * @When /^(?:I )?send a "([A-Z]+)" request to "([^"]+)" with values:$/
+     * @When /^(?:I )?send a "([A-Z]+)" request to "([^"]+)" with body:$/
      * @param string $method
      * @param string $path
-     * @param string $table
+     * @param string $data
+     * @throws \Exception
      */
-    public function iSendARequestToWith(string $method, string $path, string $data)
+    public function iSendARequestToWithBody(string $method, string $path, string $data)
     {
-        $this->kernel->handle(Request::create($path, $method));
-        var_dump(json_decode($data));
+        $this->response = $this->kernel->handle(Request::create($path, $method, [], [], [], [], $data));
     }
 }

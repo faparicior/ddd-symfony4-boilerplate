@@ -5,7 +5,7 @@ Feature:
   As a User I want to signUp and Login to the platform using the API
 
   Scenario: SignUp User
-    When I send a "POST" request to "/users" with values:
+    When I send a "POST" request to "/users" with body:
     """
       {
         "userName": "JohnDoe",
