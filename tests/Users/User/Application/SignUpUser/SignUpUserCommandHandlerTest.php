@@ -14,7 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
 
 class SignUpUserCommandHandlerTest extends TestCase
 {
-    private const USER_UUID = '73f2791e-eaa7-4f81-a8cc-7cc601cda30e';
+    private const USER_UUID = UniqueIdProviderStub::USER_UUID;
     private const USERNAME = 'JohnDoe';
     private const EMAIL = 'test.email@gmail.com';
     private const PASSWORD = ",&+3RjwAu88(tyC'";

@@ -1,3 +1,6 @@
+imports:
+    - { resource: ../src/Shared/Infrastructure/Symfony/config/services_test.yaml}
+
 services:
     _defaults:
         autowire: true

@@ -7,11 +7,13 @@ use Ramsey\Uuid\UuidInterface;
 
 final class UniqueIdProviderStub implements UniqueIdProviderInterface
 {
+    public const USER_UUID = '73f2791e-eaa7-4f81-a8cc-7cc601cda30e';
+
     private $uuidToReturn;
 
     public function __construct(?UuidFactory $uuidGenerator)
     {
-        $this->uuidToReturn = '';
+        $this->uuidToReturn = self::USER_UUID;
     }
 
     public function setUuidToReturn(string $uuid): void
