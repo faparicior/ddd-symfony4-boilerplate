@@ -12,8 +12,8 @@ class SpecificationChain
         $this->specifications = $specifications;
     }
 
-    final public function build(SpecificationInterface ...$specifications)
+    final public static function build(SpecificationInterface ...$specifications)
     {
-        return new static($specifications);
+        return new static(...$specifications);
     }
 }
