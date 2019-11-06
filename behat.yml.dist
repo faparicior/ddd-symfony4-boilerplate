@@ -4,6 +4,7 @@ default:
 #            mink_session: selenium2
             contexts:
                 - App\Tests\Behat\BehatTestEnvironmentContext
+                - App\Tests\Behat\ApiContext
 #                - Behat\MinkExtension\Context\MinkContext
 
     extensions:

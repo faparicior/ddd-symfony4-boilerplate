@@ -12,5 +12,10 @@ services:
     App\Tests\Behat\BehatTestEnvironmentContext:
         public: true
         arguments:
+            - "%kernel.environment%"
+
+    App\Tests\Behat\ApiContext:
+        public: true
+        arguments:
             - "@kernel"
             - "%kernel.environment%"

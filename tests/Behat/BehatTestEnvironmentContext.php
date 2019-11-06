@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace App\Tests\Behat;
 
 use Behat\Behat\Context\Context;
-use Behat\Gherkin\Node\TableNode;
+use Behat\Behat\Hook\Scope\BeforeScenarioScope;
+use Behat\Gherkin\Node\PyStringNode;
 use Behat\MinkExtension\Context\MinkContext;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,40 +18,27 @@ use Symfony\Component\HttpKernel\KernelInterface;
  *
  * @see http://behat.org/en/latest/quick_start.html
  */
-final class BehatTestEnvironmentContext extends MinkContext implements Context
+final class BehatTestEnvironmentContext implements Context
 {
-    /** @var KernelInterface */
-    private $kernel;
-
     /** @var Response|null */
     private $response;
 
     /** @var string */
     private $environment;
 
-    public function __construct(KernelInterface $kernel, string $environment)
+    /** @var ApiContext */
+    private $apiContext;
+
+    public function __construct(string $environment)
     {
-        $this->kernel = $kernel;
         $this->environment = $environment;
     }
 
-    /**
-     * @When a demo scenario sends a request to :path
-     * @throws \Exception
-     */
-    public function sendsARequestTo(string $path): void
+    public function gatherContexts(BeforeScenarioScope $scope)
     {
-        $this->response = $this->kernel->handle(Request::create($path, 'GET'));
-    }
+        $environment = $scope->getEnvironment();
 
-    /**
-     * @Then the response should be received
-     */
-    public function theResponseShouldBeReceived(): void
-    {
-        if ($this->response === null) {
-            throw new \RuntimeException('No response received');
-        }
+        $this->apiContext = $environment->getContext(ApiContext::class);
     }
 
     /**
@@ -61,17 +49,5 @@ final class BehatTestEnvironmentContext extends MinkContext implements Context
         if ($this->environment !== $expected) {
             throw new \RuntimeException();
         }
-    }
-
-    /**
-     * @When /^(?:I )?send a "([A-Z]+)" request to "([^"]+)" with body:$/
-     * @param string $method
-     * @param string $path
-     * @param string $data
-     * @throws \Exception
-     */
-    public function iSendARequestToWithBody(string $method, string $path, string $data)
-    {
-        $this->response = $this->kernel->handle(Request::create($path, $method, [], [], [], [], $data));
     }
 }
