@@ -4,7 +4,7 @@ namespace App\Users\User\Infrastructure\Persistence;
 
 use App\Users\User\Domain\User;
 use App\Users\User\Domain\UserRepositoryInterface;
-use App\Users\User\Domain\ValueObject\UserId;
+use App\Users\User\Domain\ValueObjects\UserId;
 
 final class InMemoryUserRepository implements UserRepositoryInterface
 {

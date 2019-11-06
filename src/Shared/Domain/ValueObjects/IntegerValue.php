@@ -1,23 +1,23 @@
 <?php declare(strict_types=1);
 
-namespace App\Shared\Domain\ValueObject;
+namespace App\Shared\Domain\ValueObjects;
 
-abstract class StringValue
+abstract class IntegerValue
 {
-    /** @var string */
+    /** @var int */
     private $value;
 
-    final private function __construct(string $value)
+    final private function __construct(int $value)
     {
         $this->value = $value;
     }
 
-    final public static function build(string $value)
+    final public static function build(int $value)
     {
         return new static($value);
     }
 
-    final public function value(): string
+    final public function value(): int
     {
         return $this->value;
     }

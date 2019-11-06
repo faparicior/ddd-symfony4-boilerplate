@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace App\Shared\Domain\ValueObject;
+namespace App\Shared\Domain\ValueObjects;
 
-use App\Shared\Domain\Exception\InvalidEmailException;
+use App\Shared\Domain\Exceptions\InvalidEmailException;
 
 abstract class EmailValue
 {
@@ -15,7 +15,7 @@ abstract class EmailValue
     }
 
     /**
-     * @throws \App\Shared\Domain\Exception\DomainException
+     * @throws \App\Shared\Domain\Exceptions\DomainException
      */
     final public static function build(string $email)
     {

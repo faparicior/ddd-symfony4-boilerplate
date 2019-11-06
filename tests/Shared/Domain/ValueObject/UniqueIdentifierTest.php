@@ -2,8 +2,8 @@
 
 namespace App\Tests\Shared\Domain\ValueObject;
 
-use App\Shared\Domain\Exception\InvalidArgumentException;
-use App\Shared\Domain\ValueObject\UniqueIdentifier;
+use App\Shared\Domain\Exceptions\InvalidArgumentException;
+use App\Shared\Domain\ValueObjects\UniqueIdentifier;
 use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
 
 class UniqueIdentifierForTest extends UniqueIdentifier

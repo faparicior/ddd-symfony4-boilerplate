@@ -2,7 +2,7 @@
 
 namespace App\Tests\Shared\Domain\ValueObject;
 
-use App\Shared\Domain\ValueObject\DateValue;
+use App\Shared\Domain\ValueObjects\DateValue;
 use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
 
 class DateValueForTest extends DateValue {

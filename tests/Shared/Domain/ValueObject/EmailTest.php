@@ -2,8 +2,8 @@
 
 namespace App\Tests\Shared\Domain\ValueObject;
 
-use App\Shared\Domain\Exception\InvalidEmailException;
-use App\Shared\Domain\ValueObject\EmailValue;
+use App\Shared\Domain\Exceptions\InvalidEmailException;
+use App\Shared\Domain\ValueObjects\EmailValue;
 use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
 
 class EmailValueForTest extends EmailValue

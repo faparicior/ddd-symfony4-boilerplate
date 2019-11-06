@@ -3,10 +3,10 @@
 namespace App\Tests\Users\User\Domain;
 
 use App\Users\User\Domain\User;
-use App\Users\User\Domain\ValueObject\Email;
-use App\Users\User\Domain\ValueObject\Password;
-use App\Users\User\Domain\ValueObject\UserId;
-use App\Users\User\Domain\ValueObject\UserName;
+use App\Users\User\Domain\ValueObjects\Email;
+use App\Users\User\Domain\ValueObjects\Password;
+use App\Users\User\Domain\ValueObjects\UserId;
+use App\Users\User\Domain\ValueObjects\UserName;
 use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
 
 class UserTest extends TestCase

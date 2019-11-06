@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace App\Shared\Domain\ValueObject;
+namespace App\Shared\Domain\ValueObjects;
 
-use App\Shared\Domain\Exception\InvalidArgumentException;
+use App\Shared\Domain\Exceptions\InvalidArgumentException;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
@@ -27,7 +27,7 @@ abstract class UniqueIdentifier
     }
 
     /**
-     * @throws \App\Shared\Domain\Exception\DomainException
+     * @throws \App\Shared\Domain\Exceptions\DomainException
      */
     final public static function fromString($uuid)
     {

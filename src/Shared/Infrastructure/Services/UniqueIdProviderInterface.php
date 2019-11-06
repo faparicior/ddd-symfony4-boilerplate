@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Shared\Infrastructure\Service;
+namespace App\Shared\Infrastructure\Services;
 
 interface UniqueIdProviderInterface
 {

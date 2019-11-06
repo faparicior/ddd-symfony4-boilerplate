@@ -4,11 +4,11 @@ namespace App\Users\User\Application\SignUpUser;
 
 use App\Users\User\Application\Service\UserBuilder;
 use App\Users\User\Domain\UserRepositoryInterface;
-use App\Users\User\Domain\ValueObject\Email;
-use App\Users\User\Domain\ValueObject\Password;
-use App\Users\User\Domain\ValueObject\UserId;
-use App\Users\User\Domain\ValueObject\UserName;
-use App\Shared\Infrastructure\Service\UniqueIdProviderInterface;
+use App\Users\User\Domain\ValueObjects\Email;
+use App\Users\User\Domain\ValueObjects\Password;
+use App\Users\User\Domain\ValueObjects\UserId;
+use App\Users\User\Domain\ValueObjects\UserName;
+use App\Shared\Infrastructure\Services\UniqueIdProviderInterface;
 
 final class SignUpUserCommandHandler
 {

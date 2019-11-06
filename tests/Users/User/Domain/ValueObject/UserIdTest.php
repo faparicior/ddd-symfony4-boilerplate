@@ -2,7 +2,7 @@
 
 namespace App\Tests\Users\User\Domain\ValueObject;
 
-use App\Users\User\Domain\ValueObject\UserId;
+use App\Users\User\Domain\ValueObjects\UserId;
 use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
 
 class UserIdTest extends TestCase

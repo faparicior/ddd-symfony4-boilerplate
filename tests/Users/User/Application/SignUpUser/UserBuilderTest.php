@@ -3,10 +3,10 @@
 namespace App\Tests\Users\User\Application\SignUpUser;
 
 use App\Users\User\Application\Service\UserBuilder;
-use App\Users\User\Domain\ValueObject\Email;
-use App\Users\User\Domain\ValueObject\Password;
-use App\Users\User\Domain\ValueObject\UserId;
-use App\Users\User\Domain\ValueObject\UserName;
+use App\Users\User\Domain\ValueObjects\Email;
+use App\Users\User\Domain\ValueObjects\Password;
+use App\Users\User\Domain\ValueObjects\UserId;
+use App\Users\User\Domain\ValueObjects\UserName;
 use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
 
 class UserBuilderTest extends TestCase
@@ -20,7 +20,7 @@ class UserBuilderTest extends TestCase
      * @group UnitTests
      * @group Users
      * @group Application
-     * @throws \App\Shared\Domain\Exception\DomainException
+     * @throws \App\Shared\Domain\Exceptions\DomainException
      */
     public function testUserCreatorCanCreateAnUser()
     {

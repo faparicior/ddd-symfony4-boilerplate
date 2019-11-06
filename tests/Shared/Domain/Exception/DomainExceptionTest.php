@@ -2,7 +2,7 @@
 
 namespace App\Tests\Shared\Domain\Exception;
 
-use App\Shared\Domain\Exception\DomainException;
+use App\Shared\Domain\Exceptions\DomainException;
 use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
 
 class DomainExceptionForTest extends DomainException

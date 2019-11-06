@@ -2,7 +2,7 @@
 
 namespace App\Tests\Users\User\Domain\ValueObject;
 
-use App\Users\User\Domain\ValueObject\Password;
+use App\Users\User\Domain\ValueObjects\Password;
 use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
 
 class PasswordTest extends TestCase

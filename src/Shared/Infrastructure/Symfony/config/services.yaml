@@ -4,11 +4,11 @@ services:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
-    App\Shared\Infrastructure\Service\UniqueIdProviderInterface:
-        alias: App\Shared\Infrastructure\Service\UniqueIdProvider
+    App\Shared\Infrastructure\Services\UniqueIdProviderInterface:
+        alias: App\Shared\Infrastructure\Services\UniqueIdProvider
 
-    App\Shared\Infrastructure\Service\UniqueIdProvider:
-        class: App\Shared\Infrastructure\Service\UniqueIdProvider
+    App\Shared\Infrastructure\Services\UniqueIdProvider:
+        class: App\Shared\Infrastructure\Services\UniqueIdProvider
 
     Ramsey\Uuid\UuidFactory:
         class: Ramsey\Uuid\UuidFactory

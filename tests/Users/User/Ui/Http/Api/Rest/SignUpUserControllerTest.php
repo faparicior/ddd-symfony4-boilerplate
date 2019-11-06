@@ -2,7 +2,8 @@
 
 namespace App\Tests\Users\User\Ui\Http\Api\Rest;
 
-use App\Shared\Infrastructure\Service\UniqueIdProviderStub;
+use App\Shared\Domain\Exceptions\InvalidEmailException;
+use App\Shared\Infrastructure\Services\UniqueIdProviderStub;
 use App\Users\User\Application\SignUpUser\SignUpUserCommand;
 use App\Users\User\Application\SignUpUser\SignUpUserCommandHandler;
 use App\Users\User\Infrastructure\Persistence\InMemoryUserRepository;
@@ -19,6 +20,7 @@ class SignUpUserControllerTest extends TestCase
     private const USER_UUID = '73f2791e-eaa7-4f81-a8cc-7cc601cda30e';
     private const USERNAME = 'JohnDoe';
     private const EMAIL = 'test.email@gmail.com';
+    private const BAD_EMAIL = 'test.emailgmail.com';
     private const PASSWORD = ",&+3RjwAu88(tyC'";
 
     /** @var CommandBus */
@@ -68,5 +70,49 @@ class SignUpUserControllerTest extends TestCase
 
         self::assertJsonStringEqualsJsonString($expectedResponse, $response->getContent());
         self::assertEquals(Response::HTTP_OK, $response->getStatusCode());
+    }
+
+    /**
+     * @group UnitTests
+     * @group Users
+     * @group Ui
+     */
+    public function testUserWithIncorrectEmailCannotSignUp()
+    {
+        self::expectException(InvalidEmailException::class);
+
+        $data = json_encode([
+            "userName" => self::USERNAME,
+            "email" => self::BAD_EMAIL,
+            "password" => self::PASSWORD
+        ]);
+
+        $request = Request::create('/users', 'POST', [], [], [], [], $data);
+
+        $controller = new SignUpUserController($this->bus);
+
+        $controller->execute($request);
+    }
+
+    /**
+     * @group UnitTests
+     * @group Users
+     * @group Ui
+     */
+    public function testUserWithEmptyPasswordCannotSignUp()
+    {
+        self::expectException(InvalidEmailException::class);
+
+        $data = json_encode([
+            "userName" => self::USERNAME,
+            "email" => self::BAD_EMAIL,
+            "password" => self::PASSWORD
+        ]);
+
+        $request = Request::create('/users', 'POST', [], [], [], [], $data);
+
+        $controller = new SignUpUserController($this->bus);
+
+        $controller->execute($request);
     }
 }

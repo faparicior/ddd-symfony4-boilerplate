@@ -2,7 +2,7 @@
 
 namespace App\Tests\Shared\Domain\ValueObject;
 
-use App\Shared\Domain\ValueObject\IntegerValue;
+use App\Shared\Domain\ValueObjects\IntegerValue;
 use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
 
 class IntegerForTest extends IntegerValue {

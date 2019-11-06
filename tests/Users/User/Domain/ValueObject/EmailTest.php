@@ -2,7 +2,7 @@
 
 namespace App\Tests\Users\User\Domain\ValueObject;
 
-use App\Users\User\Domain\ValueObject\Email;
+use App\Users\User\Domain\ValueObjects\Email;
 use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
 
 class EmailTest extends TestCase

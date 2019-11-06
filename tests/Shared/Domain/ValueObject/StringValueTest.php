@@ -2,7 +2,7 @@
 
 namespace App\Tests\Shared\Domain\ValueObject;
 
-use App\Shared\Domain\ValueObject\StringValue;
+use App\Shared\Domain\ValueObjects\StringValue;
 use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
 
 class StringForTest extends StringValue
