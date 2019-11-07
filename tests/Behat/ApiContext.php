@@ -72,6 +72,21 @@ final class ApiContext implements Context
     }
 
     /**
+     * Checks, that current page response status is equal to specified
+     * Example: Then the response status code should be 200
+     * Example: And the response status code should be 400
+     *
+     * @Then /^the response status code should be (?P<code>\d+)$/
+     * @param int $statusCode
+     */
+    public function theResponseStatusCodeShouldBe(int $statusCode)
+    {
+        if ($this->response->getStatusCode() !== $statusCode) {
+            throw new \RuntimeException('No valid status code response');
+        }
+    }
+
+    /**
      * @When /^(?:I )?send a "([A-Z]+)" request to "([^"]+)" with body:$/
      * @param string $method
      * @param string $path

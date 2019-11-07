@@ -22,6 +22,7 @@ class SignUpUserControllerTest extends TestCase
     private const EMAIL = 'test.email@gmail.com';
     private const BAD_EMAIL = 'test.emailgmail.com';
     private const PASSWORD = ",&+3RjwAu88(tyC'";
+    private const INVALID_PASSWORD = ",&+3RjR'";
 
     /** @var CommandBus */
     private $bus;
@@ -79,8 +80,6 @@ class SignUpUserControllerTest extends TestCase
      */
     public function testUserWithIncorrectEmailCannotSignUp()
     {
-        self::expectException(InvalidEmailException::class);
-
         $data = json_encode([
             "userName" => self::USERNAME,
             "email" => self::BAD_EMAIL,
@@ -91,7 +90,9 @@ class SignUpUserControllerTest extends TestCase
 
         $controller = new SignUpUserController($this->bus);
 
-        $controller->execute($request);
+        $response = $controller->execute($request);
+
+        self::assertEquals(Response::HTTP_BAD_REQUEST, $response->getStatusCode());
     }
 
     /**
@@ -101,11 +102,31 @@ class SignUpUserControllerTest extends TestCase
      */
     public function testUserWithEmptyPasswordCannotSignUp()
     {
-        self::expectException(InvalidEmailException::class);
-
         $data = json_encode([
             "userName" => self::USERNAME,
-            "email" => self::BAD_EMAIL,
+            "email" => self::EMAIL,
+            "password" => ''
+        ]);
+
+        $request = Request::create('/users', 'POST', [], [], [], [], $data);
+
+        $controller = new SignUpUserController($this->bus);
+
+        $response = $controller->execute($request);
+
+        self::assertEquals(Response::HTTP_BAD_REQUEST, $response->getStatusCode());
+    }
+
+    /**
+     * @group UnitTests
+     * @group Users
+     * @group Ui
+     */
+    public function testUserWithEmptyUsernameCannotSignUp()
+    {
+        $data = json_encode([
+            "userName" => '',
+            "email" => self::EMAIL,
             "password" => self::PASSWORD
         ]);
 
@@ -113,6 +134,8 @@ class SignUpUserControllerTest extends TestCase
 
         $controller = new SignUpUserController($this->bus);
 
-        $controller->execute($request);
+        $response = $controller->execute($request);
+
+        self::assertEquals(Response::HTTP_BAD_REQUEST, $response->getStatusCode());
     }
 }

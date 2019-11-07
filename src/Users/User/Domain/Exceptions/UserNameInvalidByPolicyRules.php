@@ -4,7 +4,7 @@ namespace App\Users\User\Domain\Exceptions;
 
 use App\Shared\Domain\Exceptions\DomainException;
 
-class PasswordNotValidByPolicyRules extends DomainException
+class UserNameInvalidByPolicyRules extends DomainException
 {
 
 }

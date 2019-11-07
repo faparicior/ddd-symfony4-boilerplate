@@ -23,3 +23,39 @@ Feature:
             "password": ",&+3RjwAu88(tyC'"
           }
         """
+
+    Scenario: SignUp User with invalid user and return 400 status code
+        When I send a "POST" request to "/users" with body:
+        """
+          {
+            "userName": "",
+            "email": "test.emailgmail.com",
+            "password": ",&+3RjwAu88(tyC'"
+          }
+        """
+        Then the response content should be in JSON
+        And the response status code should be 400
+
+    Scenario: SignUp User with invalid email and return 400 status code
+        When I send a "POST" request to "/users" with body:
+        """
+          {
+            "userName": "JohnDoe",
+            "email": "test.emailgmail.com",
+            "password": ",&+3RjwAu88(tyC'"
+          }
+        """
+        Then the response content should be in JSON
+        And the response status code should be 400
+
+    Scenario: SignUp User with invalid password  and return 400 status code
+        When I send a "POST" request to "/users" with body:
+        """
+          {
+            "userName": "JohnDoe",
+            "email": "test.email@gmail.com",
+            "password": ",&+3Rj"
+          }
+        """
+        Then the response content should be in JSON
+        And the response status code should be 400

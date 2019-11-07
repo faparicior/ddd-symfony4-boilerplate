@@ -2,7 +2,7 @@
 
 namespace App\Tests\Users\User\Domain\Exceptions;
 
-use App\Users\User\Domain\Exceptions\PasswordNotValidByPolicyRules;
+use App\Users\User\Domain\Exceptions\PasswordInvalidByPolicyRules;
 use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
 
 class PasswordNotValidByPolicyRulesTest extends TestCase
@@ -19,7 +19,7 @@ class PasswordNotValidByPolicyRulesTest extends TestCase
     {
         self::expectException(\Error::class);
 
-        new PasswordNotValidByPolicyRules();
+        new PasswordInvalidByPolicyRules();
     }
 
     /**
@@ -29,7 +29,7 @@ class PasswordNotValidByPolicyRulesTest extends TestCase
      */
     public function testPasswordNotValidByPolicyRulesExceptionCanBeCreatedWithMessageAndStatusCode()
     {
-        $exception = PasswordNotValidByPolicyRules::build(self::TEST_MESSAGE, self::TEST_CODE);
+        $exception = PasswordInvalidByPolicyRules::build(self::TEST_MESSAGE, self::TEST_CODE);
 
         self::assertEquals($exception->getMessage(), self::TEST_MESSAGE);
         self::assertEquals($exception->getCode(), self::TEST_CODE);

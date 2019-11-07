@@ -20,16 +20,25 @@ class SignUpUserController
 
     public function execute(Request $request): JsonResponse
     {
-        $data = json_decode($request->getContent(), true);
+        try {
 
-        $signUpUser = SignUpUserCommand::build(
-            $data['userName'],
-            $data['email'],
-            $data['password']
-        );
+            $data = json_decode($request->getContent(), true);
 
-        $response = $this->bus->handle($signUpUser);
-        
+            $signUpUser = SignUpUserCommand::build(
+                $data['userName'],
+                $data['email'],
+                $data['password']
+            );
+
+            $response = $this->bus->handle($signUpUser);
+        } catch (\Exception $exception)
+        {
+            return JsonResponse::create(
+                $exception->getMessage(),
+                Response::HTTP_BAD_REQUEST
+            );
+        }
+
         return JsonResponse::create(
             $response,
             Response::HTTP_OK
