@@ -2,25 +2,39 @@
 
 namespace App\Shared\Domain\ValueObjects;
 
-use App\Shared\Domain\Specifications\SpecificationChain;
+use App\Shared\Domain\Exceptions\InvalidStringException;
+use App\Shared\Domain\Specifications\StringSpecificationChain;
 
 abstract class StringValue
 {
     /** @var string */
     private $value;
 
-    /** @var SpecificationChain|null */
+    /** @var StringSpecificationChain|null */
     private $specificationChain;
 
-    final protected function __construct(string $value, ?SpecificationChain $specificationChain)
+    /**
+     * StringValue constructor.
+     * @param string $value
+     * @param StringSpecificationChain|null $specificationChain
+     * @throws InvalidStringException
+     */
+    final protected function __construct(string $value, ?StringSpecificationChain $specificationChain = null)
     {
         $this->value = $value;
         $this->specificationChain = $specificationChain;
+
+        $this->guard();
     }
 
-    public static function build(string $value, ?SpecificationChain $specificationChain = null)
+    /**
+     * @param string $value
+     * @return StringValue
+     * @throws InvalidStringException
+     */
+    public static function build(string $value)
     {
-        return new static($value, $specificationChain);
+        return new static($value);
     }
 
     final public function value(): string
@@ -31,5 +45,19 @@ abstract class StringValue
     final public function equals(self $valueObject): bool
     {
         return $this->value === $valueObject->value();
+    }
+
+    /**
+     * @throws InvalidStringException
+     */
+    final private function guard()
+    {
+        if(isset($this->specificationChain)) {
+            $isValid = $this->specificationChain->evalSpecifications($this->value);
+
+            if(!$isValid) {
+                throw InvalidStringException::build();
+            }
+        }
     }
 }

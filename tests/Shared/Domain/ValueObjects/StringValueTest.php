@@ -28,6 +28,7 @@ class StringValueTest extends TestCase
      * @group UnitTests
      * @group Shared
      * @group Domain
+     * @throws \App\Shared\Domain\Exceptions\InvalidStringException
      */
     public function testStringValueIsAccessible()
     {
@@ -40,6 +41,7 @@ class StringValueTest extends TestCase
      * @group UnitTests
      * @group Shared
      * @group Domain
+     * @throws \App\Shared\Domain\Exceptions\InvalidStringException
      */
     public function testEqualsFunction()
     {

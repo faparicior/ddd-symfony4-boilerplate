@@ -2,13 +2,33 @@
 
 namespace App\Users\User\Domain\ValueObjects;
 
-use App\Shared\Domain\Specifications\SpecificationChain;
+use App\Shared\Domain\Exceptions\InvalidStringException;
+use App\Shared\Domain\Specifications\StringSpecificationChain;
 use App\Shared\Domain\ValueObjects\StringValue;
+use App\Users\User\Domain\Exceptions\PasswordNotValidByPolicyRules;
+use App\Users\User\Domain\Specifications\StringMoreThanSevenCharacters;
 
 class Password extends StringValue
 {
-    public static function build(string $value, ?SpecificationChain $specificationChain = null)
+    /**
+     * @param string $value
+     * @return StringValue|Password
+     * @throws PasswordNotValidByPolicyRules
+     */
+    public static function build(string $value)
     {
-        return new static($value, $specificationChain);
+        try {
+            $password = new static($value, self::specificationChain());
+        } catch (InvalidStringException $exception)
+        {
+            throw PasswordNotValidByPolicyRules::build();
+        }
+
+        return $password;
+    }
+
+    private static function specificationChain(): ?StringSpecificationChain
+    {
+        return StringSpecificationChain::build(...[StringMoreThanSevenCharacters::build()]);
     }
 }
