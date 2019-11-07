@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Tests\Shared\Domain\Exception;
+namespace App\Tests\Shared\Domain\Exceptions;
 
 use App\Shared\Domain\Exceptions\DomainException;
 use Symfony\Bundle\FrameworkBundle\Tests\TestCase;

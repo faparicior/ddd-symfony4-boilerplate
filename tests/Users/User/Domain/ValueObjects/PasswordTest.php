@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Tests\Users\User\Domain\ValueObject;
+namespace App\Tests\Users\User\Domain\ValueObjects;
 
 use App\Users\User\Domain\ValueObjects\Password;
 use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
