@@ -14,6 +14,7 @@ Feature:
           }
         """
         Then the response content should be in JSON
+        And the response status code should be 200
         And should be equal to:
         """
           {

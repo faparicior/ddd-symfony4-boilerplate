@@ -10,7 +10,7 @@ use App\Users\User\Domain\ValueObjects\UserName;
 final class User
 {
     /** @var UserName */
-    private $userName;
+    private $username;
 
     /** @var Email */
     private $email;
@@ -24,7 +24,7 @@ final class User
     private function __construct(UserId $userId, UserName $userName, Email $email, Password $password)
     {
         $this->userId = $userId;
-        $this->userName = $userName;
+        $this->username = $userName;
         $this->email = $email;
         $this->password = $password;
     }
@@ -47,7 +47,7 @@ final class User
      */
     public function username(): UserName
     {
-        return $this->userName;
+        return $this->username;
     }
 
     /**

@@ -1,0 +1,18 @@
+App\Users\User\Domain\User:
+    type: entity
+    table: user
+    repositoryClass: App\Users\User\Infrastructure\Persistence\DoctrineUserRepository
+    id:
+        userId:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        username:
+            type: string
+        password:
+            type: string
+        email:
+            type: string
+#        isActive:
+#            type: string
