@@ -23,7 +23,6 @@ final class DoctrineUserRepository extends EntityRepository implements UserRepos
     public function create(User $user): void
     {
         $this->_em->persist($user);
-        $this->_em->flush();
     }
 
     public function findById(UserId $userId): ?User
