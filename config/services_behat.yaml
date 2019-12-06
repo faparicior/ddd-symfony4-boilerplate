@@ -1,0 +1,21 @@
+imports:
+    - { resource: ../src/Shared/Infrastructure/Symfony/config/services_behat.yaml}
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    App\Tests\Behat\:
+        resource: '../tests/Behat/*'
+
+    App\Tests\Behat\BehatTestEnvironmentContext:
+        public: true
+        arguments:
+            - "%kernel.environment%"
+
+    App\Tests\Behat\ApiContext:
+        public: true
+        arguments:
+            - "@kernel"
+            - "%kernel.environment%"
