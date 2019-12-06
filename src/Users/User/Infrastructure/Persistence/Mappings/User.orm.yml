@@ -4,9 +4,8 @@ App\Users\User\Domain\User:
     repositoryClass: App\Users\User\Infrastructure\Persistence\DoctrineUserRepository
     id:
         userId:
-            type: integer
-            generator:
-                strategy: AUTO
+            type: guid
+
     fields:
         username:
             type: string
@@ -14,5 +13,4 @@ App\Users\User\Domain\User:
             type: string
         email:
             type: string
-#        isActive:
-#            type: string
+

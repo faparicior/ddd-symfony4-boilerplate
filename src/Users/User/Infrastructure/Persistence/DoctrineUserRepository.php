@@ -16,8 +16,14 @@ final class DoctrineUserRepository extends EntityRepository implements UserRepos
         parent::__construct($manager, $manager->getClassMetadata(User::class));
     }
 
+    /**
+     * @param User $user
+     * @throws \Doctrine\ORM\ORMException
+     */
     public function create(User $user): void
     {
+        $this->_em->persist($user);
+        $this->_em->flush();
     }
 
     public function findById(UserId $userId): ?User
