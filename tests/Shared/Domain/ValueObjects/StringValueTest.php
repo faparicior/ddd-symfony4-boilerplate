@@ -50,4 +50,16 @@ class StringValueTest extends TestCase
         self::assertTrue($integer->equals(StringForTest::build('test')));
         self::assertFalse($integer->equals(StringForTest::build('test_not_equal')));
     }
+
+    /**
+     * @group UnitTests
+     * @group Shared
+     * @group Domain
+     */
+    public function testHasToStringMagicFunction()
+    {
+        $string = StringForTest::build('test');
+
+        self::assertEquals('test', $string->__toString());
+    }
 }

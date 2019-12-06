@@ -78,9 +78,21 @@ class EmailTest extends TestCase
      */
     public function testEqualsFunction()
     {
-        $integer = EmailValueForTest::build(self::VALID_EMAIL);
+        $email = EmailValueForTest::build(self::VALID_EMAIL);
 
-        self::assertTrue($integer->equals(EmailValueForTest::build(self::VALID_EMAIL)));
-        self::assertFalse($integer->equals(EmailValueForTest::build(self::VALID_EMAIL_DIFFERENT)));
+        self::assertTrue($email->equals(EmailValueForTest::build(self::VALID_EMAIL)));
+        self::assertFalse($email->equals(EmailValueForTest::build(self::VALID_EMAIL_DIFFERENT)));
+    }
+
+    /**
+     * @group UnitTests
+     * @group Shared
+     * @group Domain
+     */
+    public function testHasToStringMagicFunction()
+    {
+        $email = EmailValueForTest::build(self::VALID_EMAIL);
+
+        self::assertEquals(self::VALID_EMAIL, $email->__toString());
     }
 }

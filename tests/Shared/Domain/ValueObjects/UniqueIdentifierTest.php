@@ -90,9 +90,21 @@ class UniqueIdentifierTest extends TestCase
      */
     public function testEqualsFunction()
     {
-        $integer = UniqueIdentifierForTest::fromString(self::USER_ID);
+        $uuid = UniqueIdentifierForTest::fromString(self::USER_ID);
 
-        self::assertTrue($integer->equals(UniqueIdentifierForTest::fromString(self::USER_ID)));
-        self::assertFalse($integer->equals(UniqueIdentifierForTest::fromString(self::USER_ID_DIFFERENT)));
+        self::assertTrue($uuid->equals(UniqueIdentifierForTest::fromString(self::USER_ID)));
+        self::assertFalse($uuid->equals(UniqueIdentifierForTest::fromString(self::USER_ID_DIFFERENT)));
+    }
+
+    /**
+     * @group UnitTests
+     * @group Shared
+     * @group Domain
+     */
+    public function testHasToStringMagicFunction()
+    {
+        $uuid = UniqueIdentifierForTest::fromString(self::USER_ID);
+
+        self::assertEquals(self::USER_ID, $uuid->__toString());
     }
 }

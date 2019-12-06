@@ -47,4 +47,9 @@ abstract class UniqueIdentifier
     {
         return $this->uuid->toString() === $valueObject->value();
     }
+
+    final public function __toString(): string
+    {
+        return $this->uuid->toString();
+    }
 }

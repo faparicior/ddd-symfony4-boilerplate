@@ -47,6 +47,11 @@ abstract class StringValue
         return $this->value === $valueObject->value();
     }
 
+    final public function __toString(): string
+    {
+        return $this->value();
+    }
+
     /**
      * @throws InvalidStringException
      */
