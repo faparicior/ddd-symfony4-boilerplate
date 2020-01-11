@@ -10,6 +10,8 @@ use App\Users\User\Domain\Specifications\StringNotEmpty;
 
 class UserName extends StringValue
 {
+    public const INVALID_BY_POLICY_RULES = "Username invalid by policy rules";
+
     /**
      * @param string $value
      * @return StringValue|Password
@@ -21,7 +23,7 @@ class UserName extends StringValue
             $password = new static($value, self::specificationChain());
         } catch (InvalidStringException $exception)
         {
-            throw UserNameInvalidByPolicyRules::build();
+            throw UserNameInvalidByPolicyRules::build(self::INVALID_BY_POLICY_RULES);
         }
 
         return $password;

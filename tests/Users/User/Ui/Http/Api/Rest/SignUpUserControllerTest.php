@@ -6,10 +6,13 @@ use App\Shared\Domain\Exceptions\InvalidEmailException;
 use App\Shared\Infrastructure\Services\UniqueIdProviderStub;
 use App\Users\User\Application\SignUpUser\SignUpUserCommand;
 use App\Users\User\Application\SignUpUser\SignUpUserCommandHandler;
+use App\Users\User\Domain\ValueObjects\UserName;
 use App\Users\User\Infrastructure\Persistence\InMemoryUserRepository;
 use App\Users\User\Ui\Http\Api\Rest\SignUpUserController;
 use League\Tactician\CommandBus;
 use League\Tactician\Setup\QuickStart;
+use Monolog\Handler\TestHandler;
+use Monolog\Logger;
 use Ramsey\Uuid\UuidFactory;
 use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,6 +30,12 @@ class SignUpUserControllerTest extends TestCase
     /** @var CommandBus */
     private $bus;
 
+    /** @var Logger */
+    private $log;
+
+    /** @var TestHandler */
+    private $logHandler;
+
     public function setUp()
     {
         parent::setUp();
@@ -41,6 +50,10 @@ class SignUpUserControllerTest extends TestCase
         );
 
         $this->bus = QuickStart::create([SignUpUserCommand::class => $signUpUserCommandHandler]);
+
+        $this->log = new Logger('testLog');
+        $this->logHandler = new TestHandler();
+        $this->log->pushHandler($this->logHandler);
     }
 
     /**
@@ -58,7 +71,7 @@ class SignUpUserControllerTest extends TestCase
 
         $request = Request::create('/users', 'POST', [], [], [], [], $data);
 
-        $controller = new SignUpUserController($this->bus);
+        $controller = new SignUpUserController($this->bus, $this->log);
 
         $response = $controller->execute($request);
 
@@ -88,7 +101,7 @@ class SignUpUserControllerTest extends TestCase
 
         $request = Request::create('/users', 'POST', [], [], [], [], $data);
 
-        $controller = new SignUpUserController($this->bus);
+        $controller = new SignUpUserController($this->bus, $this->log);
 
         $response = $controller->execute($request);
 
@@ -110,7 +123,7 @@ class SignUpUserControllerTest extends TestCase
 
         $request = Request::create('/users', 'POST', [], [], [], [], $data);
 
-        $controller = new SignUpUserController($this->bus);
+        $controller = new SignUpUserController($this->bus, $this->log);
 
         $response = $controller->execute($request);
 
@@ -132,10 +145,29 @@ class SignUpUserControllerTest extends TestCase
 
         $request = Request::create('/users', 'POST', [], [], [], [], $data);
 
-        $controller = new SignUpUserController($this->bus);
+        $controller = new SignUpUserController($this->bus, $this->log);
 
         $response = $controller->execute($request);
 
         self::assertEquals(Response::HTTP_BAD_REQUEST, $response->getStatusCode());
+    }
+
+    public function testUserControllerWritesErrorLogInCaseOfException()
+    {
+        $data = json_encode([
+            "userName" => '',
+            "email" => self::EMAIL,
+            "password" => self::PASSWORD
+        ]);
+
+        $request = Request::create('/users', 'POST', [], [], [], [], $data);
+
+        $controller = new SignUpUserController($this->bus, $this->log);
+
+        $response = $controller->execute($request);
+
+        self::assertEquals(Response::HTTP_BAD_REQUEST, $response->getStatusCode());
+
+        self::assertTrue($this->logHandler->hasErrorThatContains(UserName::INVALID_BY_POLICY_RULES));
     }
 }

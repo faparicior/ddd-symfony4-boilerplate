@@ -4,6 +4,7 @@ namespace App\Users\User\Ui\Http\Api\Rest;
 
 use App\Users\User\Application\SignUpUser\SignUpUserCommand;
 use League\Tactician\CommandBus;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,9 +14,13 @@ class SignUpUserController
     /** @var CommandBus */
     private $bus;
 
-    public function __construct(CommandBus $bus)
+    /** @var LoggerInterface */
+    private $logger;
+
+    public function __construct(CommandBus $bus, LoggerInterface $logger)
     {
         $this->bus = $bus;
+        $this->logger = $logger;
     }
 
     public function execute(Request $request): JsonResponse
@@ -33,6 +38,8 @@ class SignUpUserController
             $response = $this->bus->handle($signUpUser);
         } catch (\Exception $exception)
         {
+            $this->logger->error($exception->getMessage(), [$exception->getTraceAsString()]);
+
             return JsonResponse::create(
                 $exception->getMessage(),
                 Response::HTTP_BAD_REQUEST

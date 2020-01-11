@@ -162,6 +162,9 @@
     "league/tactician-logger": {
         "version": "v0.10.0"
     },
+    "monolog/monolog": {
+        "version": "1.25.3"
+    },
     "nesbot/carbon": {
         "version": "2.25.1"
     },
@@ -310,6 +313,23 @@
     },
     "symfony/mime": {
         "version": "v4.3.5"
+    },
+    "symfony/monolog-bridge": {
+        "version": "v4.3.9"
+    },
+    "symfony/monolog-bundle": {
+        "version": "3.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.3",
+            "ref": "222b46a1bb02cd04bbc59700adec2f44f1a644b7"
+        },
+        "files": [
+            "config/packages/dev/monolog.yaml",
+            "config/packages/prod/monolog.yaml",
+            "config/packages/test/monolog.yaml"
+        ]
     },
     "symfony/orm-pack": {
         "version": "v1.0.6"
