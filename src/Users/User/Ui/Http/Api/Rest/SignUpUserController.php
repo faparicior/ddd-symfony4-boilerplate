@@ -2,6 +2,7 @@
 
 namespace App\Users\User\Ui\Http\Api\Rest;
 
+use App\Shared\Domain\Exceptions\DomainException;
 use App\Users\User\Application\SignUpUser\SignUpUserCommand;
 use League\Tactician\CommandBus;
 use Psr\Log\LoggerInterface;
@@ -23,6 +24,12 @@ class SignUpUserController
         $this->logger = $logger;
     }
 
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     *
+     * @throws DomainException
+     */
     public function execute(Request $request): JsonResponse
     {
         try {
@@ -36,13 +43,20 @@ class SignUpUserController
             );
 
             $response = $this->bus->handle($signUpUser);
-        } catch (\Exception $exception)
-        {
+        } catch (DomainException $exception) {
             $this->logger->error($exception->getMessage(), [$exception->getTraceAsString()]);
 
             return JsonResponse::create(
                 $exception->getMessage(),
                 Response::HTTP_BAD_REQUEST
+            );
+        } catch (\Exception $exception)
+        {
+            $this->logger->error($exception->getMessage(), [$exception->getTraceAsString()]);
+
+            return JsonResponse::create(
+                '',
+                Response::HTTP_INTERNAL_SERVER_ERROR
             );
         }
 
