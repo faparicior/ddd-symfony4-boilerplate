@@ -35,20 +35,17 @@ final class ApiContext implements Context
     /** @var ContainerAwareLoader */
     private $containerAwareLoader;
 
-    /** @var EntityManagerInterface */
-    private $entityManager;
+    /** @var ORMExecutor  */
+    private $executor;
 
-    public function __construct(KernelInterface $kernel, string $environment, ContainerAwareLoader $containerAwareLoader, EntityManagerInterface $entityManager)
+    public function __construct(KernelInterface $kernel, string $environment, ContainerAwareLoader $containerAwareLoader, ORMExecutor $executor, ORMPurger $purger)
     {
         $this->kernel = $kernel;
         $this->environment = $environment;
         $this->containerAwareLoader = $containerAwareLoader;
 
-        $this->containerAwareLoader->addFixture(new UserSignUpFixtures());
-        $this->entityManager = $entityManager;
-        $executor = new ORMExecutor($this->entityManager);
-        $executor->setPurger(new ORMPurger($this->entityManager));
-        $executor->execute($containerAwareLoader->getFixtures(), false);
+        $this->executor = $executor;
+        $this->executor->setPurger($purger);
     }
 
     /**
@@ -156,5 +153,17 @@ final class ApiContext implements Context
     protected function fixStepArgument($argument)
     {
         return str_replace('\\"', '"', $argument);
+    }
+
+    /**
+     * @BeforeScenario @fixtures
+     */
+    public function loadFixtures()
+    {
+        var_dump('GO!');
+        ob_flush();
+
+        $this->containerAwareLoader->addFixture(new UserSignUpFixtures());
+        $this->executor->execute($this->containerAwareLoader->getFixtures(), false);
     }
 }

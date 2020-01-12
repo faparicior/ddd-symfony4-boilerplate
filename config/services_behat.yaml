@@ -21,6 +21,17 @@ services:
             - "@kernel"
             - "%kernel.environment%"
             - '@doctrine.fixtures.loader'
+            - '@Doctrine\Common\DataFixtures\Executor\ORMExecutor'
+            - '@Doctrine\Common\DataFixtures\Purger\ORMPurger'
+
+    Doctrine\Common\DataFixtures\Executor\ORMExecutor:
+        class: Doctrine\Common\DataFixtures\Executor\ORMExecutor
+        arguments:
+            - '@doctrine.orm.default_entity_manager'
+
+    Doctrine\Common\DataFixtures\Purger\ORMPurger:
+        class: Doctrine\Common\DataFixtures\Purger\ORMPurger
+        arguments:
             - '@doctrine.orm.default_entity_manager'
 
     App\Tests\Behat\DataFixtures\:
