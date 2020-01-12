@@ -20,6 +20,8 @@ services:
         arguments:
             - "@kernel"
             - "%kernel.environment%"
+            - '@doctrine.fixtures.loader'
+            - '@doctrine.orm.default_entity_manager'
 
     App\Tests\Behat\DataFixtures\:
         resource: '../tests/Behat/DataFixtures'

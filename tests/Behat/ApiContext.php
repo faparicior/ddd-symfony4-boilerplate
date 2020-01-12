@@ -4,8 +4,13 @@ declare(strict_types=1);
 
 namespace App\Tests\Behat;
 
+use App\Tests\Behat\DataFixtures\UserSignUpFixtures;
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\PyStringNode;
+use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
+use Doctrine\Common\DataFixtures\Purger\ORMPurger;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Doctrine\DataFixtures\ContainerAwareLoader;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\KernelInterface;
@@ -27,10 +32,23 @@ final class ApiContext implements Context
     /** @var string */
     private $environment;
 
-    public function __construct(KernelInterface $kernel, string $environment)
+    /** @var ContainerAwareLoader */
+    private $containerAwareLoader;
+
+    /** @var EntityManagerInterface */
+    private $entityManager;
+
+    public function __construct(KernelInterface $kernel, string $environment, ContainerAwareLoader $containerAwareLoader, EntityManagerInterface $entityManager)
     {
         $this->kernel = $kernel;
         $this->environment = $environment;
+        $this->containerAwareLoader = $containerAwareLoader;
+
+        $this->containerAwareLoader->addFixture(new UserSignUpFixtures());
+        $this->entityManager = $entityManager;
+        $executor = new ORMExecutor($this->entityManager);
+        $executor->setPurger(new ORMPurger($this->entityManager));
+        $executor->execute($containerAwareLoader->getFixtures(), false);
     }
 
     /**
