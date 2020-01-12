@@ -36,7 +36,10 @@ Feature:
         """
         Then the response content should be in JSON
         And the response status code should be 400
-        And the response should contain "Username invalid by policy rules"
+        And the response should contain:
+        """
+        "Username invalid by policy rules"
+        """
 
     Scenario: SignUp User with invalid email and return 400 status code
         When I send a "POST" request to "/users" with body:

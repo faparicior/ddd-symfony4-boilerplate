@@ -7,6 +7,7 @@ namespace App\Tests\Behat;
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\MinkExtension\Context\MinkContext;
+use Behat\MinkExtension\Context\RawMinkContext;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\KernelInterface;
@@ -110,5 +111,34 @@ final class ApiContext implements Context
         {
             throw new \RuntimeException('Unexpected Json in response');
         }
+    }
+
+    /**
+     * Checks, that HTML response contains specified string
+     * Example: Then the response should contain "Batman is the hero Gotham deserves."
+     * Example: And the response should contain "Batman is the hero Gotham deserves."
+     *
+     * @Then /^the response should contain:$/
+     */
+    public function assertResponseContains(PyStringNode $text)
+    {
+        $content = $this->response->getContent();
+
+        if($content !== (string) $this->fixStepArgument($text))
+        {
+            throw new \RuntimeException('Unexpected response '. $content . 'instead '. $text);
+        }
+    }
+
+    /**
+     * Returns fixed step argument (with \\" replaced back to ")
+     *
+     * @param string $argument
+     *
+     * @return string
+     */
+    protected function fixStepArgument($argument)
+    {
+        return str_replace('\\"', '"', $argument);
     }
 }
