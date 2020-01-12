@@ -4,6 +4,7 @@ Feature:
 
     As a User I want to signUp and Login to the platform using the API
 
+    @fixtures
     Scenario: SignUp User
         When I send a "POST" request to "/users" with body:
         """
@@ -24,6 +25,18 @@ Feature:
             "password": ",&+3RjwAu88(tyC'"
           }
         """
+
+    Scenario: SignUp User but email exists in database
+        When I send a "POST" request to "/users" with body:
+        """
+          {
+            "userName": "JohnDoe",
+            "email": "test.email@gmail.com",
+            "password": ",&+3RjwAu88(tyC'"
+          }
+        """
+        Then the response content should be in JSON
+        And the response status code should be 500
 
     Scenario: SignUp User with invalid user and return 400 status code
         When I send a "POST" request to "/users" with body:
