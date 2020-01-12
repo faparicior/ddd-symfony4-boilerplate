@@ -34,6 +34,7 @@ class EmailTest extends TestCase
      * @group Domain
      *
      * @throws InvalidEmailException
+     * @throws \App\Shared\Domain\Exceptions\DomainException
      */
     public function testEmailCanBeCreated()
     {
@@ -47,7 +48,9 @@ class EmailTest extends TestCase
      * @group Shared
      * @group Domain
      *
+     *
      * @throws InvalidEmailException
+     * @throws \App\Shared\Domain\Exceptions\DomainException
      */
     public function testCreateEmailFailsForBadStringFormat()
     {
@@ -60,7 +63,9 @@ class EmailTest extends TestCase
      * @group Shared
      * @group Domain
      *
+     *
      * @throws InvalidEmailException
+     * @throws \App\Shared\Domain\Exceptions\DomainException
      */
     public function testEmailStoresCorrectValue()
     {
@@ -75,6 +80,7 @@ class EmailTest extends TestCase
      * @group Domain
      *
      * @throws InvalidEmailException
+     * @throws \App\Shared\Domain\Exceptions\DomainException
      */
     public function testEqualsFunction()
     {
@@ -88,6 +94,9 @@ class EmailTest extends TestCase
      * @group UnitTests
      * @group Shared
      * @group Domain
+     *
+     * @throws InvalidEmailException
+     * @throws \App\Shared\Domain\Exceptions\DomainException
      */
     public function testHasToStringMagicFunction()
     {

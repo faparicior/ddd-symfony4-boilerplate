@@ -44,6 +44,7 @@ class UniqueIdentifierTest extends TestCase
      * @group Domain
      *
      * @throws InvalidArgumentException
+     * @throws \App\Shared\Domain\Exceptions\DomainException
      */
     public function testUserIdCanBeCreatedFromString()
     {
@@ -74,6 +75,7 @@ class UniqueIdentifierTest extends TestCase
      * @group Domain
      *
      * @throws InvalidArgumentException
+     * @throws \App\Shared\Domain\Exceptions\DomainException
      */
     public function testCreateUserIdFailsForBadStringFormat()
     {
@@ -87,6 +89,7 @@ class UniqueIdentifierTest extends TestCase
      * @group Domain
      *
      * @throws InvalidArgumentException
+     * @throws \App\Shared\Domain\Exceptions\DomainException
      */
     public function testEqualsFunction()
     {
@@ -100,6 +103,9 @@ class UniqueIdentifierTest extends TestCase
      * @group UnitTests
      * @group Shared
      * @group Domain
+     *
+     * @throws InvalidArgumentException
+     * @throws \App\Shared\Domain\Exceptions\DomainException
      */
     public function testHasToStringMagicFunction()
     {
