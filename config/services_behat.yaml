@@ -20,3 +20,7 @@ services:
         arguments:
             - "@kernel"
             - "%kernel.environment%"
+
+    App\Tests\Behat\DataFixtures\:
+        resource: '../tests/Behat/DataFixtures'
+        tags: ['doctrine.fixture.orm']
