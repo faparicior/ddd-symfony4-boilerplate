@@ -23,7 +23,9 @@ final class Version20191206133710 extends AbstractMigration
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'sqlite', 'Migration can only be executed safely on \'sqlite\'.');
 
         $this->addSql('CREATE TABLE user (user_id CHAR(36) NOT NULL --(DC2Type:guid)
-        , username VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL)');
+        , username VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL), PRIMARY KEY(user_id)');
+        $this->addSql('CREATE UNIQUE INDEX user_email_uindex ON user (email)');
+
     }
 
     public function down(Schema $schema) : void
@@ -31,6 +33,7 @@ final class Version20191206133710 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'sqlite', 'Migration can only be executed safely on \'sqlite\'.');
 
+        $this->addSql('DROP INDEX user_email_uindex');
         $this->addSql('DROP TABLE user');
     }
 }
