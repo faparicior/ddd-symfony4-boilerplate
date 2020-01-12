@@ -26,6 +26,8 @@ class PasswordTest extends TestCase
      * @group UnitTests
      * @group Users
      * @group Domain
+     *
+     * @throws PasswordInvalidByPolicyRules
      */
     public function testPasswordCanBeBuilt()
     {
@@ -39,6 +41,8 @@ class PasswordTest extends TestCase
      * @group UnitTests
      * @group Shared
      * @group Domain
+     *
+     * @throws PasswordInvalidByPolicyRules
      */
     public function testPasswordCannotBeLessThanEightCharacters()
     {
