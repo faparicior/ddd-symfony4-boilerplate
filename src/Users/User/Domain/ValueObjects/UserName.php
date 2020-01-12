@@ -16,17 +16,18 @@ class UserName extends StringValue
      * @param string $value
      * @return StringValue|Password
      * @throws UserNameInvalidByPolicyRules
+     * @throws \App\Shared\Domain\Exceptions\DomainException
      */
-    public static function build(string $value)
+    public static function build(string $value): self
     {
         try {
-            $password = new static($value, self::specificationChain());
+            $userName = new static($value, self::specificationChain());
         } catch (InvalidStringException $exception)
         {
             throw UserNameInvalidByPolicyRules::build(self::INVALID_BY_POLICY_RULES);
         }
 
-        return $password;
+        return $userName;
     }
 
     private static function specificationChain(): ?StringSpecificationChain

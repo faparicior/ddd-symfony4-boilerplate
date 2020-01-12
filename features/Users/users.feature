@@ -52,6 +52,10 @@ Feature:
         """
         Then the response content should be in JSON
         And the response status code should be 400
+        And the response should contain:
+        """
+        "Invalid Email format"
+        """
 
     Scenario: SignUp User with invalid password  and return 400 status code
         When I send a "POST" request to "/users" with body:
@@ -64,3 +68,7 @@ Feature:
         """
         Then the response content should be in JSON
         And the response status code should be 400
+        And the response should contain:
+        """
+        "Password invalid by policy rules"
+        """

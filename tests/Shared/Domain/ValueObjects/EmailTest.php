@@ -16,6 +16,7 @@ class EmailTest extends TestCase
     private const VALID_EMAIL = 'test@test.de';
     private const VALID_EMAIL_DIFFERENT = 'different@test.de';
     private const INVALID_EMAIL = 'test,@test.de';
+    private const INVALID_EMAIL_MESSAGE = "Invalid Email format";
 
     /**
      * @group UnitTests
@@ -48,13 +49,13 @@ class EmailTest extends TestCase
      * @group Shared
      * @group Domain
      *
-     *
      * @throws InvalidEmailException
      * @throws \App\Shared\Domain\Exceptions\DomainException
      */
-    public function testCreateEmailFailsForBadStringFormat()
+    public function testCreateEmailFailsForBadStringFormatAndSendsCorrectMessage()
     {
         self::expectException(InvalidEmailException::class);
+        self::expectExceptionMessage(self::INVALID_EMAIL_MESSAGE);
         EmailValueForTest::build(self::INVALID_EMAIL);
     }
 
@@ -62,7 +63,6 @@ class EmailTest extends TestCase
      * @group UnitTests
      * @group Shared
      * @group Domain
-     *
      *
      * @throws InvalidEmailException
      * @throws \App\Shared\Domain\Exceptions\DomainException

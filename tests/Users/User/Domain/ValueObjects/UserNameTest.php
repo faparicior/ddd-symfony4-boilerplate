@@ -2,11 +2,14 @@
 
 namespace App\Tests\Users\User\Domain\ValueObjects;
 
+use App\Users\User\Domain\Exceptions\UserNameInvalidByPolicyRules;
 use App\Users\User\Domain\ValueObjects\UserName;
 use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
 
 class UserNameTest extends TestCase
 {
+    private const INVALID_BY_POLICY_RULES = "Username invalid by policy rules";
+
     /**
      * @group UnitTests
      * @group Users
@@ -23,7 +26,8 @@ class UserNameTest extends TestCase
      * @group UnitTests
      * @group Users
      * @group Domain
-     */    public function testUserNameCanBeBuilt()
+     */
+    public function testUserNameCanBeBuilt()
     {
         $userName = UserName::build('UserTest');
 
@@ -31,4 +35,16 @@ class UserNameTest extends TestCase
         self::assertEquals('UserTest', $userName->value());
     }
 
+    /**
+     * @group UnitTests
+     * @group Users
+     * @group Domain
+     */
+    public function testUserNameCanBeEmptyValue()
+    {
+        self::expectException(UserNameInvalidByPolicyRules::class);
+        self::expectExceptionMessage(self::INVALID_BY_POLICY_RULES);
+
+        UserName::build('');
+    }
 }
