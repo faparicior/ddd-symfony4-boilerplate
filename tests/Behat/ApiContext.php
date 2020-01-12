@@ -160,8 +160,8 @@ final class ApiContext implements Context
      */
     public function loadFixtures()
     {
-        var_dump('GO!');
-        ob_flush();
+//        var_dump('GO!');
+//        ob_flush();
 
         $this->containerAwareLoader->addFixture(new UserSignUpFixtures());
         $this->executor->execute($this->containerAwareLoader->getFixtures(), false);
