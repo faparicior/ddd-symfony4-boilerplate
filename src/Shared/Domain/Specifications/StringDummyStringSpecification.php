@@ -4,7 +4,7 @@ namespace App\Shared\Domain\Specifications;
 
 class StringDummyStringSpecification implements StringSpecificationInterface
 {
-    public function isSatisfiedBy(string $data)
+    public function isSatisfiedBy(string $data): bool
     {
     }
 }

@@ -5,5 +5,5 @@ namespace App\Shared\Domain\Specifications;
 
 interface StringSpecificationInterface
 {
-    public function isSatisfiedBy(string $data);
+    public function isSatisfiedBy(string $data): bool;
 }

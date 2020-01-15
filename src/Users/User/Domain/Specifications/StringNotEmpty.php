@@ -16,7 +16,7 @@ class StringNotEmpty implements StringSpecificationInterface
         return new static();
     }
 
-    public function isSatisfiedBy(string $data)
+    public function isSatisfiedBy(string $data): bool
     {
         return strlen($data) > 0;
     }
