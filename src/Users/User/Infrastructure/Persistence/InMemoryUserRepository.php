@@ -5,6 +5,7 @@ namespace App\Users\User\Infrastructure\Persistence;
 use App\Users\User\Domain\User;
 use App\Users\User\Domain\UserRepositoryInterface;
 use App\Users\User\Domain\ValueObjects\UserId;
+use App\Users\User\Domain\ValueObjects\UserName;
 
 final class InMemoryUserRepository implements UserRepositoryInterface
 {
@@ -24,4 +25,19 @@ final class InMemoryUserRepository implements UserRepositoryInterface
     {
         return $this->usersTable[$userId->value()] ?? null;
     }
+
+    public function findByName(UserName $userName): ?User
+    {
+        /** @var User $user */
+        foreach ($this->usersTable as $user)
+        {
+            if($userName->equals($user->username()))
+            {
+                return $user;
+            }
+        }
+
+        return  null;
+    }
+
 }
