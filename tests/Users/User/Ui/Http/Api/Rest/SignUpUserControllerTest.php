@@ -6,6 +6,9 @@ use App\Shared\Domain\Exceptions\InvalidEmailException;
 use App\Shared\Infrastructure\Services\UniqueIdProviderStub;
 use App\Users\User\Application\SignUpUser\SignUpUserCommand;
 use App\Users\User\Application\SignUpUser\SignUpUserCommandHandler;
+use App\Users\User\Domain\Specifications\UserEmailIsUnique;
+use App\Users\User\Domain\Specifications\UserNameIsUnique;
+use App\Users\User\Domain\Specifications\UserSpecificationChain;
 use App\Users\User\Domain\ValueObjects\UserName;
 use App\Users\User\Infrastructure\Persistence\InMemoryUserRepository;
 use App\Users\User\Ui\Http\Api\Rest\SignUpUserController;
@@ -46,7 +49,11 @@ class SignUpUserControllerTest extends TestCase
         $userRepository = new InMemoryUserRepository();
 
         $signUpUserCommandHandler = new SignUpUserCommandHandler(
-            $uniqueUuidProviderService, $userRepository
+            $uniqueUuidProviderService, $userRepository,
+            UserSpecificationChain::build(...[
+                UserEmailIsUnique::build($userRepository),
+                UserNameIsUnique::build($userRepository)
+            ])
         );
 
         $this->bus = QuickStart::create([SignUpUserCommand::class => $signUpUserCommandHandler]);

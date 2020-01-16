@@ -2,6 +2,9 @@
 
 namespace App\Users\User\Domain;
 
+use App\Users\User\Domain\Exceptions\UserNameOrEmailExists;
+use App\Users\User\Domain\Specifications\UserEmailIsUnique;
+use App\Users\User\Domain\Specifications\UserSpecificationChain;
 use App\Users\User\Domain\ValueObjects\Email;
 use App\Users\User\Domain\ValueObjects\Password;
 use App\Users\User\Domain\ValueObjects\UserId;
@@ -20,6 +23,8 @@ final class User
 
     /** @var UserId  */
     private $userId;
+    /** @var UserEmailIsUnique */
+    private $userIsUnique;
 
     private function __construct(UserId $userId, UserName $userName, Email $email, Password $password)
     {
@@ -29,9 +34,30 @@ final class User
         $this->password = $password;
     }
 
-    public static function build(UserId $userId, UserName $userName, Email $email, Password $password): self
+    public static function build(UserId $userId, UserName $userName, Email $email, Password $password, UserSpecificationChain $specificationChain): self
     {
-        return new static($userId, $userName, $email, $password);
+        $user = new static($userId, $userName, $email, $password);
+
+        self::guard($specificationChain, $user);
+
+        return $user;
+    }
+
+    /**
+     * @param UserSpecificationChain $specificationChain
+     * @param $user
+     * @throws \App\Shared\Domain\Exceptions\DomainException
+     * @throws \App\Users\User\Domain\Exceptions\UserNameOrEmailExists;
+     */
+    private static function guard(UserSpecificationChain $specificationChain, $user): void
+    {
+        if (isset($specificationChain)) {
+            $isValid = $specificationChain->evalSpecifications($user);
+
+            if (!$isValid) {
+                throw UserNameOrEmailExists::build();
+            }
+        }
     }
 
     /**

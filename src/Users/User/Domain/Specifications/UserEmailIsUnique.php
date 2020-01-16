@@ -5,7 +5,7 @@ namespace App\Users\User\Domain\Specifications;
 use App\Users\User\Domain\User;
 use App\Users\User\Domain\UserRepositoryInterface;
 
-class UserNameIsUnique implements UserSpecificationInterface
+class UserEmailIsUnique implements UserSpecificationInterface
 {
     /** @var UserRepositoryInterface */
     private $userRepository;
@@ -22,7 +22,7 @@ class UserNameIsUnique implements UserSpecificationInterface
 
     public function isSatisfiedBy(User $userToFind): bool
     {
-        $user = $this->userRepository->findByName($userToFind->username());
+        $user = $this->userRepository->findByEmail($userToFind->email());
 
         return is_null($user);
     }

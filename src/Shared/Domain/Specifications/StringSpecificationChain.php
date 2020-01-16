@@ -17,7 +17,7 @@ class StringSpecificationChain
         return new static(...$specifications);
     }
 
-    final public function evalSpecifications(string $data)
+    final public function evalSpecifications(string $data): bool
     {
         $result = false;
 

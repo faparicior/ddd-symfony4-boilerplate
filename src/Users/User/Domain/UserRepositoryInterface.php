@@ -3,6 +3,7 @@
 namespace App\Users\User\Domain;
 
 
+use App\Users\User\Domain\ValueObjects\Email;
 use App\Users\User\Domain\ValueObjects\UserId;
 use App\Users\User\Domain\ValueObjects\UserName;
 use App\Users\User\Infrastructure\Persistence\InMemoryUserRepository;
@@ -14,4 +15,6 @@ interface UserRepositoryInterface
     public function findById(UserId $userId): ?User;
 
     public function findByName(UserName $userName): ?User;
+
+    public function findByEmail(Email $email): ?User;
 }

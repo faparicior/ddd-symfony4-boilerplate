@@ -12,6 +12,12 @@ services:
         tags:
         - { name: tactician.handler, command: App\Users\User\Application\SignUpUser\SignUpUserCommand }
 
+    App\Users\User\Domain\Specifications\UserSpecificationChain:
+        factory: ['App\Users\User\Domain\Specifications\UserSpecificationChain', 'build']
+
+
+    App\Users\User\Domain\Specifications\:
+        resource: '../../../Domain/Specifications/*'
 
     App\Users\User\Domain\UserRepositoryInterface:
         alias: App\Users\User\Infrastructure\Persistence\InMemoryUserRepository

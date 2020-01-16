@@ -3,10 +3,14 @@
 namespace App\Tests\Users\User\Application\SignUpUser;
 
 use App\Users\User\Application\Service\UserBuilder;
+use App\Users\User\Domain\Specifications\UserEmailIsUnique;
+use App\Users\User\Domain\Specifications\UserNameIsUnique;
+use App\Users\User\Domain\Specifications\UserSpecificationChain;
 use App\Users\User\Domain\ValueObjects\Email;
 use App\Users\User\Domain\ValueObjects\Password;
 use App\Users\User\Domain\ValueObjects\UserId;
 use App\Users\User\Domain\ValueObjects\UserName;
+use App\Users\User\Infrastructure\Persistence\InMemoryUserRepository;
 use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
 
 class UserBuilderTest extends TestCase
@@ -16,19 +20,33 @@ class UserBuilderTest extends TestCase
     private const EMAIL = 'test@test.de';
     private const PASSWORD = 'userpass';
 
+    /** @var InMemoryUserRepository */
+    private $userRepository;
+
+    public function setUp()
+    {
+        parent::setUp();
+
+        $this->userRepository = new InMemoryUserRepository();
+    }
+
     /**
      * @group UnitTests
      * @group Users
      * @group Application
      * @throws \App\Shared\Domain\Exceptions\DomainException
      */
-    public function testUserCreatorCanCreateAnUser()
+    public function testUserBuilderCanCreateAnUser()
     {
         $user = UserBuilder::build(
             UserId::fromString(self::USER_UUID),
             UserName::build(self::USERNAME),
             Email::build(self::EMAIL),
-            Password::build(self::PASSWORD)
+            Password::build(self::PASSWORD),
+            UserSpecificationChain::build(...[
+                UserNameIsUnique::build($this->userRepository),
+                UserEmailIsUnique::build($this->userRepository)
+            ])
         );
 
         self::assertEquals(self::USER_UUID, $user->userId()->value());

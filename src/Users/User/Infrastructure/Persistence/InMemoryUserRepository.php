@@ -4,6 +4,7 @@ namespace App\Users\User\Infrastructure\Persistence;
 
 use App\Users\User\Domain\User;
 use App\Users\User\Domain\UserRepositoryInterface;
+use App\Users\User\Domain\ValueObjects\Email;
 use App\Users\User\Domain\ValueObjects\UserId;
 use App\Users\User\Domain\ValueObjects\UserName;
 
@@ -40,4 +41,17 @@ final class InMemoryUserRepository implements UserRepositoryInterface
         return  null;
     }
 
+    public function findByEmail(Email $email): ?User
+    {
+        /** @var User $user */
+        foreach ($this->usersTable as $user)
+        {
+            if($email->equals($user->email()))
+            {
+                return $user;
+            }
+        }
+
+        return  null;
+    }
 }

@@ -6,11 +6,22 @@ use App\Shared\Infrastructure\Services\UniqueIdProviderInterface;
 use App\Users\User\Application\SignUpUser\SignUpUserCommand;
 use App\Users\User\Application\SignUpUser\SignUpUserCommandHandler;
 use App\Shared\Infrastructure\Services\UniqueIdProviderStub;
+use App\Users\User\Domain\Specifications\UserSpecificationChain;
+use App\Users\User\Domain\Specifications\UserSpecificationInterface;
+use App\Users\User\Domain\User;
 use App\Users\User\Domain\UserRepositoryInterface;
 use App\Users\User\Domain\ValueObjects\UserId;
 use App\Users\User\Infrastructure\Persistence\InMemoryUserRepository;
 use Ramsey\Uuid\UuidFactory;
 use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
+
+class UserSpecificationStub implements UserSpecificationInterface
+{
+    public function isSatisfiedBy(User $user): bool
+    {
+        return true;
+    }
+}
 
 class SignUpUserCommandHandlerTest extends TestCase
 {
@@ -89,7 +100,7 @@ class SignUpUserCommandHandlerTest extends TestCase
      */
     private function handleCommand($command)
     {
-        $commandHandler = new SignUpUserCommandHandler($this->uuidService, $this->userRepository);
+        $commandHandler = new SignUpUserCommandHandler($this->uuidService, $this->userRepository, UserSpecificationChain::build(...[new UserSpecificationStub()]));
 
         return $commandHandler->handle($command);
     }

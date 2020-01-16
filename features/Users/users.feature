@@ -5,6 +5,7 @@ Feature:
     As a User I want to signUp and Login to the platform using the API
 
     @fixtures
+#        TODO!!!: Fixtures has to clean user database and related tables in a easy way to function
     Scenario: SignUp User
         When I send a "POST" request to "/users" with body:
         """
@@ -39,7 +40,7 @@ Feature:
         And the response status code should be 400
         And the response should contain:
         """
-        "email is in use"
+        "Username or email is in use"
         """
 
     Scenario: SignUp User but username exists in database
@@ -55,7 +56,7 @@ Feature:
         And the response status code should be 400
         And the response should contain:
         """
-        "email is in use"
+        "Username or email is in use"
         """
 
     Scenario: SignUp User with invalid user and return 400 status code

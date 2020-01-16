@@ -4,6 +4,7 @@ namespace App\Users\User\Infrastructure\Persistence;
 
 use App\Users\User\Domain\User;
 use App\Users\User\Domain\UserRepositoryInterface;
+use App\Users\User\Domain\ValueObjects\Email;
 use App\Users\User\Domain\ValueObjects\UserId;
 use App\Users\User\Domain\ValueObjects\UserName;
 use Doctrine\ORM\EntityManagerInterface;
@@ -34,5 +35,10 @@ final class DoctrineUserRepository extends EntityRepository implements UserRepos
     public function findByName(UserName $userName): ?User
     {
         // TODO: Implement findByName() method.
+    }
+
+    public function findByEmail(Email $email): ?User
+    {
+        // TODO: Implement findByEmail() method.
     }
 }

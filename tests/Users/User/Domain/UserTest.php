@@ -2,12 +2,22 @@
 
 namespace App\Tests\Users\User\Domain;
 
+use App\Users\User\Domain\Specifications\UserSpecificationChain;
+use App\Users\User\Domain\Specifications\UserSpecificationInterface;
 use App\Users\User\Domain\User;
 use App\Users\User\Domain\ValueObjects\Email;
 use App\Users\User\Domain\ValueObjects\Password;
 use App\Users\User\Domain\ValueObjects\UserId;
 use App\Users\User\Domain\ValueObjects\UserName;
 use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
+
+class UserSpecificationStub implements UserSpecificationInterface
+{
+    public function isSatisfiedBy(User $user): bool
+    {
+        return true;
+    }
+}
 
 class UserTest extends TestCase
 {
@@ -40,7 +50,10 @@ class UserTest extends TestCase
             UserId::fromString(self::USER_UUID),
             UserName::build(self::USERNAME),
             Email::build(self::EMAIL),
-            Password::build(self::PASSWORD)
+            Password::build(self::PASSWORD),
+            UserSpecificationChain::build(...[
+                new UserSpecificationStub()
+            ])
         );
 
         self::assertInstanceOf(User::class, $user);
