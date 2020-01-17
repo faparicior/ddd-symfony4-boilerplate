@@ -14,7 +14,17 @@ services:
 
     App\Users\User\Domain\Specifications\UserSpecificationChain:
         factory: ['App\Users\User\Domain\Specifications\UserSpecificationChain', 'build']
+        arguments:
+            - '@App\Users\User\Domain\Specifications\UserEmailIsUnique'
+            - '@App\Users\User\Domain\Specifications\UserNameIsUnique'
 
+    App\Users\User\Domain\Specifications\UserEmailIsUnique:
+        factory: ['App\Users\User\Domain\Specifications\UserEmailIsUnique', 'build']
+        class: App\Users\User\Domain\Specifications\UserEmailIsUnique
+
+    App\Users\User\Domain\Specifications\UserNameIsUnique:
+        factory: ['App\Users\User\Domain\Specifications\UserNameIsUnique', 'build']
+        class: App\Users\User\Domain\Specifications\UserNameIsUnique
 
     App\Users\User\Domain\Specifications\:
         resource: '../../../Domain/Specifications/*'

@@ -12,10 +12,11 @@ use Doctrine\ORM\EntityRepository;
 
 final class DoctrineUserRepository extends EntityRepository implements UserRepositoryInterface
 {
+    private const CLASS_NAME = User::class;
 
     public function __construct(EntityManagerInterface $manager)
     {
-        parent::__construct($manager, $manager->getClassMetadata(User::class));
+        parent::__construct($manager, $manager->getClassMetadata(self::CLASS_NAME));
     }
 
     /**
@@ -29,16 +30,20 @@ final class DoctrineUserRepository extends EntityRepository implements UserRepos
 
     public function findById(UserId $userId): ?User
     {
-        return null;
+        // TODO: Implement findById() method.
     }
 
     public function findByName(UserName $userName): ?User
     {
-        // TODO: Implement findByName() method.
+        return $this->_em->getRepository(self::CLASS_NAME)->findOneBy([
+            'username' => $userName
+        ]);
     }
 
     public function findByEmail(Email $email): ?User
     {
-        // TODO: Implement findByEmail() method.
+        return $this->_em->getRepository(self::CLASS_NAME)->findOneBy([
+            'email' => $email
+        ]);
     }
 }
