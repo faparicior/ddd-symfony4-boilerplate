@@ -12,7 +12,6 @@ services:
         tags:
         - { name: tactician.handler, command: App\Users\User\Application\SignUpUser\SignUpUserCommand }
 
-
     App\Users\User\Domain\UserRepositoryInterface:
         alias: App\Users\User\Infrastructure\Persistence\DoctrineUserRepository
 
