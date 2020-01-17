@@ -3,6 +3,7 @@
 namespace App\Tests\Users\User\Domain\Specifications;
 
 use App\Users\User\Domain\Specifications\UserEmailIsUnique;
+use App\Users\User\Domain\Specifications\UserIdIsUnique;
 use App\Users\User\Domain\Specifications\UserNameIsUnique;
 use App\Users\User\Domain\Specifications\UserSpecificationChain;
 use App\Users\User\Domain\User;
@@ -14,10 +15,8 @@ use App\Users\User\Domain\ValueObjects\UserName;
 use App\Users\User\Infrastructure\Persistence\InMemoryUserRepository;
 use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
 
-class UserNameIsUniqueTest extends TestCase
+class UserIdIsUniqueTest extends TestCase
 {
-    const USERNAME = 'JohnDoe';
-    const USERNAME_NEW = 'JohnDoeNew';
 
     /** @var UserRepositoryInterface */
     private $userRepository;
@@ -29,10 +28,10 @@ class UserNameIsUniqueTest extends TestCase
         $this->userRepository = new InMemoryUserRepository();
     }
 
-    public function testUsernameExistsCannotBeInstantiatedDirectly()
+    public function testUserIdExistsCannotBeInstantiatedDirectly()
     {
         self::expectException(\Error::class);
-        new UserNameIsUnique();
+        new UserIdIsUnique();
     }
 
     /**
@@ -40,31 +39,31 @@ class UserNameIsUniqueTest extends TestCase
      * @throws \App\Users\User\Domain\Exceptions\PasswordInvalidByPolicyRules
      * @throws \App\Users\User\Domain\Exceptions\UserNameInvalidByPolicyRules
      */
-    public function testUsernameExistsReturnsTrueIfNotExistsInDatabase()
+    public function testUserIdExistsReturnsTrueIfNotExistsInDatabase()
     {
         $user = User::build(
             UserId::build(),
-            UserName::build(self::USERNAME),
+            UserName::build('JohnDoe'),
             Email::build('test@test.de'),
             Password::build('123456789'),
             UserSpecificationChain::build(...[
-                UserNameIsUnique::build($this->userRepository)
+                UserIdIsUnique::build($this->userRepository)
             ])
         );
 
         $this->userRepository->create($user);
 
-        $specification = UserEmailIsUnique::build($this->userRepository);
-
         $userNew = User::build(
             UserId::build(),
-            UserName::build(self::USERNAME_NEW),
+            UserName::build('JohnDoe'),
             Email::build('test2@test.de'),
             Password::build('123456789'),
             UserSpecificationChain::build(...[
-                UserNameIsUnique::build($this->userRepository)
+                UserEmailIsUnique::build($this->userRepository)
             ])
         );
+
+        $specification = UserIdIsUnique::build($this->userRepository);
 
         self::assertTrue($specification->isSatisfiedBy($userNew));
     }
@@ -75,32 +74,22 @@ class UserNameIsUniqueTest extends TestCase
      * @throws \App\Users\User\Domain\Exceptions\PasswordInvalidByPolicyRules
      * @throws \App\Users\User\Domain\Exceptions\UserNameInvalidByPolicyRules
      */
-    public function testUsernameExistsReturnsFalseIfExistsInDatabase()
+    public function testUserIdExistsReturnsFalseIfExistsInDatabase()
     {
         $user = User::build(
             UserId::build(),
-            UserName::build(self::USERNAME),
+            UserName::build('JohnDoe'),
             Email::build('test@test.de'),
             Password::build('123456789'),
             UserSpecificationChain::build(...[
-                UserNameIsUnique::build($this->userRepository)
+                UserIdIsUnique::build($this->userRepository)
             ])
         );
 
         $this->userRepository->create($user);
 
-        $userNew = User::build(
-            UserId::build(),
-            UserName::build(self::USERNAME),
-            Email::build('test2@test.de'),
-            Password::build('123456789'),
-            UserSpecificationChain::build(...[
-                UserEmailIsUnique::build($this->userRepository)
-            ])
-        );
+        $specification = UserIdIsUnique::build($this->userRepository);
 
-        $specification = UserNameIsUnique::build($this->userRepository);
-
-        self::assertFalse($specification->isSatisfiedBy($userNew));
+        self::assertFalse($specification->isSatisfiedBy($user));
     }
 }

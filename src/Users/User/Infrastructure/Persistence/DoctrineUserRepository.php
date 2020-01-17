@@ -30,7 +30,9 @@ final class DoctrineUserRepository extends EntityRepository implements UserRepos
 
     public function findById(UserId $userId): ?User
     {
-        // TODO: Implement findById() method.
+        return $this->_em->getRepository(self::CLASS_NAME)->findOneBy([
+            'userId' => $userId
+        ]);
     }
 
     public function findByName(UserName $userName): ?User
