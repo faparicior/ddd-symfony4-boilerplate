@@ -91,12 +91,14 @@ final class ApiContext implements Context
      * Example: And the response status code should be 400
      *
      * @Then /^the response status code should be (?P<code>\d+)$/
-     * @param int $statusCode
+     * @param int $statusCodeExpected
      */
-    public function theResponseStatusCodeShouldBe(int $statusCode)
+    public function theResponseStatusCodeShouldBe(int $statusCodeExpected)
     {
-        if ($this->response->getStatusCode() !== $statusCode) {
-            throw new \RuntimeException('No valid status code response');
+        $statusCode = $this->response->getStatusCode();
+
+        if ($statusCode !== $statusCodeExpected) {
+            throw new \RuntimeException('No valid status code response '.$statusCode.' instead '.$statusCodeExpected);
         }
     }
 
