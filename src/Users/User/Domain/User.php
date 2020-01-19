@@ -23,8 +23,6 @@ final class User
 
     /** @var UserId  */
     private $userId;
-    /** @var UserEmailIsUnique */
-    private $userIsUnique;
 
     private function __construct(UserId $userId, UserName $userName, Email $email, Password $password)
     {
