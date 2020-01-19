@@ -31,7 +31,7 @@ Feature:
         When I send a "POST" request to "/users" with body:
         """
           {
-            "userName": "JohnDoe",
+            "userName": "JohnDoe2",
             "email": "test.email@gmail.com",
             "password": ",&+3RjwAu88(tyC'"
           }
@@ -40,7 +40,7 @@ Feature:
         And the response status code should be 400
         And the response should contain:
         """
-        "Username or email is in use"
+        "User email is in use"
         """
 
     Scenario: SignUp User but username exists in database
@@ -56,7 +56,7 @@ Feature:
         And the response status code should be 400
         And the response should contain:
         """
-        "Username or email is in use"
+        "UserName is in use"
         """
 
     Scenario: SignUp User with invalid user and return 400 status code

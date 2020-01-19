@@ -21,6 +21,11 @@ class UserSpecificationStub implements UserSpecificationInterface
     {
         return true;
     }
+
+    public function getFailedMessage(): string
+    {
+        // TODO: Implement getFailedMessage() method.
+    }
 }
 
 class SignUpUserCommandHandlerTest extends TestCase

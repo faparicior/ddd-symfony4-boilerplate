@@ -7,6 +7,8 @@ use App\Users\User\Domain\UserRepositoryInterface;
 
 class UserEmailIsUnique implements UserSpecificationInterface
 {
+    public const SPECIFICATION_FAIL_MESSAGE = 'User email is in use';
+
     /** @var UserRepositoryInterface */
     private $userRepository;
 
@@ -25,5 +27,10 @@ class UserEmailIsUnique implements UserSpecificationInterface
         $user = $this->userRepository->findByEmail($userToFind->email());
 
         return is_null($user);
+    }
+
+    public function getFailedMessage(): string
+    {
+        return self::SPECIFICATION_FAIL_MESSAGE;
     }
 }

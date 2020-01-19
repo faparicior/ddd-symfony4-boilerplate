@@ -7,6 +7,8 @@ use App\Users\User\Domain\UserRepositoryInterface;
 
 class UserNameIsUnique implements UserSpecificationInterface
 {
+    public const SPECIFICATION_FAIL_MESSAGE = 'UserName is in use';
+
     /** @var UserRepositoryInterface */
     private $userRepository;
 
@@ -25,5 +27,10 @@ class UserNameIsUnique implements UserSpecificationInterface
         $user = $this->userRepository->findByName($userToFind->username());
 
         return is_null($user);
+    }
+
+    public function getFailedMessage(): string
+    {
+        return self::SPECIFICATION_FAIL_MESSAGE;
     }
 }

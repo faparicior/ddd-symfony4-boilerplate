@@ -7,6 +7,8 @@ use App\Users\User\Domain\UserRepositoryInterface;
 
 class UserIdIsUnique implements UserSpecificationInterface
 {
+    public const SPECIFICATION_FAIL_MESSAGE = 'User identification is in use';
+
     /** @var UserRepositoryInterface */
     private $userRepository;
 
@@ -25,5 +27,10 @@ class UserIdIsUnique implements UserSpecificationInterface
         $user = $this->userRepository->findById($userToFind->userId());
 
         return is_null($user);
+    }
+
+    public function getFailedMessage(): string
+    {
+        return self::SPECIFICATION_FAIL_MESSAGE;
     }
 }

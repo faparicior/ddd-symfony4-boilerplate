@@ -2,13 +2,18 @@
 
 namespace App\Tests\Users\User\Domain;
 
+use App\Users\User\Domain\Exceptions\UserExists;
+use App\Users\User\Domain\Specifications\UserEmailIsUnique;
+use App\Users\User\Domain\Specifications\UserIdIsUnique;
 use App\Users\User\Domain\Specifications\UserSpecificationChain;
 use App\Users\User\Domain\Specifications\UserSpecificationInterface;
 use App\Users\User\Domain\User;
+use App\Users\User\Domain\UserRepositoryInterface;
 use App\Users\User\Domain\ValueObjects\Email;
 use App\Users\User\Domain\ValueObjects\Password;
 use App\Users\User\Domain\ValueObjects\UserId;
 use App\Users\User\Domain\ValueObjects\UserName;
+use App\Users\User\Infrastructure\Persistence\InMemoryUserRepository;
 use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
 
 class UserSpecificationStub implements UserSpecificationInterface
@@ -16,6 +21,11 @@ class UserSpecificationStub implements UserSpecificationInterface
     public function isSatisfiedBy(User $user): bool
     {
         return true;
+    }
+
+    public function getFailedMessage(): string
+    {
+        // TODO: Implement getFailedMessage() method.
     }
 }
 
@@ -25,6 +35,16 @@ class UserTest extends TestCase
     private const USERNAME = 'Test User';
     private const EMAIL = 'test@test.de';
     private const PASSWORD = 'userpass';
+
+    /** @var UserRepositoryInterface */
+    private $userRepository;
+
+    public function setUp()
+    {
+        parent::setUp();
+
+        $this->userRepository = new InMemoryUserRepository();
+    }
 
     /**
      * @group UnitTests
@@ -63,4 +83,39 @@ class UserTest extends TestCase
         self::assertEquals(self::PASSWORD, $user->password()->value());
     }
 
+    /**
+     * @group UnitTests
+     * @group Users
+     * @group Domain
+     */
+    public function testUserCanReturnErrorWithSpecification()
+    {
+
+        self::expectException(UserExists::class);
+        self::expectExceptionMessage('User identification is in use, User email is in use');
+
+        /** @var User $user */
+        $user = User::build(
+            UserId::fromString(self::USER_UUID),
+            UserName::build(self::USERNAME),
+            Email::build(self::EMAIL),
+            Password::build(self::PASSWORD),
+            UserSpecificationChain::build(...[
+                new UserSpecificationStub()
+            ])
+        );
+
+        $this->userRepository->create($user);
+
+        User::build(
+            UserId::fromString(self::USER_UUID),
+            UserName::build(self::USERNAME),
+            Email::build(self::EMAIL),
+            Password::build(self::PASSWORD),
+            UserSpecificationChain::build(...[
+                UserIdIsUnique::build($this->userRepository),
+                UserEmailIsUnique::build($this->userRepository)
+            ])
+        );
+    }
 }
