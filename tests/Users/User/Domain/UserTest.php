@@ -2,7 +2,7 @@
 
 namespace App\Tests\Users\User\Domain;
 
-use App\Users\User\Domain\Exceptions\UserExists;
+use App\Users\User\Domain\Exceptions\UserExistsException;
 use App\Users\User\Domain\Specifications\UserEmailIsUnique;
 use App\Users\User\Domain\Specifications\UserIdIsUnique;
 use App\Users\User\Domain\Specifications\UserSpecificationChain;
@@ -91,7 +91,7 @@ class UserTest extends TestCase
     public function testUserCanReturnErrorWithSpecification()
     {
 
-        self::expectException(UserExists::class);
+        self::expectException(UserExistsException::class);
         self::expectExceptionMessage('User identification is in use, User email is in use');
 
         /** @var User $user */

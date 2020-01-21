@@ -78,8 +78,8 @@ class UserSpecificationChainTest extends TestCase
      * @group Domain
      *
      * @throws \App\Shared\Domain\Exceptions\DomainException
-     * @throws \App\Users\User\Domain\Exceptions\PasswordInvalidByPolicyRules
-     * @throws \App\Users\User\Domain\Exceptions\UserNameInvalidByPolicyRules
+     * @throws \App\Users\User\Domain\Exceptions\PasswordInvalidByPolicyRulesException
+     * @throws \App\Users\User\Domain\Exceptions\UserNameInvalidByPolicyRulesException
      * @throws \ReflectionException
      */
     public function testUserSpecificationChainReturnFalseIfHasNoSpecifications()
@@ -106,8 +106,8 @@ class UserSpecificationChainTest extends TestCase
      * @group Domain
      *
      * @throws \App\Shared\Domain\Exceptions\DomainException
-     * @throws \App\Users\User\Domain\Exceptions\PasswordInvalidByPolicyRules
-     * @throws \App\Users\User\Domain\Exceptions\UserNameInvalidByPolicyRules
+     * @throws \App\Users\User\Domain\Exceptions\PasswordInvalidByPolicyRulesException
+     * @throws \App\Users\User\Domain\Exceptions\UserNameInvalidByPolicyRulesException
      * @throws \ReflectionException
      */
     public function testUserSpecificationChainReturnTrueIfHasSpecifications()
@@ -134,8 +134,8 @@ class UserSpecificationChainTest extends TestCase
      * @group Domain
      *
      * @throws \App\Shared\Domain\Exceptions\DomainException
-     * @throws \App\Users\User\Domain\Exceptions\PasswordInvalidByPolicyRules
-     * @throws \App\Users\User\Domain\Exceptions\UserNameInvalidByPolicyRules
+     * @throws \App\Users\User\Domain\Exceptions\PasswordInvalidByPolicyRulesException
+     * @throws \App\Users\User\Domain\Exceptions\UserNameInvalidByPolicyRulesException
      * @throws \ReflectionException
      */
     public function testUserSpecificationChainReturnSpecificationChainResults()
@@ -167,8 +167,8 @@ class UserSpecificationChainTest extends TestCase
      * @group Domain
      *
      * @throws \App\Shared\Domain\Exceptions\DomainException
-     * @throws \App\Users\User\Domain\Exceptions\PasswordInvalidByPolicyRules
-     * @throws \App\Users\User\Domain\Exceptions\UserNameInvalidByPolicyRules
+     * @throws \App\Users\User\Domain\Exceptions\PasswordInvalidByPolicyRulesException
+     * @throws \App\Users\User\Domain\Exceptions\UserNameInvalidByPolicyRulesException
      * @throws \ReflectionException
      */
     public function testUserSpecificationChainReturnSpecificationFailedResults()

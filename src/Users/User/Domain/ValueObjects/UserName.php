@@ -5,7 +5,7 @@ namespace App\Users\User\Domain\ValueObjects;
 use App\Shared\Domain\Exceptions\InvalidStringException;
 use App\Shared\Domain\Specifications\StringSpecificationChain;
 use App\Shared\Domain\ValueObjects\StringValue;
-use App\Users\User\Domain\Exceptions\UserNameInvalidByPolicyRules;
+use App\Users\User\Domain\Exceptions\UserNameInvalidByPolicyRulesException;
 use App\Users\User\Domain\Specifications\StringNotEmpty;
 
 class UserName extends StringValue
@@ -15,7 +15,7 @@ class UserName extends StringValue
     /**
      * @param string $value
      * @return StringValue|Password
-     * @throws UserNameInvalidByPolicyRules
+     * @throws UserNameInvalidByPolicyRulesException
      * @throws \App\Shared\Domain\Exceptions\DomainException
      */
     public static function build(string $value): self
@@ -24,7 +24,7 @@ class UserName extends StringValue
             $userName = new static($value, self::specificationChain());
         } catch (InvalidStringException $exception)
         {
-            throw UserNameInvalidByPolicyRules::build(self::INVALID_BY_POLICY_RULES);
+            throw UserNameInvalidByPolicyRulesException::build(self::INVALID_BY_POLICY_RULES);
         }
 
         return $userName;

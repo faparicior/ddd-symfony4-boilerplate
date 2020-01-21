@@ -36,8 +36,8 @@ class UserEmailIsUniqueTest extends TestCase
 
     /**
      * @throws \App\Shared\Domain\Exceptions\DomainException
-     * @throws \App\Users\User\Domain\Exceptions\PasswordInvalidByPolicyRules
-     * @throws \App\Users\User\Domain\Exceptions\UserNameInvalidByPolicyRules
+     * @throws \App\Users\User\Domain\Exceptions\PasswordInvalidByPolicyRulesException
+     * @throws \App\Users\User\Domain\Exceptions\UserNameInvalidByPolicyRulesException
      */
     public function testUserEmailExistsReturnsTrueIfNotExistsInDatabase()
     {
@@ -71,8 +71,8 @@ class UserEmailIsUniqueTest extends TestCase
 
     /**
      * @throws \App\Shared\Domain\Exceptions\DomainException
-     * @throws \App\Users\User\Domain\Exceptions\PasswordInvalidByPolicyRules
-     * @throws \App\Users\User\Domain\Exceptions\UserNameInvalidByPolicyRules
+     * @throws \App\Users\User\Domain\Exceptions\PasswordInvalidByPolicyRulesException
+     * @throws \App\Users\User\Domain\Exceptions\UserNameInvalidByPolicyRulesException
      */
     public function testUserEmailExistsReturnsFalseIfExistsInDatabase()
     {

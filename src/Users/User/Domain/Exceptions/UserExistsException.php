@@ -6,7 +6,7 @@ use App\Shared\Domain\Exceptions\DomainException;
 
 use \Throwable;
 
-class UserExists extends DomainException
+class UserExistsException extends DomainException
 {
     public const INVALID_USER_MESSAGE = "Username, Id or email is in use";
 

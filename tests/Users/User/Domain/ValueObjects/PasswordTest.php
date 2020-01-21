@@ -2,7 +2,7 @@
 
 namespace App\Tests\Users\User\Domain\ValueObjects;
 
-use App\Users\User\Domain\Exceptions\PasswordInvalidByPolicyRules;
+use App\Users\User\Domain\Exceptions\PasswordInvalidByPolicyRulesException;
 use App\Users\User\Domain\ValueObjects\Password;
 use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
 
@@ -27,7 +27,7 @@ class PasswordTest extends TestCase
      * @group Users
      * @group Domain
      *
-     * @throws PasswordInvalidByPolicyRules
+     * @throws PasswordInvalidByPolicyRulesException
      */
     public function testPasswordCanBeBuilt()
     {
@@ -42,11 +42,11 @@ class PasswordTest extends TestCase
      * @group Shared
      * @group Domain
      *
-     * @throws PasswordInvalidByPolicyRules
+     * @throws PasswordInvalidByPolicyRulesException
      */
     public function testPasswordCannotBeLessThanEightCharacters()
     {
-        self::expectException(PasswordInvalidByPolicyRules::class);
+        self::expectException(PasswordInvalidByPolicyRulesException::class);
         self::expectExceptionMessage(self::INVALID_PASSWORD_MESSAGE);
 
         Password::build('1234567');

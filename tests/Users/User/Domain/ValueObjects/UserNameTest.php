@@ -2,7 +2,7 @@
 
 namespace App\Tests\Users\User\Domain\ValueObjects;
 
-use App\Users\User\Domain\Exceptions\UserNameInvalidByPolicyRules;
+use App\Users\User\Domain\Exceptions\UserNameInvalidByPolicyRulesException;
 use App\Users\User\Domain\ValueObjects\UserName;
 use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
 
@@ -42,7 +42,7 @@ class UserNameTest extends TestCase
      */
     public function testUserNameCanBeEmptyValue()
     {
-        self::expectException(UserNameInvalidByPolicyRules::class);
+        self::expectException(UserNameInvalidByPolicyRulesException::class);
         self::expectExceptionMessage(self::INVALID_BY_POLICY_RULES);
 
         UserName::build('');

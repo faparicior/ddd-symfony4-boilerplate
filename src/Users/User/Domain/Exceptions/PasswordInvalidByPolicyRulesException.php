@@ -5,7 +5,7 @@ namespace App\Users\User\Domain\Exceptions;
 use App\Shared\Domain\Exceptions\DomainException;
 use Throwable;
 
-class PasswordInvalidByPolicyRules extends DomainException
+class PasswordInvalidByPolicyRulesException extends DomainException
 {
     public const INVALID_PASS_MESSAGE = "Password invalid by policy rules";
 
