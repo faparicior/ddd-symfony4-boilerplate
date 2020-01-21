@@ -6,6 +6,8 @@ use App\Shared\Domain\Specifications\StringSpecificationInterface;
 
 class StringNotEmpty implements StringSpecificationInterface
 {
+    public const SPECIFICATION_FAIL_MESSAGE = 'User identification is in use';
+
     private function __construct()
     {
 
@@ -19,5 +21,10 @@ class StringNotEmpty implements StringSpecificationInterface
     public function isSatisfiedBy(string $data): bool
     {
         return strlen($data) > 0;
+    }
+
+    public function getFailedMessage(): string
+    {
+        return self::SPECIFICATION_FAIL_MESSAGE;
     }
 }
