@@ -125,6 +125,22 @@ class StringSpecificationChainTest extends TestCase
      *
      * @throws \ReflectionException
      */
+    public function testStringSpecificationChainReturnFalseWithOneFailedSpecification()
+    {
+        $specificationChain = StringSpecificationChain::build(...[(new StringSpecificationOkStub()),(new StringSpecificationFailStub()) ]);
+        self::assertFalse($specificationChain->evalSpecifications(''));
+
+        $specificationChain = StringSpecificationChain::build(...[(new StringSpecificationFailStub()),(new StringSpecificationOkStub()) ]);
+        self::assertFalse($specificationChain->evalSpecifications(''));
+    }
+
+    /**
+     * @group UnitTests
+     * @group Shared
+     * @group Domain
+     *
+     * @throws \ReflectionException
+     */
     public function testStringSpecificationChainReturnSpecificationChainFailedResults()
     {
         $specificationChain = StringSpecificationChain::build(...[(new StringSpecificationOkStub()),(new StringSpecificationFailStub()) ]);

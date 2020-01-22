@@ -3,9 +3,7 @@
 namespace App\Shared\Domain\Specifications;
 
 
-interface StringSpecificationInterface
+interface StringSpecificationInterface extends SpecificationInterface
 {
     public function isSatisfiedBy(string $data): bool;
-
-    public function getFailedMessage(): string;
 }
