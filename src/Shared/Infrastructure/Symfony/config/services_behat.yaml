@@ -4,9 +4,4 @@ services:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
-    App\Shared\Infrastructure\Services\UniqueIdProviderInterface:
-        alias: App\Shared\Infrastructure\Services\UniqueIdProviderStub
-
-    App\Shared\Infrastructure\Services\UniqueIdProviderStub:
-        class: App\Shared\Infrastructure\Services\UniqueIdProviderStub
 

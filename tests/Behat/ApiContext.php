@@ -9,7 +9,6 @@ use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\PyStringNode;
 use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\DataFixtures\ContainerAwareLoader;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -146,6 +145,25 @@ final class ApiContext implements Context
     }
 
     /**
+     * Checks, that HTML response contains specified string
+     * Example: Then the response should contain "Batman is the hero Gotham deserves."
+     * Example: And the response should contain "Batman is the hero Gotham deserves."
+     *
+     * @Then /^the response should have:$/
+     */
+    public function assertResponseHas(PyStringNode $text)
+    {
+        $content = $this->response->getContent();
+
+        $result = $this->endsWith($content, $this->removeNewLinesInString($text));
+
+        if(!$result)
+        {
+            throw new \RuntimeException('Unexpected response '. $content . 'instead '. $text);
+        }
+    }
+
+    /**
      * Returns fixed step argument (with \\" replaced back to ")
      *
      * @param string $argument
@@ -167,5 +185,30 @@ final class ApiContext implements Context
 
         $this->containerAwareLoader->addFixture(new UserSignUpFixtures());
         $this->executor->execute($this->containerAwareLoader->getFixtures(), false);
+    }
+
+    private function startsWith($haystack, $needle)
+    {
+        $length = strlen($needle);
+        return (substr($haystack, 0, $length) === $needle);
+    }
+
+    private function endsWith($haystack, $needle)
+    {
+        $length = strlen($needle);
+        if ($length == 0) {
+            return true;
+        }
+
+        return (substr($haystack, -$length) === $needle);
+    }
+
+    /**
+     * @param PyStringNode $text
+     * @return null|string|string[]
+     */
+    private function removeNewLinesInString(PyStringNode $text)
+    {
+        return preg_replace('/\s+/', '', $text->getRaw());
     }
 }

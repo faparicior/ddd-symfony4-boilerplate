@@ -17,6 +17,11 @@ services:
         arguments:
             - '@App\Users\User\Domain\Specifications\UserEmailIsUnique'
             - '@App\Users\User\Domain\Specifications\UserNameIsUnique'
+            - '@App\Users\User\Domain\Specifications\UserIdIsUnique'
+
+    App\Users\User\Domain\Specifications\UserIdIsUnique:
+        factory: ['App\Users\User\Domain\Specifications\UserIdIsUnique', 'build']
+        class: App\Users\User\Domain\Specifications\UserIdIsUnique
 
     App\Users\User\Domain\Specifications\UserEmailIsUnique:
         factory: ['App\Users\User\Domain\Specifications\UserEmailIsUnique', 'build']
