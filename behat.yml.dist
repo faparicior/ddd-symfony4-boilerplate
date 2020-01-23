@@ -5,6 +5,7 @@ default:
             contexts:
                 - App\Tests\Behat\BehatTestEnvironmentContext
                 - App\Tests\Behat\ApiContext
+                - App\Tests\Behat\LoggerContext
 #                - Behat\MinkExtension\Context\MinkContext
 
     extensions:

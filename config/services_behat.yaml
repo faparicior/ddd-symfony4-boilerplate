@@ -24,6 +24,15 @@ services:
             - '@Doctrine\Common\DataFixtures\Executor\ORMExecutor'
             - '@Doctrine\Common\DataFixtures\Purger\ORMPurger'
 
+    App\Tests\Behat\LoggerContext:
+        public: true
+        arguments:
+        - "@kernel"
+        - "%kernel.environment%"
+        - '@doctrine.fixtures.loader'
+        - '@Doctrine\Common\DataFixtures\Executor\ORMExecutor'
+        - '@Doctrine\Common\DataFixtures\Purger\ORMPurger'
+
     Doctrine\Common\DataFixtures\Executor\ORMExecutor:
         class: Doctrine\Common\DataFixtures\Executor\ORMExecutor
         arguments:

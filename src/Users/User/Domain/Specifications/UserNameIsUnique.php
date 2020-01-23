@@ -7,7 +7,7 @@ use App\Users\User\Domain\UserRepositoryInterface;
 
 class UserNameIsUnique implements UserSpecificationInterface
 {
-    public const SPECIFICATION_FAIL_MESSAGE = 'UserName is in use';
+    public const SPECIFICATION_FAIL_MESSAGE = 'Username is in use';
 
     /** @var UserRepositoryInterface */
     private $userRepository;

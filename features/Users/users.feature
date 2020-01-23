@@ -5,6 +5,7 @@ Feature:
     As a User I want to signUp and Login to the platform using the API
 
     @fixtures
+    @clearLogs
 #        TODO!!!: Fixtures has to clean user database and related tables in a easy way to function
     Scenario: SignUp User
         When I send a "POST" request to "/users" with body:
@@ -25,6 +26,7 @@ Feature:
           }
         """
 
+    @clearLogs
     Scenario: SignUp User but email exists in database
         When I send a "POST" request to "/users" with body:
         """
@@ -40,7 +42,12 @@ Feature:
         """
         "User email is in use"
         """
+        And the logfile should contain:
+        """
+        ERROR: User email is in use
+        """
 
+    @clearLogs
     Scenario: SignUp User but username exists in database
         When I send a "POST" request to "/users" with body:
         """
@@ -54,9 +61,14 @@ Feature:
         And the response status code should be 400
         And the response should contain:
         """
-        "UserName is in use"
+        "Username is in use"
+        """
+        And the logfile should contain:
+        """
+        ERROR: Username is in use
         """
 
+    @clearLogs
     Scenario: SignUp User with invalid user and return 400 status code
         When I send a "POST" request to "/users" with body:
         """
@@ -72,7 +84,12 @@ Feature:
         """
         "Username invalid by policy rules"
         """
+        And the logfile should contain:
+        """
+        ERROR: Username invalid by policy rules
+        """
 
+    @clearLogs
     Scenario: SignUp User with invalid email and return 400 status code
         When I send a "POST" request to "/users" with body:
         """
@@ -88,7 +105,12 @@ Feature:
         """
         "Invalid Email format"
         """
+        And the logfile should contain:
+        """
+        ERROR: Invalid Email format
+        """
 
+    @clearLogs
     Scenario: SignUp User with invalid password  and return 400 status code
         When I send a "POST" request to "/users" with body:
         """
@@ -103,4 +125,8 @@ Feature:
         And the response should contain:
         """
         "Password invalid by policy rules"
+        """
+        And the logfile should contain:
+        """
+        ERROR: Password invalid by policy rules
         """
