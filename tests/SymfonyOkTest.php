@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class SymfonyOkTest extends WebTestCase
 {
-    public function testThatSymfonyIsOnline()
+    public function testSymfonyIsOnline()
     {
         $client = static::createClient();
 

@@ -1,0 +1,3 @@
+signUpUser:
+    path: /users
+    controller: App\Users\User\Ui\Http\Api\Rest\SignUpUserController::execute

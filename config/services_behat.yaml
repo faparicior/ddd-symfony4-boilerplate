@@ -1,0 +1,48 @@
+imports:
+    - { resource: ../src/Shared/Infrastructure/Symfony/config/services_behat.yaml}
+    - { resource: ../src/Users/User/Infrastructure/Symfony/config/services_behat.yaml}
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    App\Tests\Behat\:
+        resource: '../tests/Behat/*'
+
+    App\Tests\Behat\BehatTestEnvironmentContext:
+        public: true
+        arguments:
+            - "%kernel.environment%"
+
+    App\Tests\Behat\ApiContext:
+        public: true
+        arguments:
+            - "@kernel"
+            - "%kernel.environment%"
+            - '@doctrine.fixtures.loader'
+            - '@Doctrine\Common\DataFixtures\Executor\ORMExecutor'
+            - '@Doctrine\Common\DataFixtures\Purger\ORMPurger'
+
+    App\Tests\Behat\LoggerContext:
+        public: true
+        arguments:
+        - "@kernel"
+        - "%kernel.environment%"
+        - '@doctrine.fixtures.loader'
+        - '@Doctrine\Common\DataFixtures\Executor\ORMExecutor'
+        - '@Doctrine\Common\DataFixtures\Purger\ORMPurger'
+
+    Doctrine\Common\DataFixtures\Executor\ORMExecutor:
+        class: Doctrine\Common\DataFixtures\Executor\ORMExecutor
+        arguments:
+            - '@doctrine.orm.default_entity_manager'
+
+    Doctrine\Common\DataFixtures\Purger\ORMPurger:
+        class: Doctrine\Common\DataFixtures\Purger\ORMPurger
+        arguments:
+            - '@doctrine.orm.default_entity_manager'
+
+    App\Tests\Behat\DataFixtures\:
+        resource: '../tests/Behat/DataFixtures'
+        tags: ['doctrine.fixture.orm']

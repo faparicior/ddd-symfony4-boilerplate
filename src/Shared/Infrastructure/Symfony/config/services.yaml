@@ -1,0 +1,14 @@
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+    App\Shared\Infrastructure\Services\UniqueIdProviderInterface:
+        alias: App\Shared\Infrastructure\Services\UniqueIdProvider
+
+    App\Shared\Infrastructure\Services\UniqueIdProvider:
+        class: App\Shared\Infrastructure\Services\UniqueIdProvider
+
+    Ramsey\Uuid\UuidFactory:
+        class: Ramsey\Uuid\UuidFactory
