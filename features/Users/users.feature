@@ -17,7 +17,7 @@ Feature:
         """
         Then the response content should be in JSON
         And the response status code should be 200
-        And the response should have:
+        And the response ends with:
         """
             "userName": "JohnDoe",
             "email": "test.email@gmail.com",

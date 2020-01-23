@@ -149,9 +149,9 @@ final class ApiContext implements Context
      * Example: Then the response should contain "Batman is the hero Gotham deserves."
      * Example: And the response should contain "Batman is the hero Gotham deserves."
      *
-     * @Then /^the response should have:$/
+     * @Then /^the response ends with:$/
      */
-    public function assertResponseHas(PyStringNode $text)
+    public function assertResponseEndsWith(PyStringNode $text)
     {
         $content = $this->response->getContent();
 
