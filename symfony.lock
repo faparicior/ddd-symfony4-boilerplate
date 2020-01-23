@@ -189,6 +189,9 @@
     "ocramius/proxy-manager": {
         "version": "2.2.3"
     },
+    "php": {
+        "version": "7.3"
+    },
     "psr/cache": {
         "version": "1.0.1"
     },
@@ -264,6 +267,9 @@
     },
     "symfony/dotenv": {
         "version": "v4.3.5"
+    },
+    "symfony/error-handler": {
+        "version": "v4.4.3"
     },
     "symfony/event-dispatcher": {
         "version": "v4.3.5"
@@ -416,6 +422,9 @@
     },
     "symfony/translation-contracts": {
         "version": "v1.1.7"
+    },
+    "symfony/var-dumper": {
+        "version": "v4.4.3"
     },
     "symfony/var-exporter": {
         "version": "v4.3.5"
