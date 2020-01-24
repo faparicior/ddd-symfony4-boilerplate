@@ -1,0 +1,2 @@
+[![CircleCI](https://circleci.com/gh/faparicior/ddd-symfony4-boilerplate/tree/master.svg?style=svg)](https://circleci.com/gh/faparicior/ddd-symfony4-boilerplate/tree/master)
+[![Coverage Status](https://coveralls.io/repos/github/faparicior/ddd-symfony4-boilerplate/badge.svg)](https://coveralls.io/github/faparicior/ddd-symfony4-boilerplate)
