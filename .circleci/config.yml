@@ -26,6 +26,8 @@ jobs:
 
             - run: composer install -n --prefer-dist
 
+            - run: composer require --dev php-coveralls/php-coveralls
+
             - save_cache:
                   key: v1-dependencies-{{ checksum "composer.json" }}
                   paths:
@@ -37,6 +39,8 @@ jobs:
 
             # run tests with phpunit or codecept
             - run: ./bin/simple-phpunit --coverage-html build/coverage-report --log-junit build/junit.xml --coverage-clover build/clover.xml
+
+            - run: ./bin/php-coveralls
 
             - store_test_results:
                 path: ~/project/build
