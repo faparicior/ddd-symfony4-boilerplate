@@ -43,4 +43,6 @@ jobs:
             - store_artifacts:
                 path: build/coverage-report
             - store_artifacts:
-                path: ~/phpunit/junit.xml
+                path: build/junit.xml
+            - store_artifacts:
+                path: build/clover.xml
