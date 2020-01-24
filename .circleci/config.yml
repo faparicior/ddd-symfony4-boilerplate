@@ -35,7 +35,12 @@ jobs:
             - run: bin/console --env=behat doctrine:migrations:migrate --no-interaction
 
             # run tests with phpunit or codecept
-            - run: ./bin/simple-phpunit --coverage-html build/coverage-report
-            
+            - run: ./bin/simple-phpunit --coverage-html build/coverage-report --log-junit ~/phpunit/junit.xml
+
+            - store_test_results:
+                path: ~/phpunit
+
             - store_artifacts:
-                path:  build/coverage-report
+                path:
+                    - build/coverage-report
+                    - ~/phpunit/junit.xml
