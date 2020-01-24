@@ -3,7 +3,7 @@
 namespace App\Tests\Users\User\Domain\Specifications;
 
 use App\Users\User\Domain\Specifications\StringNotEmpty;
-use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
+use PHPUnit\Framework\TestCase;
 
 class StringNotEmptyTest extends TestCase
 {

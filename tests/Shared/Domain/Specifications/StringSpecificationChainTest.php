@@ -4,7 +4,7 @@ namespace App\Tests\Shared\Domain\Specifications;
 
 use App\Shared\Domain\Specifications\StringSpecificationChain;
 use App\Shared\Domain\Specifications\StringSpecificationInterface;
-use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
+use PHPUnit\Framework\TestCase;
 
 class StringDummySpecification implements StringSpecificationInterface
 {

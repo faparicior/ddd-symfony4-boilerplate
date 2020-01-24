@@ -4,7 +4,7 @@ namespace App\Tests\Shared\Domain\ValueObjects;
 
 use App\Shared\Domain\Exceptions\InvalidArgumentException;
 use App\Shared\Domain\ValueObjects\UniqueIdentifier;
-use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
+use PHPUnit\Framework\TestCase;
 
 class UniqueIdentifierForTest extends UniqueIdentifier
 {

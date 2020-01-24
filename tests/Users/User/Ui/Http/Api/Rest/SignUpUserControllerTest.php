@@ -17,7 +17,7 @@ use League\Tactician\Setup\QuickStart;
 use Monolog\Handler\TestHandler;
 use Monolog\Logger;
 use Ramsey\Uuid\UuidFactory;
-use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 

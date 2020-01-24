@@ -3,7 +3,7 @@
 namespace App\Tests\Users\User\Application\SignUpUser;
 
 use App\Users\User\Application\SignUpUser\SignUpUserCommand;
-use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
+use PHPUnit\Framework\TestCase;
 
 class SignUpUserCommandTest extends TestCase
 {

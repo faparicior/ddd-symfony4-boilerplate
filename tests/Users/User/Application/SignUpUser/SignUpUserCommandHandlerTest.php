@@ -13,7 +13,7 @@ use App\Users\User\Domain\UserRepositoryInterface;
 use App\Users\User\Domain\ValueObjects\UserId;
 use App\Users\User\Infrastructure\Persistence\InMemoryUserRepository;
 use Ramsey\Uuid\UuidFactory;
-use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
+use PHPUnit\Framework\TestCase;
 
 class UserSpecificationStub implements UserSpecificationInterface
 {

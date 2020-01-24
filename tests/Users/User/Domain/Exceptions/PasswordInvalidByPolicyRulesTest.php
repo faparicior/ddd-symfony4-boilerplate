@@ -3,7 +3,7 @@
 namespace App\Tests\Users\User\Domain\Exceptions;
 
 use App\Users\User\Domain\Exceptions\PasswordInvalidByPolicyRulesException;
-use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
+use PHPUnit\Framework\TestCase;
 
 class PasswordInvalidByPolicyRulesTest extends TestCase
 {

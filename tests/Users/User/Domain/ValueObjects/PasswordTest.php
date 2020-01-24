@@ -4,7 +4,7 @@ namespace App\Tests\Users\User\Domain\ValueObjects;
 
 use App\Users\User\Domain\Exceptions\PasswordInvalidByPolicyRulesException;
 use App\Users\User\Domain\ValueObjects\Password;
-use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
+use PHPUnit\Framework\TestCase;
 
 class PasswordTest extends TestCase
 {

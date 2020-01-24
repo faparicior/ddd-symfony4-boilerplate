@@ -3,7 +3,7 @@
 namespace App\Tests\Shared\Domain\Exceptions;
 
 use App\Shared\Domain\Exceptions\InvalidEmailException;
-use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
+use PHPUnit\Framework\TestCase;
 
 class InvalidEmailExceptionTest extends TestCase
 {

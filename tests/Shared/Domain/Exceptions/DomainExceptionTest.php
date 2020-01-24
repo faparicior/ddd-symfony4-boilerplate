@@ -3,7 +3,7 @@
 namespace App\Tests\Shared\Domain\Exceptions;
 
 use App\Shared\Domain\Exceptions\DomainException;
-use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
+use PHPUnit\Framework\TestCase;
 
 class DomainExceptionForTest extends DomainException
 {

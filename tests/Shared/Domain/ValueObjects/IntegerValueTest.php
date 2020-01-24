@@ -3,7 +3,7 @@
 namespace App\Tests\Shared\Domain\ValueObjects;
 
 use App\Shared\Domain\ValueObjects\IntegerValue;
-use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
+use PHPUnit\Framework\TestCase;
 
 class IntegerForTest extends IntegerValue {
 

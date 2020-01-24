@@ -4,7 +4,7 @@ namespace App\Tests\Shared\Infrastrucure\Service;
 
 use App\Shared\Infrastructure\Services\UniqueIdProvider;
 use Ramsey\Uuid\UuidFactory;
-use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
+use PHPUnit\Framework\TestCase;
 
 class UniqueIdProviderServiceTest extends TestCase
 {
