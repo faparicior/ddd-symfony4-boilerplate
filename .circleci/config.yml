@@ -41,6 +41,6 @@ jobs:
                 path: ~/phpunit
 
             - store_artifacts:
-                path:
-                    - build/coverage-report
-                    - ~/phpunit/junit.xml
+                path: build/coverage-report
+            - store_artifacts:
+                path: ~/phpunit/junit.xml
