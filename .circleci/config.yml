@@ -39,7 +39,7 @@ jobs:
             - run: ./bin/simple-phpunit --coverage-html build/coverage-report --log-junit build/junit.xml --coverage-clover build/clover.xml
 
             - store_test_results:
-                path: ~/project/build/junit.xml
+                path: ~/project/build
 
             - store_artifacts:
                 path: build/coverage-report
