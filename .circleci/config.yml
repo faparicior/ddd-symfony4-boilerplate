@@ -39,6 +39,7 @@ jobs:
 
             # run tests with phpunit or codecept
             - run: ./bin/simple-phpunit --coverage-html build/coverage-report --log-junit build/junit.xml --coverage-clover build/clover.xml
+            - run: APP_ENV=test bin/behat
 
             - run: ./bin/php-coveralls
 
