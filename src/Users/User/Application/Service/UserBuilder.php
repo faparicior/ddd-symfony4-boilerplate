@@ -11,11 +11,6 @@ use App\Users\User\Domain\ValueObjects\UserName;
 
 final class UserBuilder
 {
-    public function __construct()
-    {
-
-    }
-
     public static function build(UserId $userId, UserName $userName, Email $email, Password $password, UserSpecificationChain $userSpecifications): User
     {
         return User::build($userId, $userName, $email, $password, $userSpecifications);
