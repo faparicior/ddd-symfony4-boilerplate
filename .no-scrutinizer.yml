@@ -29,6 +29,7 @@ filter:
         - 'tests/*'
         - 'bin/*'
         - 'features/*'
+        - 'src/Shared/Infrastructure/Symfony/Kernel.php'
 
 checks:
     php: true
