@@ -18,6 +18,8 @@ build:
         coverage:
             tests:
                 override:
+                    - command: bin/console --env=behat doctrine:database:create
+                    - command: bin/console --env=behat doctrine:migrations:migrate --no-interaction
                     - command: ./bin/simple-phpunit --config phpunit.xml --coverage-html build/coverage-report --log-junit build/junit.xml --coverage-clover build/clover.xml
                       coverage:
                           file: build/clover.xml   # <- Set this to where we find the coverage data.
