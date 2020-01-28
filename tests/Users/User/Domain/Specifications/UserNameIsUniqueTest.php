@@ -16,6 +16,8 @@ use PHPUnit\Framework\TestCase;
 
 class UserNameIsUniqueTest extends TestCase
 {
+    private const SPECIFICATION_FAIL_MESSAGE = 'Username is in use';
+
     const USERNAME = 'JohnDoe';
     const USERNAME_NEW = 'JohnDoeNew';
 
@@ -102,5 +104,11 @@ class UserNameIsUniqueTest extends TestCase
         $specification = UserNameIsUnique::build($this->userRepository);
 
         self::assertFalse($specification->isSatisfiedBy($userNew));
+    }
+
+    public function testUsernameExistsReturnsExpectedFailedMessage()
+    {
+        $specification = UserNameIsUnique::build($this->userRepository);
+        self::assertEquals(self::SPECIFICATION_FAIL_MESSAGE, $specification->getFailedMessage());
     }
 }

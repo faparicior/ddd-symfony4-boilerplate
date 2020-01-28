@@ -9,6 +9,7 @@ class StringMoreThanSevenCharactersTest extends TestCase
 {
     const VALID_STRING = '12345678';
     const INVALID_STRING = '1234567';
+    private const SPECIFICATION_FAIL_MESSAGE = 'String less than 8 characters';
 
     /**
      * @group UnitTests
@@ -44,5 +45,16 @@ class StringMoreThanSevenCharactersTest extends TestCase
         $specification = StringMoreThanSevenCharacters::build();
 
         self::assertFalse($specification->isSatisfiedBy(self::INVALID_STRING));
+    }
+
+    /**
+     * @group UnitTests
+     * @group Users
+     * @group Domain
+     */
+    public function testMoreThanSevenCharactersReturnsExpectedFailedMessage()
+    {
+        $specification = StringMoreThanSevenCharacters::build();
+        self::assertEquals(self::SPECIFICATION_FAIL_MESSAGE, $specification->getFailedMessage());
     }
 }

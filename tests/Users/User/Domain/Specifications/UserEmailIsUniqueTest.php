@@ -17,6 +17,7 @@ class UserEmailIsUniqueTest extends TestCase
 {
     const USERNAME = 'JohnDoe';
     const USERNAME_NEW = 'JohnDoeNew';
+    private const SPECIFICATION_FAIL_MESSAGE = 'User email is in use';
 
     /** @var UserRepositoryInterface */
     private $userRepository;
@@ -91,5 +92,11 @@ class UserEmailIsUniqueTest extends TestCase
         $specification = UserEmailIsUnique::build($this->userRepository);
 
         self::assertFalse($specification->isSatisfiedBy($user));
+    }
+
+    public function testUserEmailExistsReturnsExpectedFailedMessage()
+    {
+        $specification = UserEmailIsUnique::build($this->userRepository);
+        self::assertEquals(self::SPECIFICATION_FAIL_MESSAGE, $specification->getFailedMessage());
     }
 }

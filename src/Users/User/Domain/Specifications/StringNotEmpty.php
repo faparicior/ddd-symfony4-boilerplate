@@ -6,7 +6,7 @@ use App\Shared\Domain\Specifications\StringSpecificationInterface;
 
 class StringNotEmpty implements StringSpecificationInterface
 {
-    public const SPECIFICATION_FAIL_MESSAGE = 'User identification is in use';
+    public const SPECIFICATION_FAIL_MESSAGE = 'String value empty';
 
     private function __construct()
     {

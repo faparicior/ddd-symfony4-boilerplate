@@ -17,6 +17,7 @@ use PHPUnit\Framework\TestCase;
 
 class UserIdIsUniqueTest extends TestCase
 {
+    private const SPECIFICATION_FAIL_MESSAGE = 'User identification is in use';
 
     /** @var UserRepositoryInterface */
     private $userRepository;
@@ -68,7 +69,6 @@ class UserIdIsUniqueTest extends TestCase
         self::assertTrue($specification->isSatisfiedBy($userNew));
     }
 
-
     /**
      * @throws \App\Shared\Domain\Exceptions\DomainException
      * @throws \App\Users\User\Domain\Exceptions\PasswordInvalidByPolicyRulesException
@@ -91,5 +91,12 @@ class UserIdIsUniqueTest extends TestCase
         $specification = UserIdIsUnique::build($this->userRepository);
 
         self::assertFalse($specification->isSatisfiedBy($user));
+    }
+
+    public function testUserIdExistsReturnsExpectedFailedMessage()
+    {
+        $specification = UserIdIsUnique::build($this->userRepository);
+
+        self::assertEquals(self::SPECIFICATION_FAIL_MESSAGE, $specification->getFailedMessage());
     }
 }

@@ -9,6 +9,7 @@ class StringNotEmptyTest extends TestCase
 {
     const VALID_STRING = '12345678';
     const INVALID_STRING = '';
+    private const SPECIFICATION_FAIL_MESSAGE = 'String value empty';
 
     /**
      * @group UnitTests
@@ -44,5 +45,11 @@ class StringNotEmptyTest extends TestCase
         $specification = StringNotEmpty::build();
 
         self::assertFalse($specification->isSatisfiedBy(self::INVALID_STRING));
+    }
+
+    public function testUsernameExistsReturnsExpectedFailedMessage()
+    {
+        $specification = StringNotEmpty::build();
+        self::assertEquals(self::SPECIFICATION_FAIL_MESSAGE, $specification->getFailedMessage());
     }
 }
