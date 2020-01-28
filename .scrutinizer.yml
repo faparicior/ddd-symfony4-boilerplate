@@ -23,6 +23,9 @@ build:
                           file: build/clover.xml   # <- Set this to where we find the coverage data.
                           #    The path is relative to the current directory.
                           format: clover
+    tests:
+        override:
+            - true
 
 filter:
     excluded_paths:
