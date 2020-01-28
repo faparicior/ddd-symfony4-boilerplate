@@ -1,0 +1,46 @@
+build:
+    environment:
+        php:
+            version: "7.3.1"
+    nodes:
+        analysis:
+            project_setup:
+                override:
+                    - 'true'
+            tests:
+                override:
+                    - php-scrutinizer-run
+                    -
+                        command: phpcs-run
+                        use_website_config: true
+        tests: true
+
+        coverage:
+            tests:
+                override:
+                    - command: ./bin/simple-phpunit --config phpunit.xml --coverage-html build/coverage-report --log-junit build/junit.xml --coverage-clover build/clover.xml
+                      coverage:
+                          file: build/clover.xml   # <- Set this to where we find the coverage data.
+                          #    The path is relative to the current directory.
+                          format: clover
+
+filter:
+    excluded_paths:
+        - 'tests/*'
+        - 'bin/*'
+        - 'features/*'
+
+checks:
+    php: true
+
+tools:
+    #    external_code_coverage: true
+    php_code_coverage: true
+    php_sim: true
+    php_mess_detector: true
+    php_pdepend: true
+    php_analyzer: true
+    php_cpd: true
+    php_code_sniffer:
+        config:
+            standard: "PSR2"
