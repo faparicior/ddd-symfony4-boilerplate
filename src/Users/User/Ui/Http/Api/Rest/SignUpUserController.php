@@ -33,7 +33,6 @@ class SignUpUserController
     public function execute(Request $request): JsonResponse
     {
         try {
-
             $data = json_decode($request->getContent(), true);
 
             $signUpUser = SignUpUserCommand::build(
@@ -50,7 +49,7 @@ class SignUpUserController
                 $exception->getMessage(),
                 Response::HTTP_BAD_REQUEST
             );
-        } catch (\Exception $exception)
+        } catch (\Throwable $exception)
         {
             $this->logger->error($exception->getMessage(), [$exception->getTraceAsString()]);
 

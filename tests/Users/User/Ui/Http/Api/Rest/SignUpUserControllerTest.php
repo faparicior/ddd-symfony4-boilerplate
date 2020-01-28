@@ -177,4 +177,21 @@ class SignUpUserControllerTest extends TestCase
 
         self::assertTrue($this->logHandler->hasErrorThatContains(UserName::INVALID_BY_POLICY_RULES));
     }
+
+    /**
+     * @throws \App\Shared\Domain\Exceptions\DomainException
+     */
+    public function testUserControllerCatchUnexpectedException()
+    {
+        $data = '';
+
+        $request = Request::create('/users', 'POST', [], [], [], [], $data);
+
+        $controller = new SignUpUserController($this->bus, $this->log);
+
+        $response = $controller->execute($request);
+
+        self::assertEquals(500, $response->getStatusCode());
+        self::assertEquals('""', $response->getContent());
+    }
 }
