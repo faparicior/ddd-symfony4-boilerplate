@@ -7,7 +7,7 @@ use Ramsey\Uuid\UuidInterface;
 
 final class UniqueIdProvider implements UniqueIdProviderInterface
 {
-    /** @var UuidInterface */
+    /** @var UuidFactory */
     private $uuidGenerator;
 
     public function __construct(UuidFactory $uuidGenerator)

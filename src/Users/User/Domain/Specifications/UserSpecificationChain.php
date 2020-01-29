@@ -4,6 +4,7 @@ namespace App\Users\User\Domain\Specifications;
 
 use App\Shared\Domain\Specifications\SpecificationChain;
 use App\Users\User\Domain\User;
+use ReflectionException;
 
 final class UserSpecificationChain extends SpecificationChain
 {
@@ -20,7 +21,7 @@ final class UserSpecificationChain extends SpecificationChain
     /**
      * @param User $user
      * @return bool
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
     final public function evalSpecifications(User $user): bool
     {

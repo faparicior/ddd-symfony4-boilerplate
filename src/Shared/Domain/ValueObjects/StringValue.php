@@ -2,8 +2,10 @@
 
 namespace App\Shared\Domain\ValueObjects;
 
+use App\Shared\Domain\Exceptions\DomainException;
 use App\Shared\Domain\Exceptions\InvalidStringException;
 use App\Shared\Domain\Specifications\StringSpecificationChain;
+use ReflectionException;
 
 abstract class StringValue
 {
@@ -18,6 +20,8 @@ abstract class StringValue
      * @param string $value
      * @param StringSpecificationChain|null $specificationChain
      * @throws InvalidStringException
+     * @throws DomainException
+     * @throws ReflectionException
      */
     final protected function __construct(string $value, ?StringSpecificationChain $specificationChain = null)
     {
@@ -31,6 +35,8 @@ abstract class StringValue
      * @param string $value
      * @return StringValue
      * @throws InvalidStringException
+     * @throws DomainException
+     * @throws ReflectionException
      */
     public static function build(string $value)
     {
@@ -54,6 +60,8 @@ abstract class StringValue
 
     /**
      * @throws InvalidStringException
+     * @throws ReflectionException
+     * @throws DomainException
      */
     final private function guard()
     {

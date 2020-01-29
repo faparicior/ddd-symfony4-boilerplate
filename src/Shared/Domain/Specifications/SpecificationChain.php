@@ -4,7 +4,6 @@ namespace App\Shared\Domain\Specifications;
 
 abstract class SpecificationChain implements SpecificationChainInterface
 {
-    /** @var StringSpecificationInterface[] */
     protected $specifications;
 
     protected $specificationChainResult = [];
