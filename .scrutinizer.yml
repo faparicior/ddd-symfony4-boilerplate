@@ -2,11 +2,13 @@ build:
     environment:
         php:
             version: "7.3.1"
+    dependencies:
+        override:
+            - composer install --no-interaction
+            - bin/console --env=behat doctrine:database:create
+            - bin/console --env=behat doctrine:migrations:migrate --no-interaction
+
     nodes:
-        compile:
-            commands:
-                - bin/console --env=behat doctrine:database:create
-                - bin/console --env=behat doctrine:migrations:migrate --no-interaction
         analysis:
             project_setup:
                 override:
