@@ -3,6 +3,10 @@ build:
         php:
             version: "7.3.1"
     nodes:
+        compile:
+            commands:
+                - bin/console --env=behat doctrine:database:create
+                - bin/console --env=behat doctrine:migrations:migrate --no-interaction
         analysis:
             project_setup:
                 override:
@@ -18,8 +22,6 @@ build:
         coverage:
             tests:
                 override:
-#                    - command: bin/console --env=behat doctrine:database:create
-#                    - command: bin/console --env=behat doctrine:migrations:migrate --no-interaction
                     - command: ./bin/simple-phpunit --config phpunit.xml --coverage-html build/coverage-report --log-junit build/junit.xml --coverage-clover build/clover.xml
                       coverage:
                           file: build/clover.xml   # <- Set this to where we find the coverage data.
@@ -41,13 +43,13 @@ checks:
     php: true
 
 tools:
-    #    external_code_coverage: true
+#    external_code_coverage: true
     php_code_coverage: true
-    php_sim: true
-    php_mess_detector: true
-    php_pdepend: true
-    php_analyzer: true
-    php_cpd: true
+#    php_sim: true
+#    php_mess_detector: true
+#    php_pdepend: true
+#    php_analyzer: true
+#    php_cpd: true
     php_code_sniffer:
         config:
             standard: "PSR2"
