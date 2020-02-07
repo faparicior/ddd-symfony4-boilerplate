@@ -42,6 +42,7 @@ jobs:
             - run: APP_ENV=behat bin/behat
 
             - run: ./bin/php-coveralls
+            - run: bash <(curl -s https://codecov.io/bash)
 
             - store_test_results:
                 path: ~/project/build
