@@ -2,14 +2,14 @@
 
 namespace App\Tests\Users\User\Domain\Exceptions;
 
-use App\Users\User\Domain\Exceptions\UserExistsException;
+use App\Users\User\Domain\Exceptions\UserInvalidException;
 use PHPUnit\Framework\TestCase;
 
-class UserExistsExceptionTest extends TestCase
+class UserInvalidExceptionTest extends TestCase
 {
     const TEST_MESSAGE = 'TestMessage';
     const TEST_CODE = 2;
-    const INVALID_USER_DEFAULT_MESSAGE = "Username, Id or email is in use";
+    const INVALID_USER_DEFAULT_MESSAGE = "User is not valid due to policy chain";
 
     /**
      * @group UnitTests
@@ -20,7 +20,7 @@ class UserExistsExceptionTest extends TestCase
     {
         self::expectException(\Error::class);
 
-        new UserExistsException();
+        new UserInvalidException();
     }
 
     /**
@@ -30,7 +30,7 @@ class UserExistsExceptionTest extends TestCase
      */
     public function testUserExistsExceptionCanBeCreatedWithDefaultMessage()
     {
-        $exception = UserExistsException::build();
+        $exception = UserInvalidException::build();
 
         self::assertEquals($exception->getMessage(), self::INVALID_USER_DEFAULT_MESSAGE);
     }
@@ -42,7 +42,7 @@ class UserExistsExceptionTest extends TestCase
      */
     public function testUserExistsExceptionCanBeCreatedWithMessageAndStatusCode()
     {
-        $exception = UserExistsException::build(self::TEST_MESSAGE, self::TEST_CODE);
+        $exception = UserInvalidException::build(self::TEST_MESSAGE, self::TEST_CODE);
 
         self::assertEquals($exception->getMessage(), self::TEST_MESSAGE);
         self::assertEquals($exception->getCode(), self::TEST_CODE);

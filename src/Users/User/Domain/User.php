@@ -2,7 +2,7 @@
 
 namespace App\Users\User\Domain;
 
-use App\Users\User\Domain\Exceptions\UserExistsException;
+use App\Users\User\Domain\Exceptions\UserInvalidException;
 use App\Users\User\Domain\Specifications\UserEmailIsUnique;
 use App\Users\User\Domain\Specifications\UserSpecificationChain;
 use App\Users\User\Domain\ValueObjects\Email;
@@ -45,7 +45,8 @@ final class User
      * @param UserSpecificationChain $specificationChain
      * @param $user
      * @throws \App\Shared\Domain\Exceptions\DomainException
-     * @throws \App\Users\User\Domain\Exceptions\UserExistsException;
+     * @throws \App\Users\User\Domain\Exceptions\UserInvalidException;
+     * @throws \ReflectionException
      */
     private static function guard(UserSpecificationChain $specificationChain, $user): void
     {
@@ -54,7 +55,7 @@ final class User
 
             if (!$isValid) {
                 $specificationsFailed = $specificationChain->getFailedResults();
-                throw UserExistsException::build(implode(', ',$specificationsFailed));
+                throw UserInvalidException::build(implode(', ',$specificationsFailed));
             }
         }
     }

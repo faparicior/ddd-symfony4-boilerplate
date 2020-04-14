@@ -6,9 +6,9 @@ use App\Shared\Domain\Exceptions\DomainException;
 
 use \Throwable;
 
-class UserExistsException extends DomainException
+class UserInvalidException extends DomainException
 {
-    public const INVALID_USER_MESSAGE = "Username, Id or email is in use";
+    public const INVALID_USER_MESSAGE = "User is not valid due to policy chain";
 
     public static function build(string $message = self::INVALID_USER_MESSAGE, int $code = 0, Throwable $previous = null): DomainException
     {
