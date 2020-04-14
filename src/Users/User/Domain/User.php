@@ -3,7 +3,6 @@
 namespace App\Users\User\Domain;
 
 use App\Users\User\Domain\Exceptions\UserInvalidException;
-use App\Users\User\Domain\Specifications\UserEmailIsUnique;
 use App\Users\User\Domain\Specifications\UserSpecificationChain;
 use App\Users\User\Domain\ValueObjects\Email;
 use App\Users\User\Domain\ValueObjects\Password;
