@@ -11,7 +11,7 @@ doctrine:
         mappings:
             App:
                 is_bundle: false
-                type: yml
+                type: xml
                 dir: '%kernel.project_dir%/src/Users/User/Infrastructure/Persistence/Mappings'
                 prefix: 'App\Users\User\Domain'
                 alias: User
