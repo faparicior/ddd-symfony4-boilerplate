@@ -27,7 +27,6 @@ final class UserSpecificationChain extends SpecificationChain
     {
         $result = $this->returnFalseIfNoSpecifications();
 
-        /** @var UserSpecificationInterface $specification */
         foreach ($this->specifications as $specification)
         {
             $isSatisfied = $specification->isSatisfiedBy($user);

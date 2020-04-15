@@ -10,6 +10,7 @@ use App\Users\User\Domain\ValueObjects\Password;
 use App\Users\User\Domain\ValueObjects\UserId;
 use App\Users\User\Domain\ValueObjects\UserName;
 use App\Shared\Infrastructure\Services\UniqueIdProviderInterface;
+use Exception;
 
 final class SignUpUserCommandHandler
 {
@@ -32,7 +33,7 @@ final class SignUpUserCommandHandler
     /**
      * @param SignUpUserCommand $command
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function handle(SignUpUserCommand $command)
     {

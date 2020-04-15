@@ -27,8 +27,6 @@ class SignUpUserController
     /**
      * @param Request $request
      * @return JsonResponse
-     *
-     * @throws DomainException
      */
     public function execute(Request $request): JsonResponse
     {

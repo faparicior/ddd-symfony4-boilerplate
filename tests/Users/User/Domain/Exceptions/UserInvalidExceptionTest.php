@@ -32,7 +32,7 @@ class UserInvalidExceptionTest extends TestCase
     {
         $exception = UserInvalidException::build();
 
-        self::assertEquals($exception->getMessage(), self::INVALID_USER_DEFAULT_MESSAGE);
+        self::assertEquals(self::INVALID_USER_DEFAULT_MESSAGE, $exception->getMessage());
     }
 
     /**

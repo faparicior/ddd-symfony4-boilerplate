@@ -2,12 +2,14 @@
 
 namespace App\Users\User\Domain;
 
+use App\Shared\Domain\Exceptions\DomainException;
 use App\Users\User\Domain\Exceptions\UserInvalidException;
 use App\Users\User\Domain\Specifications\UserSpecificationChain;
 use App\Users\User\Domain\ValueObjects\Email;
 use App\Users\User\Domain\ValueObjects\Password;
 use App\Users\User\Domain\ValueObjects\UserId;
 use App\Users\User\Domain\ValueObjects\UserName;
+use ReflectionException;
 
 final class User
 {
@@ -43,9 +45,9 @@ final class User
     /**
      * @param UserSpecificationChain $specificationChain
      * @param $user
-     * @throws \App\Shared\Domain\Exceptions\DomainException
-     * @throws \App\Users\User\Domain\Exceptions\UserInvalidException;
-     * @throws \ReflectionException
+     * @throws DomainException
+     * @throws UserInvalidException;
+     * @throws ReflectionException
      */
     private static function guard(UserSpecificationChain $specificationChain, $user): void
     {
