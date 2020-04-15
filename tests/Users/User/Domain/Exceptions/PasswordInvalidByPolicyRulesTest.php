@@ -7,9 +7,9 @@ use PHPUnit\Framework\TestCase;
 
 class PasswordInvalidByPolicyRulesTest extends TestCase
 {
-    const TEST_MESSAGE = 'TestMessage';
-    const TEST_CODE = 2;
-    const INVALID_PASSWORD_DEFAULT_MESSAGE = "Password invalid by policy rules";
+    private const TEST_MESSAGE = 'TestMessage';
+    private const TEST_CODE = 2;
+    private const INVALID_PASSWORD_DEFAULT_MESSAGE = "Password invalid by policy rules";
 
     /**
      * @group UnitTests

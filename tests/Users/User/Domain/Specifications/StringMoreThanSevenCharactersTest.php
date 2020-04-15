@@ -7,8 +7,8 @@ use PHPUnit\Framework\TestCase;
 
 class StringMoreThanSevenCharactersTest extends TestCase
 {
-    const VALID_STRING = '12345678';
-    const INVALID_STRING = '1234567';
+    private const VALID_STRING = '12345678';
+    private const INVALID_STRING = '1234567';
     private const SPECIFICATION_FAIL_MESSAGE = 'String less than 8 characters';
 
     /**

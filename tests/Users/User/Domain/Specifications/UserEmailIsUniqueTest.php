@@ -15,8 +15,8 @@ use PHPUnit\Framework\TestCase;
 
 class UserEmailIsUniqueTest extends TestCase
 {
-    const USERNAME = 'JohnDoe';
-    const USERNAME_NEW = 'JohnDoeNew';
+    private const USERNAME = 'JohnDoe';
+    private const USERNAME_NEW = 'JohnDoeNew';
     private const SPECIFICATION_FAIL_MESSAGE = 'User email is in use';
 
     /** @var UserRepositoryInterface */

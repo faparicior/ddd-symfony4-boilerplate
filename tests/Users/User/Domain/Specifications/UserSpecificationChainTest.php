@@ -50,8 +50,8 @@ class UserSpecificationChainTest extends TestCase
      * @group Shared
      * @group Domain
      */
-    const USER_SPECIFICATION_OK_STUB = 'UserSpecificationOkStub';
-    const USER_SPECIFICATION_FAIL_STUB = 'UserSpecificationFailStub';
+    private const USER_SPECIFICATION_OK_STUB = 'UserSpecificationOkStub';
+    private const USER_SPECIFICATION_FAIL_STUB = 'UserSpecificationFailStub';
 
     public function testUserSpecificationChainCannotBeInstantiatedDirectly()
     {

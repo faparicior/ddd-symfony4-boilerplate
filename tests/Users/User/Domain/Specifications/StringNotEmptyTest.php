@@ -7,8 +7,8 @@ use PHPUnit\Framework\TestCase;
 
 class StringNotEmptyTest extends TestCase
 {
-    const VALID_STRING = '12345678';
-    const INVALID_STRING = '';
+    private const VALID_STRING = '12345678';
+    private const INVALID_STRING = '';
     private const SPECIFICATION_FAIL_MESSAGE = 'String value empty';
 
     /**

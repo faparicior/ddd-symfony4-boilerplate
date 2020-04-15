@@ -18,8 +18,8 @@ class UserNameIsUniqueTest extends TestCase
 {
     private const SPECIFICATION_FAIL_MESSAGE = 'Username is in use';
 
-    const USERNAME = 'JohnDoe';
-    const USERNAME_NEW = 'JohnDoeNew';
+    private const USERNAME = 'JohnDoe';
+    private const USERNAME_NEW = 'JohnDoeNew';
 
     /** @var UserRepositoryInterface */
     private $userRepository;

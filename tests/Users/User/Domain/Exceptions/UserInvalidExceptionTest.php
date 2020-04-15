@@ -7,9 +7,9 @@ use PHPUnit\Framework\TestCase;
 
 class UserInvalidExceptionTest extends TestCase
 {
-    const TEST_MESSAGE = 'TestMessage';
-    const TEST_CODE = 2;
-    const INVALID_USER_DEFAULT_MESSAGE = "User is not valid due to policy chain";
+    private const TEST_MESSAGE = 'TestMessage';
+    private const TEST_CODE = 2;
+    private const INVALID_USER_DEFAULT_MESSAGE = "User is not valid due to policy chain";
 
     /**
      * @group UnitTests
