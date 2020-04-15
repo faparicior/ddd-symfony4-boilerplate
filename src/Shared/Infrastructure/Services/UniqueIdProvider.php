@@ -2,8 +2,8 @@
 
 namespace App\Shared\Infrastructure\Services;
 
+use Exception;
 use Ramsey\Uuid\UuidFactory;
-use Ramsey\Uuid\UuidInterface;
 
 final class UniqueIdProvider implements UniqueIdProviderInterface
 {
@@ -17,7 +17,7 @@ final class UniqueIdProvider implements UniqueIdProviderInterface
 
     /**
      * @return string
-     * @throws \Exception
+     * @throws Exception
      */
     public function generate(): string
     {

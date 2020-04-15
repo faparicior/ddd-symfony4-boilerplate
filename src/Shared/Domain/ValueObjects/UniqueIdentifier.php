@@ -2,7 +2,9 @@
 
 namespace App\Shared\Domain\ValueObjects;
 
+use App\Shared\Domain\Exceptions\DomainException;
 use App\Shared\Domain\Exceptions\InvalidArgumentException;
+use Exception;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
@@ -19,7 +21,7 @@ abstract class UniqueIdentifier
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     final public static function build(): self
     {
@@ -27,9 +29,11 @@ abstract class UniqueIdentifier
     }
 
     /**
-     * @throws \App\Shared\Domain\Exceptions\DomainException
+     * @param string $uuid
+     * @return UniqueIdentifier
+     * @throws DomainException
      */
-    final public static function fromString($uuid)
+    final public static function fromString(string $uuid)
     {
         if (!preg_match(self::UUID4_PATTERN, $uuid)) {
             throw InvalidArgumentException::build();

@@ -3,7 +3,6 @@
 namespace App\Shared\Infrastructure\Services;
 
 use Ramsey\Uuid\UuidFactory;
-use Ramsey\Uuid\UuidInterface;
 
 final class UniqueIdProviderStub implements UniqueIdProviderInterface
 {

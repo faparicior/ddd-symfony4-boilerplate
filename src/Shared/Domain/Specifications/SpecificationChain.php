@@ -2,6 +2,9 @@
 
 namespace App\Shared\Domain\Specifications;
 
+use ReflectionClass;
+use ReflectionException;
+
 abstract class SpecificationChain implements SpecificationChainInterface
 {
     protected $specifications;
@@ -11,8 +14,7 @@ abstract class SpecificationChain implements SpecificationChainInterface
     /**
      * @param bool $isSatisfied
      * @param SpecificationInterface $specification
-     * @return bool
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
     final protected function processSpecificationResult(bool $isSatisfied, SpecificationInterface $specification)
     {
@@ -24,7 +26,7 @@ abstract class SpecificationChain implements SpecificationChainInterface
 
         $this->specificationChainResult = array_merge(
             $this->specificationChainResult,
-            [(new \ReflectionClass($specification))->getShortName() =>
+            [(new ReflectionClass($specification))->getShortName() =>
                 [
                     'value' => $isSatisfied,
                     'message' => $message

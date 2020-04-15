@@ -49,7 +49,7 @@ final class User
      * @throws UserInvalidException;
      * @throws ReflectionException
      */
-    private static function guard(UserSpecificationChain $specificationChain, $user): void
+    private static function guard(UserSpecificationChain $specificationChain, User $user): void
     {
         if (isset($specificationChain)) {
             $isValid = $specificationChain->evalSpecifications($user);

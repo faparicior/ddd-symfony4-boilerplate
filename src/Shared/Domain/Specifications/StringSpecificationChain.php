@@ -2,6 +2,8 @@
 
 namespace App\Shared\Domain\Specifications;
 
+use ReflectionException;
+
 class StringSpecificationChain extends SpecificationChain
 {
     final private function __construct(StringSpecificationInterface ...$specifications)
@@ -17,13 +19,12 @@ class StringSpecificationChain extends SpecificationChain
     /**
      * @param string $data
      * @return bool
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
     final public function evalSpecifications(string $data): bool
     {
         $result = $this->returnFalseIfNoSpecifications();
 
-        /** @var StringSpecificationInterface $specification */
         foreach ($this->specifications as $specification)
         {
             $isSatisfied = $specification->isSatisfiedBy($data);

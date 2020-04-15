@@ -2,6 +2,7 @@
 
 namespace App\Shared\Domain\ValueObjects;
 
+use App\Shared\Domain\Exceptions\DomainException;
 use App\Shared\Domain\Exceptions\InvalidEmailException;
 
 abstract class EmailValue
@@ -15,7 +16,9 @@ abstract class EmailValue
     }
 
     /**
-     * @throws \App\Shared\Domain\Exceptions\DomainException
+     * @param string $email
+     * @return EmailValue
+     * @throws DomainException
      */
     final public static function build(string $email)
     {
