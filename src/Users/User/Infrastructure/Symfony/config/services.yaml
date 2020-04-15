@@ -5,7 +5,7 @@ services:
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
     App\Users\User\Ui\:
-        resource: '../../../Ui/*'
+        resource: '../../../Ui/'
         tags: ['controller.service_arguments']
 
     App\Users\User\Application\SignUpUser\SignUpUserCommandHandler:
@@ -32,10 +32,10 @@ services:
         class: App\Users\User\Domain\Specifications\UserNameIsUnique
 
     App\Users\User\Domain\Specifications\:
-        resource: '../../../Domain/Specifications/*'
+        resource: '../../../Domain/Specifications/'
 
     App\Users\User\Domain\UserRepositoryInterface:
         alias: App\Users\User\Infrastructure\Persistence\InMemoryUserRepository
 
     App\Users\User\Infrastructure\Persistence\:
-        resource: '../../../Infrastructure/Persistence/*'
+        resource: '../../../Infrastructure/Persistence/'
