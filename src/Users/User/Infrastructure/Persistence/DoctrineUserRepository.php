@@ -9,6 +9,7 @@ use App\Users\User\Domain\ValueObjects\UserId;
 use App\Users\User\Domain\ValueObjects\UserName;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\ORMException;
 
 final class DoctrineUserRepository extends EntityRepository implements UserRepositoryInterface
 {
@@ -21,7 +22,7 @@ final class DoctrineUserRepository extends EntityRepository implements UserRepos
 
     /**
      * @param User $user
-     * @throws \Doctrine\ORM\ORMException
+     * @throws ORMException
      */
     public function create(User $user): void
     {
