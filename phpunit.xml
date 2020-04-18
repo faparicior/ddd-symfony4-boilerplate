@@ -29,6 +29,7 @@
             <exclude>
                 <directory suffix=".php">src/Shared/Infrastructure/Symfony</directory>
                 <directory prefix="Doctrine">src/Users/User/Infrastructure/Persistence</directory>
+                <directory>src/Users/User/Infrastructure/Persistence/Mappings</directory>
             </exclude>
         </whitelist>
     </filter>

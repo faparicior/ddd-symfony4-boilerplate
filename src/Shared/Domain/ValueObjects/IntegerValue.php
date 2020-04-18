@@ -4,8 +4,7 @@ namespace App\Shared\Domain\ValueObjects;
 
 abstract class IntegerValue
 {
-    /** @var int */
-    private $value;
+    private int $value;
 
     final private function __construct(int $value)
     {

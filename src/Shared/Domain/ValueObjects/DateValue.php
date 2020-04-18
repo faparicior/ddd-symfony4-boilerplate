@@ -6,11 +6,8 @@ use Carbon\Carbon;
 
 abstract class DateValue
 {
-    /** @var string */
-    private $date;
-
-    /** @var string  */
-    private $timezone;
+    private Carbon $date;
+    private string $timezone;
 
     /**
      * Date constructor.
