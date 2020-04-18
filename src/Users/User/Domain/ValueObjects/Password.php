@@ -2,18 +2,22 @@
 
 namespace App\Users\User\Domain\ValueObjects;
 
+use App\Shared\Domain\Exceptions\DomainException;
 use App\Shared\Domain\Exceptions\InvalidStringException;
 use App\Shared\Domain\Specifications\StringSpecificationChain;
 use App\Shared\Domain\ValueObjects\StringValue;
 use App\Users\User\Domain\Exceptions\PasswordInvalidByPolicyRulesException;
 use App\Users\User\Domain\Specifications\StringMoreThanSevenCharacters;
+use ReflectionException;
 
 class Password extends StringValue
 {
     /**
      * @param string $value
      * @return StringValue|Password
+     * @throws DomainException
      * @throws PasswordInvalidByPolicyRulesException
+     * @throws ReflectionException
      */
     public static function build(string $value)
     {

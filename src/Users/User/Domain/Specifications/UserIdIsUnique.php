@@ -9,8 +9,7 @@ class UserIdIsUnique implements UserSpecificationInterface
 {
     public const SPECIFICATION_FAIL_MESSAGE = 'User identification is in use';
 
-    /** @var UserRepositoryInterface */
-    private $userRepository;
+    private UserRepositoryInterface $userRepository;
 
     private function __construct(UserRepositoryInterface $userRepository)
     {

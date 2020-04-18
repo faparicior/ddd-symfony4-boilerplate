@@ -9,8 +9,7 @@ class UserEmailIsUnique implements UserSpecificationInterface
 {
     public const SPECIFICATION_FAIL_MESSAGE = 'User email is in use';
 
-    /** @var UserRepositoryInterface */
-    private $userRepository;
+    private UserRepositoryInterface $userRepository;
 
     private function __construct(UserRepositoryInterface $userRepository)
     {

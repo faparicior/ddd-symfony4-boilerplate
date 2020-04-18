@@ -9,14 +9,12 @@ use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Throwable;
 
 class SignUpUserController
 {
-    /** @var CommandBus */
-    private $bus;
-
-    /** @var LoggerInterface */
-    private $logger;
+    private CommandBus $bus;
+    private LoggerInterface $logger;
 
     public function __construct(CommandBus $bus, LoggerInterface $logger)
     {
@@ -47,7 +45,7 @@ class SignUpUserController
                 $exception->getMessage(),
                 Response::HTTP_BAD_REQUEST
             );
-        } catch (\Throwable $exception)
+        } catch (Throwable $exception)
         {
             $this->logger->error($exception->getMessage(), [$exception->getTraceAsString()]);
 

@@ -7,9 +7,8 @@ use ReflectionException;
 
 abstract class SpecificationChain implements SpecificationChainInterface
 {
-    protected $specifications;
-
-    protected $specificationChainResult = [];
+    protected array $specifications;
+    protected array $specificationChainResult = [];
 
     /**
      * @param bool $isSatisfied

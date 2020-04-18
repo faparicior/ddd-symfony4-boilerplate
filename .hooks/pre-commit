@@ -4,7 +4,7 @@
 
 echo "Running tests.. ";
 
-exec('bin/simple-phpunit', $output, $returnCode);
+exec('docker exec -i webapp_php "bin/simple-phpunit"', $output, $returnCode);
 if ($returnCode !== 0) {
   // Show full output
   echo PHP_EOL . implode($output, PHP_EOL) . PHP_EOL;
