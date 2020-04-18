@@ -9,15 +9,16 @@ abstract class EmailValue
 {
     private string $email;
 
-    final private function __construct(string $email)
+    final protected function __construct(string $email)
     {
         $this->email = $email;
     }
 
     /**
      * @param string $email
-     * @return EmailValue
+     * @return static
      * @throws DomainException
+     * @throws InvalidEmailException
      */
     final public static function build(string $email): self
     {

@@ -9,11 +9,8 @@ use ReflectionException;
 
 abstract class StringValue
 {
-    /** @var string */
-    private $value;
-
-    /** @var StringSpecificationChain|null */
-    private $specificationChain;
+    private string $value;
+    private ?StringSpecificationChain $specificationChain;
 
     /**
      * StringValue constructor.

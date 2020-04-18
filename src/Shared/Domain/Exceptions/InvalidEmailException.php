@@ -8,7 +8,7 @@ final class InvalidEmailException extends DomainException
 {
     public const INVALID_EMAIL_MESSAGE = "Invalid Email format";
 
-    public static function build(string $message = self::INVALID_EMAIL_MESSAGE, int $code = 0, Throwable $previous = null): DomainException
+    public static function build(string $message = self::INVALID_EMAIL_MESSAGE, int $code = 0, Throwable $previous = null): InvalidEmailException
     {
         return new static($message, $code, $previous);
     }

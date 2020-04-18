@@ -1,8 +1,10 @@
 doctrine:
-
-#    dbal:
-#        types:
-#            userId: App\Users\User\Domain\ValueObjects\UserId
+    dbal:
+        types:
+            UserId: App\Users\User\Infrastructure\Persistence\Mappings\Types\UserIdType
+            UserName: App\Users\User\Infrastructure\Persistence\Mappings\Types\UserNameType
+            Email: App\Users\User\Infrastructure\Persistence\Mappings\Types\EmailType
+            Password: App\Users\User\Infrastructure\Persistence\Mappings\Types\PasswordType
 
     orm:
         auto_generate_proxy_classes: true
