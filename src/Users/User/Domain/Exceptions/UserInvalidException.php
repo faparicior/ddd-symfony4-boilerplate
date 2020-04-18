@@ -10,13 +10,7 @@ class UserInvalidException extends DomainException
 {
     public const INVALID_USER_MESSAGE = "User is not valid due to policy chain";
 
-    /**
-     * @param string $message
-     * @param int $code
-     * @param Throwable|null $previous
-     * @return DomainException|UserInvalidException
-     */
-    public static function build(string $message = self::INVALID_USER_MESSAGE, int $code = 0, Throwable $previous = null): DomainException
+    public static function build(string $message = self::INVALID_USER_MESSAGE, int $code = 0, Throwable $previous = null): UserInvalidException
     {
         return new static($message, $code, $previous);
     }

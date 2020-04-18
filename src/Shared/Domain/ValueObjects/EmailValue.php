@@ -7,8 +7,7 @@ use App\Shared\Domain\Exceptions\InvalidEmailException;
 
 abstract class EmailValue
 {
-    /** @var string */
-    private $email;
+    private string $email;
 
     final private function __construct(string $email)
     {
@@ -20,7 +19,7 @@ abstract class EmailValue
      * @return EmailValue
      * @throws DomainException
      */
-    final public static function build(string $email)
+    final public static function build(string $email): self
     {
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             throw InvalidEmailException::build();

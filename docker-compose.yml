@@ -15,14 +15,14 @@ services:
         networks:
             - webnet
 
-    selenium-chrome:
-        image: selenium/standalone-chrome
-        ports:
-            - "4444:4444"
-        volumes:
-            - /dev/shm:/dev/shm
-        networks:
-            - webnet
+#    selenium-chrome:
+#        image: selenium/standalone-chrome
+#        ports:
+#            - "4444:4444"
+#        volumes:
+#            - /dev/shm:/dev/shm
+#        networks:
+#            - webnet
 
 #        env_file:
 #            - .env

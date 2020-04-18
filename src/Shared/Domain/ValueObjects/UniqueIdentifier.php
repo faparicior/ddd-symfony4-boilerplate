@@ -12,8 +12,7 @@ abstract class UniqueIdentifier
 {
     const UUID4_PATTERN = "/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/";
 
-    /** @var UuidInterface */
-    private $uuid;
+    private UuidInterface $uuid;
 
     final private function __construct(UuidInterface $uuid)
     {
@@ -33,7 +32,7 @@ abstract class UniqueIdentifier
      * @return UniqueIdentifier
      * @throws DomainException
      */
-    final public static function fromString(string $uuid)
+    public static function fromString(string $uuid): self
     {
         if (!preg_match(self::UUID4_PATTERN, $uuid)) {
             throw InvalidArgumentException::build();

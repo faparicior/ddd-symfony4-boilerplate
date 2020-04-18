@@ -4,14 +4,9 @@ namespace App\Users\User\Application\SignUpUser;
 
 final class SignUpUserCommand
 {
-    /** @var string */
-    private $username;
-
-    /** @var string */
-    private $email;
-
-    /** @var string */
-    private $password;
+    private string $username;
+    private string $email;
+    private string $password;
 
     private function __construct(string $username, string $email, string $password)
     {
@@ -25,25 +20,16 @@ final class SignUpUserCommand
         return new static($username, $email, $password);
     }
 
-    /**
-     * @return string
-     */
     public function username(): string
     {
         return $this->username;
     }
 
-    /**
-     * @return string
-     */
     public function email(): string
     {
         return $this->email;
     }
 
-    /**
-     * @return string
-     */
     public function password(): string
     {
         return $this->password;
