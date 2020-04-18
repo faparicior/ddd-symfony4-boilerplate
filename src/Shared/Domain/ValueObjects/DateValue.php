@@ -14,7 +14,7 @@ abstract class DateValue
      * @param string $date
      * @param string $timezone
      */
-    final private function __construct(string $date, string $timezone)
+    final private function __construct(?string $date, string $timezone)
     {
         $this->date = Carbon::parse($date, $timezone);
         $this->timezone = $timezone;
@@ -30,7 +30,7 @@ abstract class DateValue
         return new static($date, $timezone);
     }
 
-    final public function value(): string
+    final public function value(): ?string
     {
         return $this->date->toISOString();
     }
@@ -45,11 +45,17 @@ abstract class DateValue
         return $this->date->toISOString() === $valueObject->value();
     }
 
-    final public function addHours(int $hours)
+    final public function addHours(int $hours): ?self
     {
         $newDate = $this->date->copy()->addHours($hours);
+        $newDateISO = $newDate->toISOString();
 
-        return new static($newDate->toISOString(), $this->timezone);
+        if(is_null($newDateISO))
+        {
+            return null;
+        }
+
+        return new static($newDateISO, $this->timezone);
     }
 
     final public function diffInHours(self $dateToCompare): int
