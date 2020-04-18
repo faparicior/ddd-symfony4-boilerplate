@@ -30,6 +30,7 @@ build:
             - vendor
             - bin
             - var
+        expire_in: 30 minutes
 test:
     stage: test
     script: sh ./.gitlabci/test.sh
