@@ -21,7 +21,7 @@ before_script:
 
 build:
     stage: build
-    script: ./.gitlabci/build.sh
+    script: sh ./.gitlabci/build.sh
     rules:
         -   if: $CI_COMMIT_BRANCH == 'master'   # Execute jobs when a new commit is pushed to master branch
         -   if: $CI_MERGE_REQUEST_ID
