@@ -5,9 +5,9 @@
                           https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
     <entity name="App\Users\User\Domain\User" table="user" repository-class="App\Users\User\Infrastructure\Persistence\DoctrineUserRepository">
-        <id name="userId" type="UserId" column="user_id"/>
-        <field name="username" type="UserName"/>
-        <field name="password" type="Password"/>
-        <field name="email" type="Email"/>
+        <id name="userId" type="User_UserId" column="user_id"/>
+        <field name="username" type="User_UserName"/>
+        <field name="password" type="User_Password"/>
+        <field name="email" type="User_Email"/>
     </entity>
 </doctrine-mapping>
