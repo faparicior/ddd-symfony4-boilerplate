@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export APP_ENV=test
-./bin/simple-phpunit --config phpunit.xml --coverage-html build/coverage-report --log-junit build/junit.xml --coverage-clover build/clover.xml
+./bin/simple-phpunit --config phpunit.xml --coverage-html build/coverage-report --log-junit build/junit.xml --coverage-clover build/clover.xml --coverage-text --colors=never
 
 export APP_ENV=behat
 ./bin/behat
