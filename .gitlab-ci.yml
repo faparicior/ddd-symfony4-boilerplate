@@ -1,5 +1,13 @@
 image: "php:7.4-apache-buster"
 
+# Cache libraries in between jobs
+cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+        - vendor/
+        - bin
+        - var
+
 before_script:
     - apt -y update
     - a2enmod rewrite
@@ -25,24 +33,18 @@ build:
     rules:
         - if: $CI_COMMIT_BRANCH == 'master'   # Execute jobs when a new commit is pushed to master branch
         - if: $CI_MERGE_REQUEST_ID
-    artifacts:
-        paths:
-            - vendor
-            - bin
-            - var
-        expire_in: 30 minutes
+
 test:
     stage: test
     script: sh ./.gitlabci/test.sh
     rules:
         - if: $CI_COMMIT_BRANCH == 'master'   # Execute jobs when a new commit is pushed to master branch
         - if: $CI_MERGE_REQUEST_ID
-    dependencies:
-        - build
     artifacts:
         paths:
             - build
         expire_in: 1 hour
+
 pages:
     before_script:
         - echo "Do nothing in this stage"
@@ -50,8 +52,7 @@ pages:
     dependencies:
         - test
     script:
-        - rm public/*
-        - mv build/coverage-report/{*,.[!.]*} public/
+        - sh ./.gitlabci/deploy-pages.sh
     artifacts:
         paths:
             - public
