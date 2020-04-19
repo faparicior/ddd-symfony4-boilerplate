@@ -16,3 +16,7 @@
 
 [Coverage dashboard](https://fapariciorteam.gitlab.io/ddd-symfony4-boilerplate/dashboard.html)
 
+## Code climate
+
+[![Maintainability](https://api.codeclimate.com/v1/badges/2f49f9bacc70603d8a8d/maintainability)](https://codeclimate.com/github/faparicior/ddd-symfony4-boilerplate/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/2f49f9bacc70603d8a8d/test_coverage)](https://codeclimate.com/github/faparicior/ddd-symfony4-boilerplate/test_coverage)
