@@ -1,5 +1,8 @@
 #!/bin/bash
 
-pwd
-rm ../public/*
-mv ../build/coverage-report/{*,.[!.]*} ../public/
+ls -al
+ls -al public
+ls -al build
+
+rm public/*
+mv build/coverage-report/{*,.[!.]*} public/
