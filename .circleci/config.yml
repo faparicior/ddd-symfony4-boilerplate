@@ -28,6 +28,8 @@ jobs:
 
             - run: composer require --dev php-coveralls/php-coveralls
 
+            - run: curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 -o codeclimate-reporter; chmod +x ./codeclimate-reporter
+
             - save_cache:
                   key: v1-dependencies-{{ checksum "composer.json" }}
                   paths:
@@ -38,11 +40,14 @@ jobs:
             - run: bin/console --env=behat doctrine:migrations:migrate --no-interaction
 
             # run tests with phpunit or codecept
-            - run: ./bin/simple-phpunit --config phpunit.xml --coverage-html build/coverage-report --log-junit build/junit.xml --coverage-clover build/clover.xml
+            - run: ./bin/simple-phpunit --config phpunit.xml --coverage-html build/coverage-report --log-junit build/logs/junit.xml --coverage-clover build/logs/clover.xml
             - run: APP_ENV=behat bin/behat
 
             - run: ./bin/php-coveralls
             - run: bash <(curl -s https://codecov.io/bash)
+
+            - run: codeclimate-reporter before-build
+            - run: codeclimate-reporter after-build --coverage-input-type clover
 
             - store_test_results:
                 path: ~/project/build
