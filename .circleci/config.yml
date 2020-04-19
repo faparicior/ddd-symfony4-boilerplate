@@ -46,8 +46,8 @@ jobs:
             - run: ./bin/php-coveralls
             - run: bash <(curl -s https://codecov.io/bash)
 
-            - run: codeclimate-reporter before-build
-            - run: codeclimate-reporter after-build --coverage-input-type clover
+            - run: sh codeclimate-reporter before-build
+            - run: sh codeclimate-reporter after-build --coverage-input-type clover
 
             - store_test_results:
                 path: ~/project/build
