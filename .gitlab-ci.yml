@@ -20,7 +20,7 @@ before_script:
     - mv /root/.symfony/bin/symfony /usr/local/bin
 #    - groupadd -r devel -g 1000
 #    - useradd --no-log-init -u 1000 -r -g devel devel
-    - apt -y install git libzip-dev
+    - apt -y install git libzip-dev unzip
     - docker-php-ext-install zip
     - pecl install xdebug-2.9.4
     - echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug.ini
