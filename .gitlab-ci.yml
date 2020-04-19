@@ -50,7 +50,8 @@ pages:
     dependencies:
         - test
     script:
-        - mv build/coverage-report public/
+        - rm public/*
+        - mv build/coverage-report/* public/
     artifacts:
         paths:
             - public
