@@ -44,6 +44,8 @@ test:
             - build
         expire_in: 30 minutes
 pages:
+    before_script:
+        - echo "Do nothing in this stage"
     stage: deploy
     dependencies:
         - test
