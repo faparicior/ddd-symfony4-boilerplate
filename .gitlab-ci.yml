@@ -35,7 +35,23 @@ test:
     stage: test
     script: sh ./.gitlabci/test.sh
     rules:
-        -   if: $CI_COMMIT_BRANCH == 'master'   # Execute jobs when a new commit is pushed to master branch
-        -   if: $CI_MERGE_REQUEST_ID
+        - if: $CI_COMMIT_BRANCH == 'master'   # Execute jobs when a new commit is pushed to master branch
+        - if: $CI_MERGE_REQUEST_ID
     dependencies:
         - build
+    artifacts:
+        paths:
+            - build
+        expire_in: 30 minutes
+pages:
+    stage: deploy
+    dependencies:
+        - test
+    script:
+        - mv build/coverage-report public/
+    artifacts:
+        paths:
+            - public
+        expire_in: 30 minutes
+    only:
+        - master
