@@ -42,7 +42,7 @@ test:
     artifacts:
         paths:
             - build
-        expire_in: 30 minutes
+        expire_in: 1 hour
 pages:
     before_script:
         - echo "Do nothing in this stage"
@@ -55,5 +55,6 @@ pages:
     artifacts:
         paths:
             - public
+        expire_in: 1 day
     only:
         - master
