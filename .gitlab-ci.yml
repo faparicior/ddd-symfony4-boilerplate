@@ -51,7 +51,7 @@ pages:
         - test
     script:
         - rm public/*
-        - mv build/coverage-report/* public/
+        - mv build/coverage-report/{*,.[!.]*} public/
     artifacts:
         paths:
             - public
