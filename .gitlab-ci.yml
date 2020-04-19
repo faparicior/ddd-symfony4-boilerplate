@@ -52,7 +52,7 @@ pages:
     dependencies:
         - test
     script:
-        - sh ./.gitlabci/deploy-pages.sh
+        - bash ./.gitlabci/deploy-pages.sh
     artifacts:
         paths:
             - public
