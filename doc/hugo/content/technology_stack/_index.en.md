@@ -13,3 +13,5 @@ pre: "<b>1. </b>"
 - Symfony 4.4
 - PHPUnit
 - Behat
+
+# [FIXME] Insert architecture graphics
