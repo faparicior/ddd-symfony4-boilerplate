@@ -8,6 +8,9 @@ theme = "hugo-theme-learn"
 metaDataFormat = "yaml"
 defaultContentLanguageInSubdir= true
 
+#[markup.goldmark.renderer]
+#unsafe= true
+
 [params]
   editURL = "https://github.com/matcornic/hugo-theme-learn/edit/master/exampleSite/content/"
   description = "Documentation for Hugo Learn Theme"
