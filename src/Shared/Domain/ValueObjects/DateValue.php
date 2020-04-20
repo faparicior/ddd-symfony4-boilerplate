@@ -50,12 +50,7 @@ abstract class DateValue
         $newDate = $this->date->copy()->addHours($hours);
         $newDateISO = $newDate->toISOString();
 
-        if(is_null($newDateISO))
-        {
-            return null;
-        }
-
-        return new static($newDateISO, $this->timezone);
+        return (is_null($newDateISO)) ? null : new static($newDateISO, $this->timezone);
     }
 
     final public function diffInHours(self $dateToCompare): int
