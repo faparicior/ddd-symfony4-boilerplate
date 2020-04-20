@@ -11,6 +11,10 @@ defaultContentLanguageInSubdir= true
 #[markup.goldmark.renderer]
 #unsafe= true
 
+[taxonomies]
+    tag = "tags"
+    domain_event = "domain_events"
+
 [params]
   editURL = "https://github.com/matcornic/hugo-theme-learn/edit/master/exampleSite/content/"
   description = "Documentation for Hugo Learn Theme"
@@ -18,6 +22,7 @@ defaultContentLanguageInSubdir= true
   showVisitedLinks = true
   disableBreadcrumb = false
   disableNextPrev = false
+  themeVariant = "mine"
 
 [outputs]
 home = [ "HTML", "RSS", "JSON"]
