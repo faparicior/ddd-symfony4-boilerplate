@@ -1,9 +1,7 @@
 ---
-title: "User SignIn"
-tags: ["usecase", "users"]
+title: "User use cases"
 domain_events: ["UserSignedIn", "UserSignedUp", "UserVerificationMailSent", "UserVerificationTimedOut", "UserVerified", "UserVerificationFailed"]
 ---
 
-# [FIXME] Implement this index page
+{{<imgnewtab src="user-big-picture.png" alt="User usecases big picture">}}
 
-{{<imgnewtab src="user-usecase.png" alt="User signIn usecase">}}
