@@ -2,6 +2,7 @@
 title: "User SignUp"
 tags: ["usecase", "users"]
 domain_events: ["UserSignedUp", "UserVerificationMailSent", "UserVerificationTimedOut"]
+business_rules: ["User email is unique"]
 ---
 
 {{<imgnewtab src="user-signup-usecase.png" alt="User signIn usecase">}}

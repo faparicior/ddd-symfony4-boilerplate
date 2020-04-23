@@ -4,8 +4,6 @@ tags: ["usecase", "users"]
 domain_events: ["UserSignedIn"]
 ---
 
-# [FIXME] Implement this index page
-
 {{<imgnewtab src="user-signin-usecase.png" alt="User signIn usecase">}}
 
 ### Calls

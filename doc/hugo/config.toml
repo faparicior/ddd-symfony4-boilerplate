@@ -14,6 +14,8 @@ defaultContentLanguageInSubdir= true
 [taxonomies]
     tag = "tags"
     domain_event = "domain_events"
+    business_rule = "business_rules"
+    external_system = "external_systems"
 
 [params]
   editURL = "https://github.com/matcornic/hugo-theme-learn/edit/master/exampleSite/content/"

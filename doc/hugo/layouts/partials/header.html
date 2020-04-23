@@ -90,6 +90,12 @@
         <div id="head-tags">
         {{ partial "domain-events.html" . }}
         </div>
+        <div id="head-tags">
+            {{ partial "business-rules.html" . }}
+        </div>
+        <div id="head-tags">
+            {{ partial "external-systems.html" . }}
+        </div>
         {{ if .Params.chapter }}
           <div id="chapter">
         {{ end }}

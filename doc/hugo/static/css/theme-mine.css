@@ -119,6 +119,40 @@ a:hover {
     border-width: 1em 1em 1em 0;
 }
 
+#body .tags-businessrules a.tag-link {
+    background: lightblue;
+    color: black;
+}
+
+#body .tags-businessrules a.tag-link:before {
+    content: "";
+    position: absolute;
+    top:0;
+    left: -1em;
+    width: 0;
+    height: 0;
+    border-color: transparent lightblue transparent transparent;
+    border-style: solid;
+    border-width: 1em 1em 1em 0;
+}
+
+
+#body .tags-extenalsystems a.tag-link {
+    background: deeppink;
+    color: black;
+}
+
+#body .tags-extenalsystems a.tag-link:before {
+    content: "";
+    position: absolute;
+    top:0;
+    left: -1em;
+    width: 0;
+    height: 0;
+    border-color: transparent deeppink transparent transparent;
+    border-style: solid;
+    border-width: 1em 1em 1em 0;
+}
 #body .oplock-call img {
     margin: 0;
     display: inline;
