@@ -5,7 +5,7 @@ domain_events: ["UserSignedUp", "UserVerificationMailSent", "UserVerificationTim
 business_rules: ["User email is unique"]
 ---
 
-{{<imgnewtab src="user-signup-usecase.png" alt="User signIn usecase">}}
+{{<imgnewtab src="user-signup-usecase.png" alt="User signUp usecase">}}
 
 ### Calls
 ---
@@ -33,3 +33,14 @@ business_rules: ["User email is unique"]
 ##### {{<responses status="fail" code="400">}} The user could not be created since there were incorrect parameters
 
 ##### {{<responses status="fatal" code="500">}} Fatal error (Has to be controlled)
+
+### User interface
+---
+
+#### User SignUp
+
+{{<imgnewtab src="ui-signup-1.png" alt="User signUp">}}
+
+#### User verification mail
+
+[TODO: Add mailing text]

@@ -30,4 +30,9 @@ domain_events: ["UserSignedIn"]
 
 ##### {{<responses status="fail" code="400">}} Invalid username/password supplied
 
+### User interface
+---
 
+#### User SignIn
+
+{{<imgnewtab src="ui-signin-1.png" alt="User signUp">}}
