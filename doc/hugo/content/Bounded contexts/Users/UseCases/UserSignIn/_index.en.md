@@ -21,14 +21,14 @@ domain_events: ["UserSignedIn"]
 ### Responses
 ---
 
-##### {{<responses status="ok" code="200">}}  There's a user that matches with the given email and password
+##### {{<responses code="200">}}  There's a user that matches with the given email and password
 ```json
 {
     "email": "test.email@gmail.com"
 }
 ```
 
-##### {{<responses status="fail" code="400">}} Invalid username/password supplied
+##### {{<responses code="400">}} Invalid username/password supplied
 
 ### User interface
 ---

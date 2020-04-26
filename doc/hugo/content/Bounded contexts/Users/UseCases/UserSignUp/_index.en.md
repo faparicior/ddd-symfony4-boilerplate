@@ -30,9 +30,9 @@ business_rules: ["User email is unique"]
 }
 ```
 
-##### {{<responses status="fail" code="400">}} The user could not be created since there were incorrect parameters
+##### {{<responses code="400">}} The user could not be created since there were incorrect parameters
 
-##### {{<responses status="fatal" code="500">}} Fatal error (Has to be controlled)
+##### {{<responses code="500">}} Fatal error (Has to be controlled)
 
 ### User interface
 ---
