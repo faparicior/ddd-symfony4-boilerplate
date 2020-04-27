@@ -19,3 +19,7 @@
 /behat.yml
 ###< friends-of-behat/symfony-extension ###
 /build/
+
+###> Node
+node_modules
+###< Node

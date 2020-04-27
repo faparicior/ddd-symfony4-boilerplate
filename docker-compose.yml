@@ -15,6 +15,21 @@ services:
         networks:
             - webnet
 
+    node:
+        build:
+            context: ./docker/node
+            dockerfile: Dockerfile
+        image: webapp_node
+        container_name: webapp_node
+        working_dir: /var/www/html
+        environment:
+            - NODE_ENV=development
+        volumes:
+            - ./:/var/www/html
+        networks:
+            - webnet
+        depends_on:
+          - web
 #    selenium-chrome:
 #        image: selenium/standalone-chrome
 #        ports:
