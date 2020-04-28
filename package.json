@@ -1,0 +1,28 @@
+{
+  "name": "html",
+  "version": "1.0.0",
+  "description": "[![Build Status](https://scrutinizer-ci.com/g/faparicior/ddd-symfony4-boilerplate/badges/build.png?b=master)](https://scrutinizer-ci.com/g/faparicior/ddd-symfony4-boilerplate/build-status/master) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/faparicior/ddd-symfony4-boilerplate/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/faparicior/ddd-symfony4-boilerplate/?branch=master)",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc",
+    "test": "tests"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "cypress": "^4.4.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/fapariciorteam/ddd-symfony4-boilerplate.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/fapariciorteam/ddd-symfony4-boilerplate/issues"
+  },
+  "homepage": "https://gitlab.com/fapariciorteam/ddd-symfony4-boilerplate#readme"
+}
