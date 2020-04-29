@@ -1,20 +1,36 @@
 version: "3"
 
 services:
-    web:
+    php:
         build:
             context: ./docker/php
             dockerfile: Dockerfile
         image: webapp_php
         container_name: webapp_php
+        sysctls:
+            - net.ipv4.ip_unprivileged_port_start=0
         volumes:
             - ./:/var/www/html
+            - ./docker/php/www.conf:/usr/local/etc/php-fpm.d/www.conf
+        networks:
+            - webnet
+
+    apache:
+        build:
+            context: ./docker/apache
+            dockerfile: Dockerfile
+        image: webapp_apache
+        container_name: webapp_apache
+        volumes:
+            - ./:/usr/local/apache2/htdocs/
+            - ./docker/apache/my-httpd.conf:/usr/local/apache2/conf/httpd.conf
         ports:
             - "80:80"
             - "8000:8000"
         networks:
             - webnet
-
+        links:
+          - php
     node:
         build:
             context: ./docker/node
@@ -29,18 +45,7 @@ services:
         networks:
             - webnet
         depends_on:
-          - web
-#    selenium-chrome:
-#        image: selenium/standalone-chrome
-#        ports:
-#            - "4444:4444"
-#        volumes:
-#            - /dev/shm:/dev/shm
-#        networks:
-#            - webnet
-
-#        env_file:
-#            - .env
+          - apache
 
 networks:
     webnet:

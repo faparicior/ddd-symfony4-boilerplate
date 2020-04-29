@@ -31,6 +31,14 @@ class SignUpUserController
         try {
             $data = json_decode($request->getContent(), true);
 
+            if (is_null($data)) {
+                return JsonResponse::create(
+                    'Empty data',
+                    Response::HTTP_BAD_REQUEST
+                );
+
+            }
+
             $signUpUser = SignUpUserCommand::build(
                 $data['userName'],
                 $data['email'],
@@ -50,7 +58,7 @@ class SignUpUserController
             $this->logger->error($exception->getMessage(), [$exception->getTraceAsString()]);
 
             return JsonResponse::create(
-                '',
+                'Server error:'.$exception->getMessage(),
                 Response::HTTP_INTERNAL_SERVER_ERROR
             );
         }
