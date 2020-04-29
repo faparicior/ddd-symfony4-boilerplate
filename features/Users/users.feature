@@ -8,16 +8,16 @@ Feature:
     @clearLogs
 #        TODO!!!: Fixtures has to clean user database and related tables in a easy way to function
 
-    Scenario: SignUp User
-        When I send a "POST" request to "/users" with body:
-        """
-        """
-        Then the response content should be in JSON
-        And the response status code should be 400
-        And the response should contain:
-        """
-        "Empty data"
-        """
+#    Scenario: SignUp User
+#        When I send a "POST" request to "/users" with body:
+#        """
+#        """
+#        Then the response content should be in JSON
+#        And the response status code should be 400
+#        And the response should contain:
+#        """
+#        "Empty data"
+#        """
 
     Scenario: SignUp User
         When I send a "POST" request to "/users" with body:
