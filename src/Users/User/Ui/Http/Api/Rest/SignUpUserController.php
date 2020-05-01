@@ -30,7 +30,6 @@ class SignUpUserController
     {
         try {
             $content = $request->getContent();
-
             if ($content === 'TEST_SHOULD_FAIL_WITH_500_EXCEPTION') {
                 throw new \Exception("TEST_SHOULD_FAIL_WITH_500_EXCEPTION", 500);
             }
@@ -58,9 +57,9 @@ class SignUpUserController
         {
             $this->logger->error($exception->getMessage(), [$exception->getTraceAsString()]);
 
+            $message = ($_SERVER['APP_DEBUG'] === '1') ? 'Server error:'.$exception->getMessage() : '';
             return JsonResponse::create(
-//                'Server error:'.$exception->getMessage(),
-                '',
+                $message,
                 Response::HTTP_INTERNAL_SERVER_ERROR
             );
         }

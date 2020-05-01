@@ -203,7 +203,11 @@ class SignUpUserControllerTest extends TestCase
         $response = $controller->execute($request);
 
         self::assertEquals(500, $response->getStatusCode());
-        self::assertEquals('""', $response->getContent());
+        if($_SERVER['APP_DEBUG'] === '1') {
+            self::assertEquals('"Server error:TEST_SHOULD_FAIL_WITH_500_EXCEPTION"', $response->getContent());
+        } else {
+            self::assertEquals('""', $response->getContent());
+        }
     }
 
 }
