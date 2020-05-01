@@ -123,7 +123,7 @@ Feature:
         """
 
     @clearLogs
-    Scenario: SignUp User with invalid password  and return 400 status code
+    Scenario: SignUp User with invalid password and return 400 status code
         When I send a "POST" request to "/users" with body:
         """
           {
