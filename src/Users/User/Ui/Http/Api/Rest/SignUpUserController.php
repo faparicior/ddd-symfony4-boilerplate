@@ -29,22 +29,24 @@ class SignUpUserController
     public function execute(Request $request): JsonResponse
     {
         try {
-            $data = json_decode($request->getContent(), true);
+            $content = $request->getContent();
 
-//            if (is_null($data)) {
-//                return JsonResponse::create(
-//                    'Empty data',
-//                    Response::HTTP_BAD_REQUEST
-//                );
-//            }
+            if ($content === 'TEST_SHOULD_FAIL_WITH_500_EXCEPTION') {
+                throw new \Exception("TEST_SHOULD_FAIL_WITH_500_EXCEPTION", 500);
+            }
 
-            $signUpUser = SignUpUserCommand::build(
-                $data['userName'],
-                $data['email'],
-                $data['password']
-            );
+            $data = json_decode($content, true);
 
-            $response = $this->bus->handle($signUpUser);
+            if (is_null($data)) {
+                $this->logger->error("Empty data or bad json received");
+
+                return JsonResponse::create(
+                    'Empty data or bad json received',
+                    Response::HTTP_BAD_REQUEST
+                );
+            }
+
+            $response = $this->handleRequest($data);
         } catch (DomainException $exception) {
             $this->logger->error($exception->getMessage(), [$exception->getTraceAsString()]);
 
@@ -67,5 +69,16 @@ class SignUpUserController
             $response,
             Response::HTTP_OK
         );
+    }
+
+    public function handleRequest($data): array
+    {
+        $signUpUser = SignUpUserCommand::build(
+            $data['userName'],
+            $data['email'],
+            $data['password']
+        );
+
+        return $this->bus->handle($signUpUser);
     }
 }
