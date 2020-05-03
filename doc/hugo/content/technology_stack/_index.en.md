@@ -12,6 +12,6 @@ pre: "<b>1. </b>"
 - PHP 7.4
 - Symfony 4.4
 - PHPUnit
-- Behat
-
+- Cypress 4.5
+- ~~Behat~~
 # [FIXME] Insert architecture graphics

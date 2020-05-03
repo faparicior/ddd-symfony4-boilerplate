@@ -5,7 +5,7 @@ domain_events: ["UserSignedUp", "UserVerificationMailSent", "UserVerificationTim
 business_rules: ["User email is unique"]
 ---
 
-{{<imgnewtab src="user-signup-usecase.png" alt="User signUp usecase">}}
+{{<imgnewtab src="user-signup-usecase.png" alt="User signUp usecase" srcfile="user-signup-usecase.graphml">}}
 
 ### Calls
 ---

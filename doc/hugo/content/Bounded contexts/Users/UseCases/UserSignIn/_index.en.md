@@ -4,7 +4,7 @@ tags: ["usecase", "users"]
 domain_events: ["UserSignedIn"]
 ---
 
-{{<imgnewtab src="user-signin-usecase.png" alt="User signIn usecase">}}
+{{<imgnewtab src="user-signin-usecase.png" alt="User signIn usecase"  srcfile="user-signin-usecase.graphml">}}
 
 ### Calls
 ---

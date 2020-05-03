@@ -5,5 +5,5 @@ business_rules: ["User email is unique"]
 external_systems: ["No one"]
 ---
 
-{{<imgnewtab src="user-big-picture.png" alt="User usecases big picture">}}
+{{<imgnewtab src="user-big-picture.png" alt="User usecases big picture" srcfile="user-big-picture.graphml">}}
 
