@@ -1,9 +1,5 @@
 context('Actions', () => {
 
-    beforeEach(() => {
-        cy.writeFile('var/log/behat.log', '')
-    })
-
     it ('User can signUp', () => {
         cy.request({
             method: 'POST',
@@ -41,8 +37,6 @@ context('Actions', () => {
                expect(resp.status).to.eq(400)
                expect(resp.body).eq('User email is in use')
            })
-
-        cy.readFile('var/log/behat.log').should('contain', 'app.ERROR: User email is in use')
     })
 
     it ('SignUp User but username exists in database', () => {
@@ -60,8 +54,6 @@ context('Actions', () => {
                 expect(resp.status).to.eq(400)
                 expect(resp.body).eq('Username is in use')
             })
-
-        cy.readFile('var/log/behat.log').should('contain', 'app.ERROR: Username is in use')
     })
 
     it ('SignUp User with invalid user and return 400 status code', () => {
@@ -79,8 +71,6 @@ context('Actions', () => {
                 expect(resp.status).to.eq(400)
                 expect(resp.body).eq('Username invalid by policy rules')
             })
-
-        cy.readFile('var/log/behat.log').should('contain', 'app.ERROR: Username invalid by policy rules')
     })
 
     it ('SignUp User with invalid email and return 400 status code', () => {
@@ -98,8 +88,6 @@ context('Actions', () => {
                 expect(resp.status).to.eq(400)
                 expect(resp.body).eq('Invalid Email format')
             })
-
-        cy.readFile('var/log/behat.log').should('contain', 'app.ERROR: Invalid Email format')
     })
 
     it ('SignUp User with invalid password and return 400 status code', () => {
@@ -117,7 +105,5 @@ context('Actions', () => {
                 expect(resp.status).to.eq(400)
                 expect(resp.body).eq('Password invalid by policy rules')
             })
-
-        cy.readFile('var/log/behat.log').should('contain', 'app.ERROR: Password invalid by policy rules')
     })
 })
