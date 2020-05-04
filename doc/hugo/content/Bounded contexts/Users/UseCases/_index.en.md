@@ -1,7 +1,7 @@
 ---
 title: "User use cases"
 domain_events: ["UserSignedIn", "UserSignedUp", "UserVerificationMailSent", "UserVerificationTimedOut", "UserVerified", "UserVerificationFailed"]
-business_rules: ["User email is unique"]
+business_rules: ["User email is unique", "User is the same as logged"]
 external_systems: ["No one"]
 ---
 
