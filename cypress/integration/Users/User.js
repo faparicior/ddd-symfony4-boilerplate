@@ -1,5 +1,16 @@
 context('Actions', () => {
 
+    before(() => {
+        cy.request({
+            method: 'DELETE',
+            url: '/users',
+            failOnStatusCode: false,
+            body: {
+                email: 'test.email@gmail.com'
+            }
+        })
+    })
+
     it ('User can signUp', () => {
         cy.request({
             method: 'POST',
@@ -106,4 +117,36 @@ context('Actions', () => {
                 expect(resp.body).eq('Password invalid by policy rules')
             })
     })
+
+    it ('User can be deleted and return 200 status code', () => {
+        cy.request({
+            method: 'DELETE',
+            url: '/users',
+            failOnStatusCode: false,
+            body: {
+                email: 'test.email@gmail.com'
+            }
+        })
+            .then((resp) => {
+                expect(resp.status).to.eq(200)
+                console.log(resp.body);
+                expect(resp.body).to.eql({})
+            })
+    })
+
+    it ('Delete non existent user return 400 status code', () => {
+        cy.request({
+            method: 'DELETE',
+            url: '/users',
+            failOnStatusCode: false,
+            body: {
+                email: 'test.email@gmail.com'
+            }
+        })
+            .then((resp) => {
+                expect(resp.status).to.eq(400)
+                expect(resp.body).eq('User not found')
+            })
+    })
+
 })
