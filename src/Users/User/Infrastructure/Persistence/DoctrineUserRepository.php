@@ -49,4 +49,9 @@ final class DoctrineUserRepository extends EntityRepository implements UserRepos
             'email' => $email
         ]);
     }
+
+    public function delete(User $user): void
+    {
+        $this->_em->remove($user);
+    }
 }

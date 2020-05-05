@@ -23,9 +23,7 @@ business_rules: ["User is the same as logged"]
 
 ##### {{<responses code="200">}}  There's a user that matches with the given email and has been deleted
 ```json
-{
-    "email": "test.email@gmail.com"
-}
+"User not found"
 ```
 
 ##### {{<responses code="400">}} Invalid email supplied
