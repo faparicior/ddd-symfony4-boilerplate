@@ -1,0 +1,7 @@
+{{ if .Params.external_systems }}
+<div class="tags tags-extenalsystems">
+    {{range .Params.external_systems}}
+    <a class="tag-link" href="{{ "/external_systems/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
+    {{end}}
+</div>
+{{end}}

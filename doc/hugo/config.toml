@@ -1,0 +1,72 @@
+baseURL = "/"
+languageCode = "en-US"
+defaultContentLanguage = "en"
+
+title = "DDD Symfony4 boilerplate Documentation"
+theme = "hugo-theme-learn"
+#themesdir = "../.."
+metaDataFormat = "yaml"
+defaultContentLanguageInSubdir= true
+
+#[markup.goldmark.renderer]
+#unsafe= true
+
+[taxonomies]
+    tag = "tags"
+    domain_event = "domain_events"
+    business_rule = "business_rules"
+    external_system = "external_systems"
+
+[params]
+  editURL = "https://github.com/matcornic/hugo-theme-learn/edit/master/exampleSite/content/"
+  description = "Documentation for Hugo Learn Theme"
+  author = "Mathieu Cornic"
+  showVisitedLinks = true
+  disableBreadcrumb = false
+  disableNextPrev = false
+  themeVariant = "mine"
+
+[outputs]
+home = [ "HTML", "RSS", "JSON"]
+
+[Languages]
+[Languages.en]
+title = "Documentation for Hugo Learn Theme"
+weight = 1
+languageName = "English"
+
+[[Languages.en.menu.shortcuts]]
+name = "<img src='https://gitlab.com/fapariciorteam/ddd-symfony4-boilerplate/badges/master/pipeline.svg' alt='Build'/>"
+identifier = "Build"
+url = "https://gitlab.com/fapariciorteam/ddd-symfony4-boilerplate/-/commits/master"
+weight = 9
+
+[[Languages.en.menu.shortcuts]]
+name = "<img src='https://scrutinizer-ci.com/g/faparicior/ddd-symfony4-boilerplate/badges/quality-score.png?b=master' alt='Scrutinizer'/>"
+identifier = "Scrutinizer"
+url = "https://scrutinizer-ci.com/g/faparicior/ddd-symfony4-boilerplate/?branch=master"
+weight = 10
+
+[[Languages.en.menu.shortcuts]]
+name = "<img src='https://coveralls.io/repos/github/faparicior/ddd-symfony4-boilerplate/badge.svg?branch=master' alt='Coverage Status'/>"
+identifier = "Coverage"
+url = "https://coveralls.io/github/faparicior/ddd-symfony4-boilerplate?branch=master"
+weight = 11
+
+[[Languages.en.menu.shortcuts]]
+name = "<img src='https://api.codeclimate.com/v1/badges/2f49f9bacc70603d8a8d/maintainability'/>"
+identifier = "Codeclimate"
+url = "https://codeclimate.com/github/faparicior/ddd-symfony4-boilerplate"
+weight = 12
+
+[[Languages.en.menu.shortcuts]]
+name = "<i class='fab fa-fw fa-github'></i> GitHub repo"
+identifier = "GitHub"
+url = "https://github.com/faparicior/ddd-symfony4-boilerplate"
+weight = 13
+
+[[Languages.en.menu.shortcuts]]
+name = "<i class='fas fa-fw fa-bookmark'></i> Fernando Aparicio site"
+identifier = "Fernando Aparicio site"
+url = "https://www.fernandoaparicio.net"
+weight = 20
