@@ -1,4 +1,6 @@
 baseURL = ""
+relativeurls = true
+
 languageCode = "en-US"
 defaultContentLanguage = "en"
 
