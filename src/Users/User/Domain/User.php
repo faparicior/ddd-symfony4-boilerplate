@@ -13,10 +13,10 @@ use ReflectionException;
 
 final class User
 {
+    private UserId $userId;
     private UserName $username;
     private Email $email;
     private Password $password;
-    private UserId $userId;
 
     private function __construct(UserId $userId, UserName $userName, Email $email, Password $password)
     {

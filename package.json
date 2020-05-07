@@ -9,7 +9,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "cypress": "^4.4.1"
+    "cypress": "^4.5.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

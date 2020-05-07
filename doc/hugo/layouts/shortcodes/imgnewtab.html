@@ -1,0 +1,4 @@
+<a target="_blank" href="{{ .Get "src" }}"><img src="{{ .Get "src" }}" alt="{{ .Get "alt" }}"/></a>
+{{ if .Get "srcfile" }}
+<a href="{{ .Get "srcfile" }}" download>Source file</a>
+{{ end }}

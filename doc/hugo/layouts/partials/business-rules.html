@@ -1,0 +1,7 @@
+{{ if .Params.business_rules }}
+<div class="tags tags-businessrules">
+    {{range .Params.business_rules}}
+    <a class="tag-link" href="{{ "/business_rules/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
+    {{end}}
+</div>
+{{end}}

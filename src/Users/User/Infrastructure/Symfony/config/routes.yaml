@@ -1,3 +1,8 @@
 signUpUser:
     path: /users
     controller: App\Users\User\Ui\Http\Api\Rest\SignUpUserController::execute
+    methods: post
+deleteUser:
+    path: /users
+    controller: App\Users\User\Ui\Http\Api\Rest\DeleteUserController::execute
+    methods: delete

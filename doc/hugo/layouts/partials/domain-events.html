@@ -1,0 +1,7 @@
+{{ if .Params.domain_events }}
+<div class="tags tags-domainevents">
+    {{range .Params.domain_events}}
+    <a class="tag-link" href="{{ "/domain_events/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
+    {{end}}
+</div>
+{{end}}

@@ -17,4 +17,6 @@ interface UserRepositoryInterface
     public function findByName(UserName $userName): ?User;
 
     public function findByEmail(Email $email): ?User;
+
+    public function delete(User $user): void;
 }

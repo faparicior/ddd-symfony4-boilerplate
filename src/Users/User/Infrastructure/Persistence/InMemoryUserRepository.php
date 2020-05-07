@@ -10,7 +10,7 @@ use App\Users\User\Domain\ValueObjects\UserName;
 
 final class InMemoryUserRepository implements UserRepositoryInterface
 {
-    private $usersTable;
+    private array $usersTable;
 
     public function __construct()
     {
@@ -20,6 +20,15 @@ final class InMemoryUserRepository implements UserRepositoryInterface
     public function create(User $user): void
     {
         $this->usersTable[$user->userId()->value()] = $user;
+    }
+
+    public function delete(User $user): void
+    {
+        $userToDelete = $this->usersTable[$user->userId()->value()];
+        if ($userToDelete !== null)
+        {
+            unset($this->usersTable[$user->userId()->value()]);
+        }
     }
 
     public function findById(UserId $userId): ?User

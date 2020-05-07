@@ -1,0 +1,9 @@
+
+<div class="tags responses
+{{ $type := int (.Get "code") }}
+{{ with (ge $type 200) and (lt $type 300) }}ok{{ end }}
+{{ with (ge $type 400) and (lt $type 500) }}fail{{ end }}
+{{ with (eq $type 500) and (lt $type 600) }}fatal{{ end }}
+">{{ .Get "code"}}</div>
+
+

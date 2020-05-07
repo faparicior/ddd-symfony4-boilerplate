@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Tests\Shared\Infrastrucure\Service;
+namespace App\Tests\Shared\Infrastructure\Services;
 
 use App\Shared\Infrastructure\Services\UniqueIdProvider;
 use Ramsey\Uuid\UuidFactory;
@@ -8,7 +8,6 @@ use PHPUnit\Framework\TestCase;
 
 class UniqueIdProviderServiceTest extends TestCase
 {
-
     /**
      * @group UnitTests
      * @group Shared

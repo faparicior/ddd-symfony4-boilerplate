@@ -12,6 +12,10 @@ services:
         tags:
         - { name: tactician.handler, command: App\Users\User\Application\SignUpUser\SignUpUserCommand }
 
+    App\Users\User\Application\DeleteUser\DeleteUserCommandHandler:
+        tags:
+        - { name: tactician.handler, command: App\Users\User\Application\DeleteUser\DeleteUserCommand }
+
     App\Users\User\Domain\Specifications\UserSpecificationChain:
         factory: ['App\Users\User\Domain\Specifications\UserSpecificationChain', 'build']
         arguments:

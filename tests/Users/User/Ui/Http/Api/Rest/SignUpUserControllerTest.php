@@ -158,40 +158,4 @@ class SignUpUserControllerTest extends TestCase
 
         self::assertEquals(Response::HTTP_BAD_REQUEST, $response->getStatusCode());
     }
-
-    public function testUserControllerWritesErrorLogInCaseOfException()
-    {
-        $data = json_encode([
-            "userName" => '',
-            "email" => self::EMAIL,
-            "password" => self::PASSWORD
-        ]);
-
-        $request = Request::create('/users', 'POST', [], [], [], [], $data);
-
-        $controller = new SignUpUserController($this->bus, $this->log);
-
-        $response = $controller->execute($request);
-
-        self::assertEquals(Response::HTTP_BAD_REQUEST, $response->getStatusCode());
-
-        self::assertTrue($this->logHandler->hasErrorThatContains(UserName::INVALID_BY_POLICY_RULES));
-    }
-
-    /**
-     * @throws \App\Shared\Domain\Exceptions\DomainException
-     */
-    public function testUserControllerCatchUnexpectedException()
-    {
-        $data = '';
-
-        $request = Request::create('/users', 'POST', [], [], [], [], $data);
-
-        $controller = new SignUpUserController($this->bus, $this->log);
-
-        $response = $controller->execute($request);
-
-        self::assertEquals(500, $response->getStatusCode());
-        self::assertEquals('""', $response->getContent());
-    }
 }
