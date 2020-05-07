@@ -26,6 +26,8 @@ before_script:
     - echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug.ini
     - echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/xdebug.ini
     - echo "xdebug.remote_autostart=off" >> /usr/local/etc/php/conf.d/xdebug.ini
+#    - curl -L "https://github.com/gohugoio/hugo/releases/download/v0.70.0/hugo_extended_0.70.0_Linux-64bit.deb" --output hugo-70-extended.deb
+#    - dpkg -i hugo-70-extended.deb
 
 build:
     stage: build
@@ -43,6 +45,7 @@ test:
     artifacts:
         paths:
             - build
+            - doc/hugo/public
         expire_in: 1 hour
 
 pages:
