@@ -1,5 +1,5 @@
-baseURL = ""
-relativeurls = true
+baseURL = "https://fapariciorteam.gitlab.io/ddd-symfony4-boilerplate/"
+#relativeurls = true
 
 languageCode = "en-US"
 defaultContentLanguage = "en"
