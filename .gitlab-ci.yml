@@ -8,6 +8,7 @@ cache:
         - bin
         - var
         - node_modules
+        - /root/.cache/Cypress
 
 before_script:
     - apt -y update
@@ -42,7 +43,6 @@ build php:
 
 build javascript:
     stage: build
-#    image: node:14.0-stretch
     script: npm install
     rules:
         - if: $CI_COMMIT_BRANCH == 'master'   # Execute jobs when a new commit is pushed to master branch
