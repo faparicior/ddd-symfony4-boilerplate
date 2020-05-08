@@ -59,24 +59,26 @@ unit test:
             - cypress/screenshots
         expire_in: 1 hour
 
-functional test:
-    stage: test
-    script: sh ./.gitlabci/functional-test.sh
-    rules:
-        - if: $CI_COMMIT_BRANCH == 'master'   # Execute jobs when a new commit is pushed to master branch
-        - if: $CI_MERGE_REQUEST_ID
-    artifacts:
-        paths:
-            - cypress/videos
-            - cypress/screenshots
-        expire_in: 1 hour
+#functional test:
+#    image: node:14.0-stretch
+#    stage: test
+#    script: sh ./.gitlabci/functional-test.sh
+#    rules:
+#        - if: $CI_COMMIT_BRANCH == 'master'   # Execute jobs when a new commit is pushed to master branch
+#        - if: $CI_MERGE_REQUEST_ID
+#    artifacts:
+#        paths:
+#            - cypress/videos
+#            - cypress/screenshots
+#        expire_in: 1 hour
 
 pages:
     before_script:
         - echo "Do nothing in this stage"
     stage: deploy
     dependencies:
-        - test
+        - unit test
+        - functional test
     script:
         - bash ./.gitlabci/deploy-pages.sh
     artifacts:
