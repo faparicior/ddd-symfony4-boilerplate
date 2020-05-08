@@ -1,5 +1,8 @@
 image: "php:7.4-apache-buster"
 
+services:
+    - docker:dind
+
 # Cache libraries in between jobs
 cache:
     key: ${CI_COMMIT_REF_SLUG}
