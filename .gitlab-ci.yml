@@ -28,6 +28,8 @@ before_script:
     - echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/xdebug.ini
     - echo "xdebug.remote_autostart=off" >> /usr/local/etc/php/conf.d/xdebug.ini
     - apt -y install nodejs npm
+    - cp docker/gitlab-ci/httpd.conf /etc/apache2/sites-enabled/000-default.conf
+    - apache2ctl reload
 #    - curl -L "https://github.com/gohugoio/hugo/releases/download/v0.70.0/hugo_extended_0.70.0_Linux-64bit.deb" --output hugo-70-extended.deb
 #    - dpkg -i hugo-70-extended.deb
 

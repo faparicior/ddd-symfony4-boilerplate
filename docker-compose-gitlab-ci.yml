@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+    apache:
+        build:
+            context: ./docker/apache
+            dockerfile: Dockerfile
+        image: webapp_gitlab-ci
+        container_name: webapp_gitlab-ci
+        volumes:
+            - ./:/var/www/html/
+            - ./docker/gitlab-ci/httpd.conf:/etc/apache2/sites-enabled/000-default.conf
+        ports:
+            - "80:80"
+            - "8000:8000"
+        networks:
+            - webnet
+networks:
+    webnet:
