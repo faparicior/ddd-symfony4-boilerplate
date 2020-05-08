@@ -8,7 +8,6 @@ use PHPUnit\Framework\TestCase;
 
 class UniqueIdentifierForTest extends UniqueIdentifier
 {
-
 }
 
 class UniqueIdentifierTest extends TestCase

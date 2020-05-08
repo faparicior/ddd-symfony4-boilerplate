@@ -7,7 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 class UiExceptionForTest extends UiException
 {
-
 }
 
 class UiExceptionTest extends TestCase

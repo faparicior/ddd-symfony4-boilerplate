@@ -23,6 +23,12 @@
     "behat/transliterator": {
         "version": "v1.2.0"
     },
+    "composer/semver": {
+        "version": "1.5.1"
+    },
+    "composer/xdebug-handler": {
+        "version": "1.4.1"
+    },
     "container-interop/container-interop": {
         "version": "1.2.0"
     },
@@ -135,6 +141,18 @@
             "tests/Behat/DemoContext.php"
         ]
     },
+    "friendsofphp/php-cs-fixer": {
+        "version": "2.2",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "2.2",
+            "ref": "cc05ab6abf6894bddb9bbd6a252459010ebe040b"
+        },
+        "files": [
+            ".php_cs.dist"
+        ]
+    },
     "guzzlehttp/guzzle": {
         "version": "6.4.1"
     },
@@ -192,8 +210,17 @@
     "ocramius/proxy-manager": {
         "version": "2.2.3"
     },
+    "pdepend/pdepend": {
+        "version": "2.7.1"
+    },
     "php": {
         "version": "7.4"
+    },
+    "php-cs-fixer/diff": {
+        "version": "v1.3.0"
+    },
+    "phpmd/phpmd": {
+        "version": "2.8.2"
     },
     "psr/cache": {
         "version": "1.0.1"
@@ -212,6 +239,18 @@
     },
     "ramsey/uuid": {
         "version": "3.8.0"
+    },
+    "squizlabs/php_codesniffer": {
+        "version": "3.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "3.0",
+            "ref": "0dc9cceda799fd3a08b96987e176a261028a3709"
+        },
+        "files": [
+            "phpcs.xml.dist"
+        ]
     },
     "symfony/apache-pack": {
         "version": "1.0",
@@ -349,6 +388,9 @@
             "config/packages/test/monolog.yaml"
         ]
     },
+    "symfony/options-resolver": {
+        "version": "v4.4.8"
+    },
     "symfony/orm-pack": {
         "version": "v1.0.6"
     },
@@ -379,6 +421,9 @@
     },
     "symfony/polyfill-php73": {
         "version": "v1.12.0"
+    },
+    "symfony/process": {
+        "version": "v4.4.8"
     },
     "symfony/proxy-manager-bridge": {
         "version": "v4.3.5"

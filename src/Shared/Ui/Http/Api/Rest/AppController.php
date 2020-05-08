@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Shared\Ui\Http\Api\Rest;
 
@@ -25,26 +27,22 @@ abstract class AppController
         $this->logger = $logger;
     }
 
-    /**
-     * @param Request $request
-     * @return JsonResponse
-     */
     public function execute(Request $request): JsonResponse
     {
         try {
             $response = $this->evalCall($request->getContent());
-        } catch (DomainException | ApplicationException | UiException $exception ) {
+        } catch (DomainException | ApplicationException | UiException $exception) {
             $this->logger->error($exception->getMessage(), [$exception->getTraceAsString()]);
 
             return JsonResponse::create(
                 $exception->getMessage(),
                 Response::HTTP_BAD_REQUEST
             );
-        } catch (Throwable $exception)
-        {
+        } catch (Throwable $exception) {
             $this->logger->error($exception->getMessage(), [$exception->getTraceAsString()]);
 
-            $message = ($_SERVER['APP_DEBUG'] === '1') ? 'Server error:'.$exception->getMessage() : '';
+            $message = ('1' === $_SERVER['APP_DEBUG']) ? 'Server error:'.$exception->getMessage() : '';
+
             return JsonResponse::create(
                 $message,
                 Response::HTTP_INTERNAL_SERVER_ERROR
@@ -58,14 +56,12 @@ abstract class AppController
     }
 
     /**
-     * @param string $content
-     * @return array|null
      * @throws InvalidDataException | Exception
      */
     private function evalCall(string $content): ?array
     {
-        if ($content === 'TEST_SHOULD_FAIL_WITH_500_EXCEPTION') {
-            throw new Exception("TEST_SHOULD_FAIL_WITH_500_EXCEPTION", 500);
+        if ('TEST_SHOULD_FAIL_WITH_500_EXCEPTION' === $content) {
+            throw new Exception('TEST_SHOULD_FAIL_WITH_500_EXCEPTION', 500);
         }
 
         $data = json_decode($content, true);
@@ -79,8 +75,8 @@ abstract class AppController
 
     /**
      * @param $data
+     *
      * @throws ApplicationException | DomainException
-     * @return array|null
      */
-    public abstract function handleRequest($data): ?array;
+    abstract public function handleRequest($data): ?array;
 }

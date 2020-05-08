@@ -7,7 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 class DomainExceptionForTest extends DomainException
 {
-
 }
 
 class DomainExceptionTest extends TestCase

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Shared\Domain\Specifications;
 
@@ -17,16 +19,13 @@ class StringSpecificationChain extends SpecificationChain
     }
 
     /**
-     * @param string $data
-     * @return bool
      * @throws ReflectionException
      */
     final public function evalSpecifications(string $data): bool
     {
         $result = $this->returnFalseIfNoSpecifications();
 
-        foreach ($this->specifications as $specification)
-        {
+        foreach ($this->specifications as $specification) {
             $isSatisfied = $specification->isSatisfiedBy($data);
             $this->processSpecificationResult($isSatisfied, $specification);
             $result = $this->updateResult($result, $isSatisfied);

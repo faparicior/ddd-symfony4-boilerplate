@@ -49,7 +49,8 @@ class SignUpUserControllerTest extends TestCase
         $userRepository = new InMemoryUserRepository();
 
         $signUpUserCommandHandler = new SignUpUserCommandHandler(
-            $uniqueUuidProviderService, $userRepository,
+            $uniqueUuidProviderService,
+            $userRepository,
             UserSpecificationChain::build(...[
                 UserEmailIsUnique::build($userRepository),
                 UserNameIsUnique::build($userRepository)

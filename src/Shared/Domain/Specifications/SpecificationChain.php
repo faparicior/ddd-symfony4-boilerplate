@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Shared\Domain\Specifications;
 
@@ -11,25 +13,22 @@ abstract class SpecificationChain implements SpecificationChainInterface
     protected array $specificationChainResult = [];
 
     /**
-     * @param bool $isSatisfied
-     * @param SpecificationInterface $specification
      * @throws ReflectionException
      */
     final protected function processSpecificationResult(bool $isSatisfied, SpecificationInterface $specification)
     {
         $message = '';
 
-        if (!$isSatisfied){
+        if (!$isSatisfied) {
             $message = $specification->getFailedMessage();
         }
 
         $this->specificationChainResult = array_merge(
             $this->specificationChainResult,
-            [(new ReflectionClass($specification))->getShortName() =>
-                [
+            [(new ReflectionClass($specification))->getShortName() => [
                     'value' => $isSatisfied,
-                    'message' => $message
-                ]
+                    'message' => $message,
+                ],
             ]
         );
     }
@@ -43,29 +42,20 @@ abstract class SpecificationChain implements SpecificationChainInterface
     {
         $failedResults = [];
 
-        foreach ($this->specificationChainResult as $key => $specificationResult)
-        {
-            if(!$specificationResult['value']) {
-                $failedResults = array_merge($failedResults , [$key => $specificationResult['message']]);
+        foreach ($this->specificationChainResult as $key => $specificationResult) {
+            if (!$specificationResult['value']) {
+                $failedResults = array_merge($failedResults, [$key => $specificationResult['message']]);
             }
         }
 
         return $failedResults;
     }
 
-    /**
-     * @return bool
-     */
     final protected function returnFalseIfNoSpecifications(): bool
     {
         return count($this->specifications) > 0;
     }
 
-    /**
-     * @param bool $result
-     * @param bool $isSatisfied
-     * @return bool
-     */
     protected function updateResult(bool $result, bool $isSatisfied): bool
     {
         if (!$isSatisfied || !$result) {

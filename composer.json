@@ -30,6 +30,9 @@
         "behat/mink-selenium2-driver": "^1.3",
         "doctrine/doctrine-fixtures-bundle": "^3.3",
         "friends-of-behat/symfony-extension": "^2.0",
+        "friendsofphp/php-cs-fixer": "^2.16",
+        "phpmd/phpmd": "^2.8",
+        "squizlabs/php_codesniffer": "*",
         "symfony/maker-bundle": "^1.13",
         "symfony/test-pack": "^1.0"
     },

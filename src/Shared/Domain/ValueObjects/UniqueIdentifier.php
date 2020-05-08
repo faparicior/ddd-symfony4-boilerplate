@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Shared\Domain\ValueObjects;
 
@@ -10,7 +12,7 @@ use Ramsey\Uuid\UuidInterface;
 
 abstract class UniqueIdentifier
 {
-    const UUID4_PATTERN = "/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/";
+    const UUID4_PATTERN = '/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/';
 
     private UuidInterface $uuid;
 
@@ -28,8 +30,8 @@ abstract class UniqueIdentifier
     }
 
     /**
-     * @param string $uuid
      * @return UniqueIdentifier
+     *
      * @throws DomainException
      */
     public static function fromString(string $uuid): self

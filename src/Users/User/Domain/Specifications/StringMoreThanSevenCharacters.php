@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Users\User\Domain\Specifications;
 
@@ -11,7 +13,6 @@ class StringMoreThanSevenCharacters implements StringSpecificationInterface
 
     private function __construct()
     {
-
     }
 
     public static function build()

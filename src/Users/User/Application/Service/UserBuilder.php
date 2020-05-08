@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Users\User\Application\Service;
 
@@ -15,12 +17,6 @@ use ReflectionException;
 final class UserBuilder
 {
     /**
-     * @param UserId $userId
-     * @param UserName $userName
-     * @param Email $email
-     * @param Password $password
-     * @param UserSpecificationChain $userSpecifications
-     * @return User
      * @throws DomainException
      * @throws UserInvalidException
      * @throws ReflectionException

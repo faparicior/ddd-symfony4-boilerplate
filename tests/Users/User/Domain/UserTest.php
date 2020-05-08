@@ -90,7 +90,6 @@ class UserTest extends TestCase
      */
     public function testUserCanReturnErrorWithSpecification()
     {
-
         self::expectException(UserInvalidException::class);
         self::expectExceptionMessage('User identification is in use, User email is in use');
 

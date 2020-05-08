@@ -1,17 +1,19 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Users\User\Infrastructure\Persistence\Mappings\Types;
 
 use App\Shared\Domain\Exceptions\DomainException;
 use App\Users\User\Domain\Exceptions\UserNameInvalidByPolicyRulesException;
 use App\Users\User\Domain\ValueObjects\UserName;
-use Doctrine\DBAL\Types\Type;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
+use Doctrine\DBAL\Types\Type;
 use ReflectionException;
 
 class UserNameType extends Type
 {
-    public const MY_TYPE = "UserName";
+    public const MY_TYPE = 'UserName';
 
     public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
     {
@@ -25,8 +27,9 @@ class UserNameType extends Type
 
     /**
      * @param mixed $value
-     * @param AbstractPlatform $platform
+     *
      * @return mixed
+     *
      * @throws DomainException
      * @throws UserNameInvalidByPolicyRulesException
      * @throws ReflectionException

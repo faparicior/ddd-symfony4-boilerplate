@@ -1,15 +1,17 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Users\User\Infrastructure\Persistence\Mappings\Types;
 
 use App\Users\User\Domain\ValueObjects\UserId;
-use Doctrine\DBAL\Types\Type;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
+use Doctrine\DBAL\Types\Type;
 use Exception;
 
 class UserIdType extends Type
 {
-    public const MY_TYPE = "UserId";
+    public const MY_TYPE = 'UserId';
 
     public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
     {
@@ -23,8 +25,9 @@ class UserIdType extends Type
 
     /**
      * @param mixed $value
-     * @param AbstractPlatform $platform
+     *
      * @return mixed
+     *
      * @throws Exception
      */
     public function convertToPHPValue($value, AbstractPlatform $platform)

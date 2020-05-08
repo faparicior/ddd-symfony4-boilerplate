@@ -5,8 +5,8 @@ namespace App\Tests\Shared\Domain\ValueObjects;
 use App\Shared\Domain\ValueObjects\IntegerValue;
 use PHPUnit\Framework\TestCase;
 
-class IntegerForTest extends IntegerValue {
-
+class IntegerForTest extends IntegerValue
+{
 }
 
 class IntegerValueTest extends TestCase

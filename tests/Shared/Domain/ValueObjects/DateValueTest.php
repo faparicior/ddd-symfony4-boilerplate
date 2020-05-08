@@ -5,8 +5,8 @@ namespace App\Tests\Shared\Domain\ValueObjects;
 use App\Shared\Domain\ValueObjects\DateValue;
 use PHPUnit\Framework\TestCase;
 
-class DateValueForTest extends DateValue {
-
+class DateValueForTest extends DateValue
+{
 }
 
 class DateValueTest extends TestCase

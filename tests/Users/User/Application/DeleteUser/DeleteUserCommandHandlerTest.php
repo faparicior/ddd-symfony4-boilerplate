@@ -79,7 +79,6 @@ class DeleteUserCommandHandlerTest extends TestCase
 
         $command = DeleteUserCommand::build(self::NON_EXISTENT_EMAIL);
         $this->handleCommand($command);
-
     }
 
     /**

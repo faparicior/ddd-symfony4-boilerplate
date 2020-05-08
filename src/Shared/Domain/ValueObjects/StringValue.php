@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Shared\Domain\ValueObjects;
 
@@ -14,8 +16,7 @@ abstract class StringValue
 
     /**
      * StringValue constructor.
-     * @param string $value
-     * @param StringSpecificationChain|null $specificationChain
+     *
      * @throws InvalidStringException
      * @throws DomainException
      * @throws ReflectionException
@@ -29,8 +30,8 @@ abstract class StringValue
     }
 
     /**
-     * @param string $value
      * @return StringValue
+     *
      * @throws InvalidStringException
      * @throws DomainException
      * @throws ReflectionException
@@ -62,10 +63,10 @@ abstract class StringValue
      */
     final private function guard()
     {
-        if(isset($this->specificationChain)) {
+        if (isset($this->specificationChain)) {
             $isValid = $this->specificationChain->evalSpecifications($this->value);
 
-            if(!$isValid) {
+            if (!$isValid) {
                 throw InvalidStringException::build();
             }
         }

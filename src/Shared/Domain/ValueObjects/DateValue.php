@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Shared\Domain\ValueObjects;
 
@@ -11,8 +13,8 @@ abstract class DateValue
 
     /**
      * Date constructor.
+     *
      * @param string $date
-     * @param string $timezone
      */
     final private function __construct(?string $date, string $timezone)
     {
@@ -21,8 +23,6 @@ abstract class DateValue
     }
 
     /**
-     * @param string $date
-     * @param string $timezone
      * @return DateValue
      */
     final public static function build(string $date, string $timezone = 'UTC'): self

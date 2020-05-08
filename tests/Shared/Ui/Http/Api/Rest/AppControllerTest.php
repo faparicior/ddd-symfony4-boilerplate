@@ -22,7 +22,6 @@ class DummyAppController extends AppController
 
 class DummyException extends DomainException
 {
-
 }
 
 class AppControllerTest extends TestCase
@@ -84,7 +83,7 @@ class AppControllerTest extends TestCase
         $response = $controller->execute($request);
 
         self::assertEquals(500, $response->getStatusCode());
-        if($_SERVER['APP_DEBUG'] === '1') {
+        if ($_SERVER['APP_DEBUG'] === '1') {
             self::assertEquals('"Server error:TEST_SHOULD_FAIL_WITH_500_EXCEPTION"', $response->getContent());
         } else {
             self::assertEquals('""', $response->getContent());

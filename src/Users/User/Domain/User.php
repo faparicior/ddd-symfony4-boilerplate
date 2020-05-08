@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Users\User\Domain;
 
@@ -27,12 +29,8 @@ final class User
     }
 
     /**
-     * @param UserId $userId
-     * @param UserName $userName
-     * @param Email $email
-     * @param Password $password
-     * @param UserSpecificationChain $specificationChain
      * @return static
+     *
      * @throws DomainException
      * @throws ReflectionException
      * @throws UserInvalidException
@@ -47,8 +45,8 @@ final class User
     }
 
     /**
-     * @param UserSpecificationChain $specificationChain
      * @param $user
+     *
      * @throws DomainException
      * @throws UserInvalidException;
      * @throws ReflectionException
@@ -60,7 +58,7 @@ final class User
 
             if (!$isValid) {
                 $specificationsFailed = $specificationChain->getFailedResults();
-                throw UserInvalidException::build(implode(', ',$specificationsFailed));
+                throw UserInvalidException::build(implode(', ', $specificationsFailed));
             }
         }
     }

@@ -31,5 +31,4 @@ class EmailTest extends TestCase
         self::assertInstanceOf(Email::class, $email);
         self::assertEquals('test@test.de', $email->value());
     }
-
 }

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Shared\Infrastructure\Services;
 
@@ -15,7 +17,6 @@ final class UniqueIdProvider implements UniqueIdProviderInterface
     }
 
     /**
-     * @return string
      * @throws Exception
      */
     public function generate(): string

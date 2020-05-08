@@ -1,19 +1,19 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Users\User\Infrastructure\Persistence\Mappings\Types;
 
 use App\Shared\Domain\Exceptions\DomainException;
 use App\Users\User\Domain\Exceptions\PasswordInvalidByPolicyRulesException;
-use App\Users\User\Domain\Exceptions\UserNameInvalidByPolicyRulesException;
 use App\Users\User\Domain\ValueObjects\Password;
-use App\Users\User\Domain\ValueObjects\UserName;
-use Doctrine\DBAL\Types\Type;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
+use Doctrine\DBAL\Types\Type;
 use ReflectionException;
 
 class PasswordType extends Type
 {
-    public const MY_TYPE = "Password";
+    public const MY_TYPE = 'Password';
 
     public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
     {
@@ -27,8 +27,9 @@ class PasswordType extends Type
 
     /**
      * @param mixed $value
-     * @param AbstractPlatform $platform
+     *
      * @return mixed
+     *
      * @throws DomainException
      * @throws ReflectionException
      * @throws PasswordInvalidByPolicyRulesException

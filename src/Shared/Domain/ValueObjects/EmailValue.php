@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Shared\Domain\ValueObjects;
 
@@ -15,8 +17,8 @@ abstract class EmailValue
     }
 
     /**
-     * @param string $email
      * @return static
+     *
      * @throws DomainException
      * @throws InvalidEmailException
      */

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Users\User\Domain\ValueObjects;
 
@@ -12,11 +14,11 @@ use ReflectionException;
 
 class UserName extends StringValue
 {
-    public const INVALID_BY_POLICY_RULES = "Username invalid by policy rules";
+    public const INVALID_BY_POLICY_RULES = 'Username invalid by policy rules';
 
     /**
-     * @param string $value
      * @return UserName
+     *
      * @throws DomainException
      * @throws ReflectionException
      * @throws UserNameInvalidByPolicyRulesException
@@ -25,8 +27,7 @@ class UserName extends StringValue
     {
         try {
             $userName = new static($value, self::specificationChain());
-        } catch (InvalidStringException $exception)
-        {
+        } catch (InvalidStringException $exception) {
             throw UserNameInvalidByPolicyRulesException::build(self::INVALID_BY_POLICY_RULES);
         }
 

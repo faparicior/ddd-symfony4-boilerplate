@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Users\User\Infrastructure\Persistence;
 
@@ -25,8 +27,7 @@ final class InMemoryUserRepository implements UserRepositoryInterface
     public function delete(User $user): void
     {
         $userToDelete = $this->usersTable[$user->userId()->value()];
-        if ($userToDelete !== null)
-        {
+        if (null !== $userToDelete) {
             unset($this->usersTable[$user->userId()->value()]);
         }
     }
@@ -39,10 +40,8 @@ final class InMemoryUserRepository implements UserRepositoryInterface
     public function findByName(UserName $userName): ?User
     {
         /** @var User $user */
-        foreach ($this->usersTable as $user)
-        {
-            if($userName->equals($user->username()))
-            {
+        foreach ($this->usersTable as $user) {
+            if ($userName->equals($user->username())) {
                 return $user;
             }
         }
@@ -53,10 +52,8 @@ final class InMemoryUserRepository implements UserRepositoryInterface
     public function findByEmail(Email $email): ?User
     {
         /** @var User $user */
-        foreach ($this->usersTable as $user)
-        {
-            if($email->equals($user->email()))
-            {
+        foreach ($this->usersTable as $user) {
+            if ($email->equals($user->email())) {
                 return $user;
             }
         }

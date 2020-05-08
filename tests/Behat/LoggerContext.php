@@ -46,7 +46,7 @@ final class LoggerContext implements Context
         ContainerAwareLoader $containerAwareLoader,
         ORMExecutor $executor,
         ORMPurger $purger
-    ){
+    ) {
         $this->kernel = $kernel;
         $this->environment = $environment;
         $this->containerAwareLoader = $containerAwareLoader;
@@ -65,8 +65,7 @@ final class LoggerContext implements Context
     {
         $fileContent = file_get_contents($this->logFile);
 
-        if (strpos($fileContent, $text) === false)
-        {
+        if (strpos($fileContent, $text) === false) {
             throw new \RuntimeException('Log string not found');
         }
     }
@@ -80,7 +79,6 @@ final class LoggerContext implements Context
 //        ob_flush();
         if (file_exists($this->logFile)) {
             unlink($this->logFile);
-
         }
     }
 }

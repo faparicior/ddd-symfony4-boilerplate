@@ -8,7 +8,6 @@ use PHPUnit\Framework\TestCase;
 
 class EmailValueForTest extends EmailValue
 {
-
 }
 
 class EmailTest extends TestCase

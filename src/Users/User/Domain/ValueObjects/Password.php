@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Users\User\Domain\ValueObjects;
 
@@ -13,8 +15,8 @@ use ReflectionException;
 class Password extends StringValue
 {
     /**
-     * @param string $value
      * @return StringValue|Password
+     *
      * @throws DomainException
      * @throws PasswordInvalidByPolicyRulesException
      * @throws ReflectionException
@@ -23,8 +25,7 @@ class Password extends StringValue
     {
         try {
             $password = new static($value, self::specificationChain());
-        } catch (InvalidStringException $exception)
-        {
+        } catch (InvalidStringException $exception) {
             throw PasswordInvalidByPolicyRulesException::build();
         }
 

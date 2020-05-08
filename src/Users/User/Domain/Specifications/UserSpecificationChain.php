@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Users\User\Domain\Specifications;
 
@@ -19,16 +21,13 @@ final class UserSpecificationChain extends SpecificationChain
     }
 
     /**
-     * @param User $user
-     * @return bool
      * @throws ReflectionException
      */
     final public function evalSpecifications(User $user): bool
     {
         $result = $this->returnFalseIfNoSpecifications();
 
-        foreach ($this->specifications as $specification)
-        {
+        foreach ($this->specifications as $specification) {
             $isSatisfied = $specification->isSatisfiedBy($user);
             $this->processSpecificationResult($isSatisfied, $specification);
             $result = $this->updateResult($result, $isSatisfied);

@@ -7,7 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 class StringForTest extends StringValue
 {
-
 }
 
 class StringValueTest extends TestCase

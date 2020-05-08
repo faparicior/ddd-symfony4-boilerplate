@@ -79,7 +79,7 @@ final class ApiContext implements Context
 
         $object = json_decode($this->response->getContent());
 
-        if($object === null) {
+        if ($object === null) {
             throw new \RuntimeException('No valid JSON in content response');
         }
     }
@@ -121,8 +121,7 @@ final class ApiContext implements Context
         $object = json_decode($this->response->getContent());
         $objectExpected = json_decode($dataExpected->getRaw());
 
-        if($objectExpected != $object)
-        {
+        if ($objectExpected != $object) {
             throw new \RuntimeException('Unexpected Json in response');
         }
     }
@@ -138,8 +137,7 @@ final class ApiContext implements Context
     {
         $content = $this->response->getContent();
 
-        if($content !== (string) $this->fixStepArgument($text))
-        {
+        if ($content !== (string) $this->fixStepArgument($text)) {
             throw new \RuntimeException('Unexpected response '. $content . 'instead '. $text);
         }
     }
@@ -157,8 +155,7 @@ final class ApiContext implements Context
 
         $result = $this->endsWith($content, $this->removeNewLinesInString($text));
 
-        if(!$result)
-        {
+        if (!$result) {
             throw new \RuntimeException('Unexpected response '. $content . 'instead '. $text);
         }
     }

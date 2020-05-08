@@ -7,7 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 class DummyApplicationException extends ApplicationException
 {
-
 }
 
 class ApplicationExceptionTest extends TestCase

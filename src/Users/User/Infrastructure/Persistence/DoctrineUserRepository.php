@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Users\User\Infrastructure\Persistence;
 
@@ -21,7 +23,6 @@ final class DoctrineUserRepository extends EntityRepository implements UserRepos
     }
 
     /**
-     * @param User $user
      * @throws ORMException
      */
     public function create(User $user): void
@@ -32,21 +33,21 @@ final class DoctrineUserRepository extends EntityRepository implements UserRepos
     public function findById(UserId $userId): ?User
     {
         return $this->_em->getRepository(self::CLASS_NAME)->findOneBy([
-            'userId' => $userId
+            'userId' => $userId,
         ]);
     }
 
     public function findByName(UserName $userName): ?User
     {
         return $this->_em->getRepository(self::CLASS_NAME)->findOneBy([
-            'username' => $userName
+            'username' => $userName,
         ]);
     }
 
     public function findByEmail(Email $email): ?User
     {
         return $this->_em->getRepository(self::CLASS_NAME)->findOneBy([
-            'email' => $email
+            'email' => $email,
         ]);
     }
 
