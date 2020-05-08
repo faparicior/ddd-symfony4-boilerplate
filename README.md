@@ -1,3 +1,6 @@
+## Documentation
+[Documentation about the application](https://fapariciorteam.gitlab.io/ddd-symfony4-boilerplate/)
+
 ## Scrutinizer
 [![Build Status](https://scrutinizer-ci.com/g/faparicior/ddd-symfony4-boilerplate/badges/build.png?b=master)](https://scrutinizer-ci.com/g/faparicior/ddd-symfony4-boilerplate/build-status/master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/faparicior/ddd-symfony4-boilerplate/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/faparicior/ddd-symfony4-boilerplate/?branch=master)

@@ -22,11 +22,11 @@ business_rules: ["User is the same as logged"]
 ---
 
 ##### {{<responses code="200">}}  There's a user that matches with the given email and has been deleted
+
+##### {{<responses code="400">}} Invalid email supplied
 ```json
 "User not found"
 ```
-
-##### {{<responses code="400">}} Invalid email supplied
 
 ### User interface
 ---
