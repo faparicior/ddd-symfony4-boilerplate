@@ -77,5 +77,10 @@ abstract class AppController
         return $this->handleRequest($data);
     }
 
+    /**
+     * @param $data
+     * @throws ApplicationException | DomainException
+     * @return array|null
+     */
     public abstract function handleRequest($data): ?array;
 }
