@@ -6,8 +6,8 @@ use App\Shared\Application\Exceptions\ApplicationException;
 use App\Shared\Domain\Exceptions\DomainException;
 use App\Shared\Ui\Http\Api\Rest\Exceptions\InvalidDataException;
 use App\Shared\Ui\Http\Api\Rest\Exceptions\UiException;
+use Exception;
 use League\Tactician\CommandBus;
-use PHPUnit\Runner\Exception;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -60,12 +60,12 @@ abstract class AppController
     /**
      * @param string $content
      * @return array|null
-     * @throws InvalidDataException | \Exception
+     * @throws InvalidDataException | Exception
      */
     private function evalCall(string $content): ?array
     {
         if ($content === 'TEST_SHOULD_FAIL_WITH_500_EXCEPTION') {
-            throw new \Exception("TEST_SHOULD_FAIL_WITH_500_EXCEPTION", 500);
+            throw new Exception("TEST_SHOULD_FAIL_WITH_500_EXCEPTION", 500);
         }
 
         $data = json_decode($content, true);
