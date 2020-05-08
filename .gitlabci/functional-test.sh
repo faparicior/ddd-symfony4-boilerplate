@@ -2,8 +2,8 @@
 
 export APP_ENV=test
 
-ls /var/www/html
-ls /var/www/html/public
+pwd
+ls -al .
 
 ./node_modules/.bin/cypress run --headless --spec "cypress/integration/Users/User.js"
 
