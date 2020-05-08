@@ -23,3 +23,8 @@
 ###> Node
 node_modules
 ###< Node
+
+###> cypress
+cypress/screenshots
+cypress/videos
+###< cypress

@@ -129,7 +129,6 @@ context('Actions', () => {
         })
             .then((resp) => {
                 expect(resp.status).to.eq(200)
-                console.log(resp.body);
                 expect(resp.body).to.eql({})
             })
     })

@@ -46,6 +46,8 @@ test:
         paths:
             - build
             - doc/hugo/public
+            - cypress/videos
+            - cypress/screenshots
         expire_in: 1 hour
 
 pages:
