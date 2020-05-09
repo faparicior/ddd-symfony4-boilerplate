@@ -13,13 +13,16 @@ chown -R www-data:www-data /var/www/html
 echo "# apache"
 apachectl restart
 
-cd /var/www/html
+#cd /var/www/html
 rm -rf node_modules/cypress
 npm install
 
 ./node_modules/.bin/cypress run --headless --spec "cypress/integration/Users/User.js"
 cd cypress/results
 npx marge mochawesome.json
+
+#mv cypress/results /builds/fapariciorteam/ddd-symfony4-boilerplate/cypress
+#mv cypress/videos /builds/fapariciorteam/ddd-symfony4-boilerplate/cypress
 
 #export APP_ENV=behat
 #./bin/behat

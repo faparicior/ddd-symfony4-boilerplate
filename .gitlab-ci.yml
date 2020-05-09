@@ -67,9 +67,9 @@ functional test:
         - if: $CI_MERGE_REQUEST_ID
     artifacts:
         paths:
-            - /var/www/html/cypress/videos
-            - /var/www/html/cypress/screenshots
-            - /var/www/html/cypress/results
+            - cypress/videos
+            - cypress/screenshots
+            - cypress/results
         when: always
         expire_in: 1 hour
 
