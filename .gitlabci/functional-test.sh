@@ -12,7 +12,6 @@ ls -al /var/www/html
 chown -R www-data:www-data /var/www/html
 echo "# apache"
 apachectl restart
-apachectl status
 
 cd /var/www/html
 rm -rf node_modules/cypress
