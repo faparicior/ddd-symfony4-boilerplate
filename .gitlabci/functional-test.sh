@@ -18,6 +18,8 @@ rm -rf node_modules/cypress
 npm install
 
 ./node_modules/.bin/cypress run --headless --spec "cypress/integration/Users/User.js"
+cd cypress/results
+npx marge mochawesome.json
 
 #export APP_ENV=behat
 #./bin/behat

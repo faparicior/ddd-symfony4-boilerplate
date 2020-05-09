@@ -27,6 +27,7 @@ node_modules
 ###> cypress
 cypress/screenshots
 cypress/videos
+cypress/results
 ###< cypress
 ###> squizlabs/php_codesniffer ###
 /.phpcs-cache

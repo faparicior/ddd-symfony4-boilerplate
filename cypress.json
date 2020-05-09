@@ -1,3 +1,10 @@
 {
-  "baseUrl": "http://127.0.0.1"
+  "baseUrl": "http://127.0.0.1",
+  "reporter": "mochawesome",
+  "reporterOptions": {
+    "reportDir": "cypress/results",
+    "overwrite": false,
+    "html": false,
+    "json": true
+  }
 }
