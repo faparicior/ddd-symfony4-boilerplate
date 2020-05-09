@@ -1,7 +1,12 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Tests\Users\User\Domain\Specifications;
 
+use App\Shared\Domain\Exceptions\DomainException;
+use App\Users\User\Domain\Exceptions\PasswordInvalidByPolicyRulesException;
+use App\Users\User\Domain\Exceptions\UserNameInvalidByPolicyRulesException;
 use App\Users\User\Domain\Specifications\UserEmailIsUnique;
 use App\Users\User\Domain\Specifications\UserNameIsUnique;
 use App\Users\User\Domain\Specifications\UserSpecificationChain;
@@ -13,6 +18,7 @@ use App\Users\User\Domain\ValueObjects\UserId;
 use App\Users\User\Domain\ValueObjects\UserName;
 use App\Users\User\Infrastructure\Persistence\InMemoryUserRepository;
 use PHPUnit\Framework\TestCase;
+use ReflectionException;
 
 class UserNameIsUniqueTest extends TestCase
 {
@@ -38,9 +44,9 @@ class UserNameIsUniqueTest extends TestCase
     }
 
     /**
-     * @throws \App\Shared\Domain\Exceptions\DomainException
-     * @throws \App\Users\User\Domain\Exceptions\PasswordInvalidByPolicyRulesException
-     * @throws \App\Users\User\Domain\Exceptions\UserNameInvalidByPolicyRulesException
+     * @throws DomainException
+     * @throws PasswordInvalidByPolicyRulesException
+     * @throws UserNameInvalidByPolicyRulesException
      */
     public function testUsernameExistsReturnsTrueIfNotExistsInDatabase()
     {
@@ -50,7 +56,7 @@ class UserNameIsUniqueTest extends TestCase
             Email::build('test@test.de'),
             Password::build('123456789'),
             UserSpecificationChain::build(...[
-                UserNameIsUnique::build($this->userRepository)
+                UserNameIsUnique::build($this->userRepository),
             ])
         );
 
@@ -64,18 +70,17 @@ class UserNameIsUniqueTest extends TestCase
             Email::build('test2@test.de'),
             Password::build('123456789'),
             UserSpecificationChain::build(...[
-                UserNameIsUnique::build($this->userRepository)
+                UserNameIsUnique::build($this->userRepository),
             ])
         );
 
         self::assertTrue($specification->isSatisfiedBy($userNew));
     }
 
-
     /**
-     * @throws \App\Shared\Domain\Exceptions\DomainException
-     * @throws \App\Users\User\Domain\Exceptions\PasswordInvalidByPolicyRulesException
-     * @throws \App\Users\User\Domain\Exceptions\UserNameInvalidByPolicyRulesException
+     * @throws DomainException
+     * @throws PasswordInvalidByPolicyRulesException
+     * @throws UserNameInvalidByPolicyRulesException|ReflectionException
      */
     public function testUsernameExistsReturnsFalseIfExistsInDatabase()
     {
@@ -85,7 +90,7 @@ class UserNameIsUniqueTest extends TestCase
             Email::build('test@test.de'),
             Password::build('123456789'),
             UserSpecificationChain::build(...[
-                UserNameIsUnique::build($this->userRepository)
+                UserNameIsUnique::build($this->userRepository),
             ])
         );
 
@@ -97,7 +102,7 @@ class UserNameIsUniqueTest extends TestCase
             Email::build('test2@test.de'),
             Password::build('123456789'),
             UserSpecificationChain::build(...[
-                UserEmailIsUnique::build($this->userRepository)
+                UserEmailIsUnique::build($this->userRepository),
             ])
         );
 

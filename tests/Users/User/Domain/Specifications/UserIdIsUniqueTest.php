@@ -1,10 +1,14 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Tests\Users\User\Domain\Specifications;
 
+use App\Shared\Domain\Exceptions\DomainException;
+use App\Users\User\Domain\Exceptions\PasswordInvalidByPolicyRulesException;
+use App\Users\User\Domain\Exceptions\UserNameInvalidByPolicyRulesException;
 use App\Users\User\Domain\Specifications\UserEmailIsUnique;
 use App\Users\User\Domain\Specifications\UserIdIsUnique;
-use App\Users\User\Domain\Specifications\UserNameIsUnique;
 use App\Users\User\Domain\Specifications\UserSpecificationChain;
 use App\Users\User\Domain\User;
 use App\Users\User\Domain\UserRepositoryInterface;
@@ -14,6 +18,7 @@ use App\Users\User\Domain\ValueObjects\UserId;
 use App\Users\User\Domain\ValueObjects\UserName;
 use App\Users\User\Infrastructure\Persistence\InMemoryUserRepository;
 use PHPUnit\Framework\TestCase;
+use ReflectionException;
 
 class UserIdIsUniqueTest extends TestCase
 {
@@ -36,9 +41,9 @@ class UserIdIsUniqueTest extends TestCase
     }
 
     /**
-     * @throws \App\Shared\Domain\Exceptions\DomainException
-     * @throws \App\Users\User\Domain\Exceptions\PasswordInvalidByPolicyRulesException
-     * @throws \App\Users\User\Domain\Exceptions\UserNameInvalidByPolicyRulesException
+     * @throws DomainException
+     * @throws PasswordInvalidByPolicyRulesException
+     * @throws UserNameInvalidByPolicyRulesException|ReflectionException
      */
     public function testUserIdExistsReturnsTrueIfNotExistsInDatabase()
     {
@@ -48,7 +53,7 @@ class UserIdIsUniqueTest extends TestCase
             Email::build('test@test.de'),
             Password::build('123456789'),
             UserSpecificationChain::build(...[
-                UserIdIsUnique::build($this->userRepository)
+                UserIdIsUnique::build($this->userRepository),
             ])
         );
 
@@ -60,7 +65,7 @@ class UserIdIsUniqueTest extends TestCase
             Email::build('test2@test.de'),
             Password::build('123456789'),
             UserSpecificationChain::build(...[
-                UserEmailIsUnique::build($this->userRepository)
+                UserEmailIsUnique::build($this->userRepository),
             ])
         );
 
@@ -70,9 +75,9 @@ class UserIdIsUniqueTest extends TestCase
     }
 
     /**
-     * @throws \App\Shared\Domain\Exceptions\DomainException
-     * @throws \App\Users\User\Domain\Exceptions\PasswordInvalidByPolicyRulesException
-     * @throws \App\Users\User\Domain\Exceptions\UserNameInvalidByPolicyRulesException
+     * @throws DomainException
+     * @throws PasswordInvalidByPolicyRulesException
+     * @throws UserNameInvalidByPolicyRulesException|ReflectionException
      */
     public function testUserIdExistsReturnsFalseIfExistsInDatabase()
     {
@@ -82,7 +87,7 @@ class UserIdIsUniqueTest extends TestCase
             Email::build('test@test.de'),
             Password::build('123456789'),
             UserSpecificationChain::build(...[
-                UserIdIsUnique::build($this->userRepository)
+                UserIdIsUnique::build($this->userRepository),
             ])
         );
 

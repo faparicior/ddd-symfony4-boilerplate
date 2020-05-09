@@ -1,7 +1,10 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Tests\Users\User\Application\SignUpUser;
 
+use App\Shared\Domain\Exceptions\DomainException;
 use App\Users\User\Application\Service\UserBuilder;
 use App\Users\User\Domain\Specifications\UserEmailIsUnique;
 use App\Users\User\Domain\Specifications\UserNameIsUnique;
@@ -12,6 +15,7 @@ use App\Users\User\Domain\ValueObjects\UserId;
 use App\Users\User\Domain\ValueObjects\UserName;
 use App\Users\User\Infrastructure\Persistence\InMemoryUserRepository;
 use PHPUnit\Framework\TestCase;
+use ReflectionException;
 
 class UserBuilderTest extends TestCase
 {
@@ -20,8 +24,7 @@ class UserBuilderTest extends TestCase
     private const EMAIL = 'test@test.de';
     private const PASSWORD = 'userpass';
 
-    /** @var InMemoryUserRepository */
-    private $userRepository;
+    private InMemoryUserRepository $userRepository;
 
     public function setUp()
     {
@@ -34,7 +37,8 @@ class UserBuilderTest extends TestCase
      * @group UnitTests
      * @group Users
      * @group Application
-     * @throws \App\Shared\Domain\Exceptions\DomainException
+     *
+     * @throws DomainException|ReflectionException
      */
     public function testUserBuilderCanCreateAnUser()
     {
@@ -45,7 +49,7 @@ class UserBuilderTest extends TestCase
             Password::build(self::PASSWORD),
             UserSpecificationChain::build(...[
                 UserNameIsUnique::build($this->userRepository),
-                UserEmailIsUnique::build($this->userRepository)
+                UserEmailIsUnique::build($this->userRepository),
             ])
         );
 

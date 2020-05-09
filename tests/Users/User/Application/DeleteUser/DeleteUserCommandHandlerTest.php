@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Tests\Users\User\Application\DeleteUser;
 
@@ -44,6 +46,7 @@ class DeleteUserCommandHandlerTest extends TestCase
      * @group UnitTests
      * @group Users
      * @group Application
+     *
      * @throws Exception
      */
     public function testDeleteUserCommandHandlerReturnsAValidResponse()
@@ -59,6 +62,7 @@ class DeleteUserCommandHandlerTest extends TestCase
      * @group UnitTests
      * @group Users
      * @group Application
+     *
      * @throws Exception
      */
     public function testDeleteUserCommandHandlerDeleteTheUser()
@@ -83,7 +87,9 @@ class DeleteUserCommandHandlerTest extends TestCase
 
     /**
      * @param $command
+     *
      * @return bool
+     *
      * @throws Exception|UserNotFoundException
      */
     private function handleCommand($command)

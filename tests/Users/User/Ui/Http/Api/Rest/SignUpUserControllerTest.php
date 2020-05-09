@@ -1,23 +1,23 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Tests\Users\User\Ui\Http\Api\Rest;
 
-use App\Shared\Domain\Exceptions\InvalidEmailException;
 use App\Shared\Infrastructure\Services\UniqueIdProviderStub;
 use App\Users\User\Application\SignUpUser\SignUpUserCommand;
 use App\Users\User\Application\SignUpUser\SignUpUserCommandHandler;
 use App\Users\User\Domain\Specifications\UserEmailIsUnique;
 use App\Users\User\Domain\Specifications\UserNameIsUnique;
 use App\Users\User\Domain\Specifications\UserSpecificationChain;
-use App\Users\User\Domain\ValueObjects\UserName;
 use App\Users\User\Infrastructure\Persistence\InMemoryUserRepository;
 use App\Users\User\Ui\Http\Api\Rest\SignUpUserController;
 use League\Tactician\CommandBus;
 use League\Tactician\Setup\QuickStart;
 use Monolog\Handler\TestHandler;
 use Monolog\Logger;
-use Ramsey\Uuid\UuidFactory;
 use PHPUnit\Framework\TestCase;
+use Ramsey\Uuid\UuidFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -53,7 +53,7 @@ class SignUpUserControllerTest extends TestCase
             $userRepository,
             UserSpecificationChain::build(...[
                 UserEmailIsUnique::build($userRepository),
-                UserNameIsUnique::build($userRepository)
+                UserNameIsUnique::build($userRepository),
             ])
         );
 
@@ -72,9 +72,9 @@ class SignUpUserControllerTest extends TestCase
     public function testUserCanSignUp()
     {
         $data = json_encode([
-            "userName" => self::USERNAME,
-            "email" => self::EMAIL,
-            "password" => self::PASSWORD
+            'userName' => self::USERNAME,
+            'email' => self::EMAIL,
+            'password' => self::PASSWORD,
         ]);
 
         $request = Request::create('/users', 'POST', [], [], [], [], $data);
@@ -84,10 +84,10 @@ class SignUpUserControllerTest extends TestCase
         $response = $controller->execute($request);
 
         $expectedResponse = json_encode([
-            "id" => self::USER_UUID,
-            "userName" => self::USERNAME,
-            "email" => self::EMAIL,
-            "password" => self::PASSWORD
+            'id' => self::USER_UUID,
+            'userName' => self::USERNAME,
+            'email' => self::EMAIL,
+            'password' => self::PASSWORD,
         ]);
 
         self::assertJsonStringEqualsJsonString($expectedResponse, $response->getContent());
@@ -102,9 +102,9 @@ class SignUpUserControllerTest extends TestCase
     public function testUserWithIncorrectEmailCannotSignUp()
     {
         $data = json_encode([
-            "userName" => self::USERNAME,
-            "email" => self::BAD_EMAIL,
-            "password" => self::PASSWORD
+            'userName' => self::USERNAME,
+            'email' => self::BAD_EMAIL,
+            'password' => self::PASSWORD,
         ]);
 
         $request = Request::create('/users', 'POST', [], [], [], [], $data);
@@ -124,9 +124,9 @@ class SignUpUserControllerTest extends TestCase
     public function testUserWithEmptyPasswordCannotSignUp()
     {
         $data = json_encode([
-            "userName" => self::USERNAME,
-            "email" => self::EMAIL,
-            "password" => ''
+            'userName' => self::USERNAME,
+            'email' => self::EMAIL,
+            'password' => '',
         ]);
 
         $request = Request::create('/users', 'POST', [], [], [], [], $data);
@@ -146,9 +146,9 @@ class SignUpUserControllerTest extends TestCase
     public function testUserWithEmptyUsernameCannotSignUp()
     {
         $data = json_encode([
-            "userName" => '',
-            "email" => self::EMAIL,
-            "password" => self::PASSWORD
+            'userName' => '',
+            'email' => self::EMAIL,
+            'password' => self::PASSWORD,
         ]);
 
         $request = Request::create('/users', 'POST', [], [], [], [], $data);

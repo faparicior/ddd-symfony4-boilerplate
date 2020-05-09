@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Tests\Users\User\Domain;
 
@@ -36,8 +38,7 @@ class UserTest extends TestCase
     private const EMAIL = 'test@test.de';
     private const PASSWORD = 'userpass';
 
-    /** @var UserRepositoryInterface */
-    private $userRepository;
+    private UserRepositoryInterface $userRepository;
 
     public function setUp()
     {
@@ -65,14 +66,13 @@ class UserTest extends TestCase
      */
     public function testUserCanBeBuilt()
     {
-        /** @var User $user */
         $user = User::build(
             UserId::fromString(self::USER_UUID),
             UserName::build(self::USERNAME),
             Email::build(self::EMAIL),
             Password::build(self::PASSWORD),
             UserSpecificationChain::build(...[
-                new UserSpecificationStub()
+                new UserSpecificationStub(),
             ])
         );
 
@@ -93,14 +93,13 @@ class UserTest extends TestCase
         self::expectException(UserInvalidException::class);
         self::expectExceptionMessage('User identification is in use, User email is in use');
 
-        /** @var User $user */
         $user = User::build(
             UserId::fromString(self::USER_UUID),
             UserName::build(self::USERNAME),
             Email::build(self::EMAIL),
             Password::build(self::PASSWORD),
             UserSpecificationChain::build(...[
-                new UserSpecificationStub()
+                new UserSpecificationStub(),
             ])
         );
 
@@ -113,7 +112,7 @@ class UserTest extends TestCase
             Password::build(self::PASSWORD),
             UserSpecificationChain::build(...[
                 UserIdIsUnique::build($this->userRepository),
-                UserEmailIsUnique::build($this->userRepository)
+                UserEmailIsUnique::build($this->userRepository),
             ])
         );
     }

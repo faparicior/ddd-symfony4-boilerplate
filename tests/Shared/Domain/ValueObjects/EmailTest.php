@@ -1,7 +1,10 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Tests\Shared\Domain\ValueObjects;
 
+use App\Shared\Domain\Exceptions\DomainException;
 use App\Shared\Domain\Exceptions\InvalidEmailException;
 use App\Shared\Domain\ValueObjects\EmailValue;
 use PHPUnit\Framework\TestCase;
@@ -15,7 +18,7 @@ class EmailTest extends TestCase
     private const VALID_EMAIL = 'test@test.de';
     private const VALID_EMAIL_DIFFERENT = 'different@test.de';
     private const INVALID_EMAIL = 'test,@test.de';
-    private const INVALID_EMAIL_MESSAGE = "Invalid Email format";
+    private const INVALID_EMAIL_MESSAGE = 'Invalid Email format';
 
     /**
      * @group UnitTests
@@ -34,7 +37,7 @@ class EmailTest extends TestCase
      * @group Domain
      *
      * @throws InvalidEmailException
-     * @throws \App\Shared\Domain\Exceptions\DomainException
+     * @throws DomainException
      */
     public function testEmailCanBeCreated()
     {
@@ -49,7 +52,7 @@ class EmailTest extends TestCase
      * @group Domain
      *
      * @throws InvalidEmailException
-     * @throws \App\Shared\Domain\Exceptions\DomainException
+     * @throws DomainException
      */
     public function testCreateEmailFailsForBadStringFormatAndSendsCorrectMessage()
     {
@@ -64,7 +67,7 @@ class EmailTest extends TestCase
      * @group Domain
      *
      * @throws InvalidEmailException
-     * @throws \App\Shared\Domain\Exceptions\DomainException
+     * @throws DomainException
      */
     public function testEmailStoresCorrectValue()
     {
@@ -79,7 +82,7 @@ class EmailTest extends TestCase
      * @group Domain
      *
      * @throws InvalidEmailException
-     * @throws \App\Shared\Domain\Exceptions\DomainException
+     * @throws DomainException
      */
     public function testEqualsFunction()
     {
@@ -95,7 +98,7 @@ class EmailTest extends TestCase
      * @group Domain
      *
      * @throws InvalidEmailException
-     * @throws \App\Shared\Domain\Exceptions\DomainException
+     * @throws DomainException
      */
     public function testHasToStringMagicFunction()
     {

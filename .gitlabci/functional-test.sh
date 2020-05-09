@@ -6,8 +6,8 @@ echo "# directory"
 pwd
 
 cp docker/gitlab-ci/httpd.conf /etc/apache2/sites-enabled/000-default.conf
+cp /builds/fapariciorteam/ddd-symfony4-boilerplate/.env /var/www/html
 cp -R /builds/fapariciorteam/ddd-symfony4-boilerplate/* /var/www/html
-
 echo "# apache"
 apachectl restart
 apachectl status

@@ -9,6 +9,7 @@ use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\PyStringNode;
 use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
+use RuntimeException;
 use Symfony\Bridge\Doctrine\DataFixtures\ContainerAwareLoader;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -34,7 +35,7 @@ final class ApiContext implements Context
     /** @var ContainerAwareLoader */
     private $containerAwareLoader;
 
-    /** @var ORMExecutor  */
+    /** @var ORMExecutor */
     private $executor;
 
     public function __construct(KernelInterface $kernel, string $environment, ContainerAwareLoader $containerAwareLoader, ORMExecutor $executor, ORMPurger $purger)
@@ -49,6 +50,7 @@ final class ApiContext implements Context
 
     /**
      * @When a demo scenario sends a request to :path
+     *
      * @throws \Exception
      */
     public function sendsARequestTo(string $path): Response
@@ -63,8 +65,8 @@ final class ApiContext implements Context
      */
     public function theResponseShouldBeReceived(): void
     {
-        if ($this->response === null) {
-            throw new \RuntimeException('No response received');
+        if (null === $this->response) {
+            throw new RuntimeException('No response received');
         }
     }
 
@@ -73,39 +75,36 @@ final class ApiContext implements Context
      */
     public function theResponseContentShouldBeInJson(): void
     {
-        if ($this->response === null) {
-            throw new \RuntimeException('No response received');
+        if (null === $this->response) {
+            throw new RuntimeException('No response received');
         }
 
         $object = json_decode($this->response->getContent());
 
-        if ($object === null) {
-            throw new \RuntimeException('No valid JSON in content response');
+        if (null === $object) {
+            throw new RuntimeException('No valid JSON in content response');
         }
     }
 
     /**
      * Checks, that current page response status is equal to specified
      * Example: Then the response status code should be 200
-     * Example: And the response status code should be 400
+     * Example: And the response status code should be 400.
      *
      * @Then /^the response status code should be (?P<code>\d+)$/
-     * @param int $statusCodeExpected
      */
     public function theResponseStatusCodeShouldBe(int $statusCodeExpected)
     {
         $statusCode = $this->response->getStatusCode();
 
         if ($statusCode !== $statusCodeExpected) {
-            throw new \RuntimeException('No valid status code response '.$statusCode.' instead '.$statusCodeExpected);
+            throw new RuntimeException('No valid status code response '.$statusCode.' instead '.$statusCodeExpected);
         }
     }
 
     /**
      * @When /^(?:I )?send a "([A-Z]+)" request to "([^"]+)" with body:$/
-     * @param string $method
-     * @param string $path
-     * @param string $data
+     *
      * @throws \Exception
      */
     public function iSendARequestToWithBody(string $method, string $path, string $data)
@@ -122,14 +121,14 @@ final class ApiContext implements Context
         $objectExpected = json_decode($dataExpected->getRaw());
 
         if ($objectExpected != $object) {
-            throw new \RuntimeException('Unexpected Json in response');
+            throw new RuntimeException('Unexpected Json in response');
         }
     }
 
     /**
      * Checks, that HTML response contains specified string
      * Example: Then the response should contain "Batman is the hero Gotham deserves."
-     * Example: And the response should contain "Batman is the hero Gotham deserves."
+     * Example: And the response should contain "Batman is the hero Gotham deserves.".
      *
      * @Then /^the response should contain:$/
      */
@@ -138,14 +137,14 @@ final class ApiContext implements Context
         $content = $this->response->getContent();
 
         if ($content !== (string) $this->fixStepArgument($text)) {
-            throw new \RuntimeException('Unexpected response '. $content . 'instead '. $text);
+            throw new RuntimeException('Unexpected response '.$content.'instead '.$text);
         }
     }
 
     /**
      * Checks, that HTML response contains specified string
      * Example: Then the response should contain "Batman is the hero Gotham deserves."
-     * Example: And the response should contain "Batman is the hero Gotham deserves."
+     * Example: And the response should contain "Batman is the hero Gotham deserves.".
      *
      * @Then /^the response ends with:$/
      */
@@ -156,12 +155,12 @@ final class ApiContext implements Context
         $result = $this->endsWith($content, $this->removeNewLinesInString($text));
 
         if (!$result) {
-            throw new \RuntimeException('Unexpected response '. $content . 'instead '. $text);
+            throw new RuntimeException('Unexpected response '.$content.'instead '.$text);
         }
     }
 
     /**
-     * Returns fixed step argument (with \\" replaced back to ")
+     * Returns fixed step argument (with \\" replaced back to ").
      *
      * @param string $argument
      *
@@ -187,22 +186,22 @@ final class ApiContext implements Context
     private function startsWith($haystack, $needle)
     {
         $length = strlen($needle);
-        return (substr($haystack, 0, $length) === $needle);
+
+        return substr($haystack, 0, $length) === $needle;
     }
 
     private function endsWith($haystack, $needle)
     {
         $length = strlen($needle);
-        if ($length == 0) {
+        if (0 == $length) {
             return true;
         }
 
-        return (substr($haystack, -$length) === $needle);
+        return substr($haystack, -$length) === $needle;
     }
 
     /**
-     * @param PyStringNode $text
-     * @return null|string|string[]
+     * @return string|string[]|null
      */
     private function removeNewLinesInString(PyStringNode $text)
     {

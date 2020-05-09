@@ -4,14 +4,10 @@ declare(strict_types=1);
 
 namespace App\Tests\Behat;
 
-use App\Tests\Behat\DataFixtures\UserSignUpFixtures;
 use Behat\Behat\Context\Context;
-use Behat\Gherkin\Node\PyStringNode;
 use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
-use Psr\Log\LoggerInterface;
 use Symfony\Bridge\Doctrine\DataFixtures\ContainerAwareLoader;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\KernelInterface;
 
@@ -23,22 +19,11 @@ use Symfony\Component\HttpKernel\KernelInterface;
  */
 final class LoggerContext implements Context
 {
-    /** @var KernelInterface */
-    private $kernel;
-
-    /** @var Response|null */
-    private $response;
-
-    /** @var string */
-    private $environment;
-
-    /** @var ContainerAwareLoader */
-    private $containerAwareLoader;
-
-    /** @var ORMExecutor  */
-    private $executor;
-
-    private $logFile;
+    private KernelInterface $kernel;
+    private string $environment;
+    private ContainerAwareLoader $containerAwareLoader;
+    private ORMExecutor $executor;
+    private string $logFile;
 
     public function __construct(
         KernelInterface $kernel,
@@ -57,7 +42,7 @@ final class LoggerContext implements Context
     }
 
     /**
-     * Checks, that log file response contains specified string
+     * Checks, that log file response contains specified string.
      *
      * @Then /^the logfile should contain:$/
      */
@@ -65,7 +50,7 @@ final class LoggerContext implements Context
     {
         $fileContent = file_get_contents($this->logFile);
 
-        if (strpos($fileContent, $text) === false) {
+        if (false === strpos($fileContent, $text)) {
             throw new \RuntimeException('Log string not found');
         }
     }

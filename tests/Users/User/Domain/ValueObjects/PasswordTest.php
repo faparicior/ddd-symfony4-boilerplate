@@ -1,14 +1,18 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Tests\Users\User\Domain\ValueObjects;
 
+use App\Shared\Domain\Exceptions\DomainException;
 use App\Users\User\Domain\Exceptions\PasswordInvalidByPolicyRulesException;
 use App\Users\User\Domain\ValueObjects\Password;
 use PHPUnit\Framework\TestCase;
+use ReflectionException;
 
 class PasswordTest extends TestCase
 {
-    private const INVALID_PASSWORD_MESSAGE = "Password invalid by policy rules";
+    private const INVALID_PASSWORD_MESSAGE = 'Password invalid by policy rules';
 
     /**
      * @group UnitTests
@@ -27,7 +31,9 @@ class PasswordTest extends TestCase
      * @group Users
      * @group Domain
      *
+     * @throws DomainException
      * @throws PasswordInvalidByPolicyRulesException
+     * @throws ReflectionException
      */
     public function testPasswordCanBeBuilt()
     {
@@ -43,6 +49,8 @@ class PasswordTest extends TestCase
      * @group Domain
      *
      * @throws PasswordInvalidByPolicyRulesException
+     * @throws DomainException
+     * @throws ReflectionException
      */
     public function testPasswordCannotBeLessThanEightCharacters()
     {

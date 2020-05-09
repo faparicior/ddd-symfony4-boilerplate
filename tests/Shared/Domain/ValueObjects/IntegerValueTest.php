@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Tests\Shared\Domain\ValueObjects;
 
@@ -11,7 +13,6 @@ class IntegerForTest extends IntegerValue
 
 class IntegerValueTest extends TestCase
 {
-
     /**
      * @group UnitTests
      * @group Shared

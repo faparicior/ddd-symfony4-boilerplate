@@ -1,7 +1,12 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Tests\Uses\User\Domain\Specifications;
 
+use App\Shared\Domain\Exceptions\DomainException;
+use App\Users\User\Domain\Exceptions\PasswordInvalidByPolicyRulesException;
+use App\Users\User\Domain\Exceptions\UserNameInvalidByPolicyRulesException;
 use App\Users\User\Domain\Specifications\UserIdIsUnique;
 use App\Users\User\Domain\Specifications\UserSpecificationChain;
 use App\Users\User\Domain\Specifications\UserSpecificationInterface;
@@ -11,6 +16,7 @@ use App\Users\User\Domain\ValueObjects\Password;
 use App\Users\User\Domain\ValueObjects\UserId;
 use App\Users\User\Domain\ValueObjects\UserName;
 use PHPUnit\Framework\TestCase;
+use ReflectionException;
 
 class UserSpecificationOkStub implements UserSpecificationInterface
 {
@@ -77,21 +83,20 @@ class UserSpecificationChainTest extends TestCase
      * @group Shared
      * @group Domain
      *
-     * @throws \App\Shared\Domain\Exceptions\DomainException
-     * @throws \App\Users\User\Domain\Exceptions\PasswordInvalidByPolicyRulesException
-     * @throws \App\Users\User\Domain\Exceptions\UserNameInvalidByPolicyRulesException
-     * @throws \ReflectionException
+     * @throws DomainException
+     * @throws PasswordInvalidByPolicyRulesException
+     * @throws UserNameInvalidByPolicyRulesException
+     * @throws ReflectionException
      */
     public function testUserSpecificationChainReturnFalseIfHasNoSpecifications()
     {
-        /** @var User $user */
         $user = User::build(
             UserId::fromString(self::USER_UUID),
             UserName::build(self::USERNAME),
             Email::build(self::EMAIL),
             Password::build(self::PASSWORD),
             UserSpecificationChain::build(...[
-                new UserSpecificationOkStub()
+                new UserSpecificationOkStub(),
             ])
         );
 
@@ -105,21 +110,20 @@ class UserSpecificationChainTest extends TestCase
      * @group Shared
      * @group Domain
      *
-     * @throws \App\Shared\Domain\Exceptions\DomainException
-     * @throws \App\Users\User\Domain\Exceptions\PasswordInvalidByPolicyRulesException
-     * @throws \App\Users\User\Domain\Exceptions\UserNameInvalidByPolicyRulesException
-     * @throws \ReflectionException
+     * @throws DomainException
+     * @throws PasswordInvalidByPolicyRulesException
+     * @throws UserNameInvalidByPolicyRulesException
+     * @throws ReflectionException
      */
     public function testUserSpecificationChainReturnTrueIfHasSpecifications()
     {
-        /** @var User $user */
         $user = User::build(
             UserId::fromString(self::USER_UUID),
             UserName::build(self::USERNAME),
             Email::build(self::EMAIL),
             Password::build(self::PASSWORD),
             UserSpecificationChain::build(...[
-                new UserSpecificationOkStub()
+                new UserSpecificationOkStub(),
             ])
         );
 
@@ -133,21 +137,20 @@ class UserSpecificationChainTest extends TestCase
      * @group Shared
      * @group Domain
      *
-     * @throws \App\Shared\Domain\Exceptions\DomainException
-     * @throws \App\Users\User\Domain\Exceptions\PasswordInvalidByPolicyRulesException
-     * @throws \App\Users\User\Domain\Exceptions\UserNameInvalidByPolicyRulesException
-     * @throws \ReflectionException
+     * @throws DomainException
+     * @throws PasswordInvalidByPolicyRulesException
+     * @throws UserNameInvalidByPolicyRulesException
+     * @throws ReflectionException
      */
     public function testUserSpecificationChainReturnSpecificationChainResults()
     {
-        /** @var User $user */
         $user = User::build(
             UserId::fromString(self::USER_UUID),
             UserName::build(self::USERNAME),
             Email::build(self::EMAIL),
             Password::build(self::PASSWORD),
             UserSpecificationChain::build(...[
-                new UserSpecificationOkStub()
+                new UserSpecificationOkStub(),
             ])
         );
 
@@ -157,7 +160,7 @@ class UserSpecificationChainTest extends TestCase
 
         $results = $specificationChain->getResults();
 
-        self::assertArrayHasKey('' . self::USER_SPECIFICATION_OK_STUB . '', $results);
+        self::assertArrayHasKey(''.self::USER_SPECIFICATION_OK_STUB.'', $results);
         self::assertTrue($results[self::USER_SPECIFICATION_OK_STUB]['value']);
     }
 
@@ -166,21 +169,20 @@ class UserSpecificationChainTest extends TestCase
      * @group Shared
      * @group Domain
      *
-     * @throws \App\Shared\Domain\Exceptions\DomainException
-     * @throws \App\Users\User\Domain\Exceptions\PasswordInvalidByPolicyRulesException
-     * @throws \App\Users\User\Domain\Exceptions\UserNameInvalidByPolicyRulesException
-     * @throws \ReflectionException
+     * @throws DomainException
+     * @throws PasswordInvalidByPolicyRulesException
+     * @throws UserNameInvalidByPolicyRulesException
+     * @throws ReflectionException
      */
     public function testUserSpecificationChainReturnSpecificationFailedResults()
     {
-        /** @var User $user */
         $user = User::build(
             UserId::fromString(self::USER_UUID),
             UserName::build(self::USERNAME),
             Email::build(self::EMAIL),
             Password::build(self::PASSWORD),
             UserSpecificationChain::build(...[
-                new UserSpecificationOkStub()
+                new UserSpecificationOkStub(),
             ])
         );
 
@@ -190,8 +192,8 @@ class UserSpecificationChainTest extends TestCase
 
         $results = $specificationChain->getResults();
 
-        self::assertArrayHasKey('' . self::USER_SPECIFICATION_OK_STUB . '', $results);
-        self::assertArrayHasKey('' . self::USER_SPECIFICATION_FAIL_STUB . '', $results);
+        self::assertArrayHasKey(''.self::USER_SPECIFICATION_OK_STUB.'', $results);
+        self::assertArrayHasKey(''.self::USER_SPECIFICATION_FAIL_STUB.'', $results);
 
         $resultsFail = $specificationChain->getFailedResults();
 

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Tests\Shared\Ui\Http\Api\Rest\Exceptions;
 
@@ -47,7 +49,7 @@ class UiExceptionTest extends TestCase
     {
         $exception = UiExceptionForTest::build(self::TEST_MESSAGE, self::TEST_CODE);
 
-        self::assertEquals($exception->getMessage(), self::TEST_MESSAGE);
-        self::assertEquals($exception->getCode(), self::TEST_CODE);
+        self::assertEquals(self::TEST_MESSAGE, $exception->getMessage());
+        self::assertEquals(self::TEST_CODE, $exception->getCode());
     }
 }

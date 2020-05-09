@@ -1,19 +1,22 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Tests\Users\User\Application\SignUpUser;
 
 use App\Shared\Infrastructure\Services\UniqueIdProviderInterface;
+use App\Shared\Infrastructure\Services\UniqueIdProviderStub;
 use App\Users\User\Application\SignUpUser\SignUpUserCommand;
 use App\Users\User\Application\SignUpUser\SignUpUserCommandHandler;
-use App\Shared\Infrastructure\Services\UniqueIdProviderStub;
 use App\Users\User\Domain\Specifications\UserSpecificationChain;
 use App\Users\User\Domain\Specifications\UserSpecificationInterface;
 use App\Users\User\Domain\User;
 use App\Users\User\Domain\UserRepositoryInterface;
 use App\Users\User\Domain\ValueObjects\UserId;
 use App\Users\User\Infrastructure\Persistence\InMemoryUserRepository;
-use Ramsey\Uuid\UuidFactory;
+use Exception;
 use PHPUnit\Framework\TestCase;
+use Ramsey\Uuid\UuidFactory;
 
 class UserSpecificationStub implements UserSpecificationInterface
 {
@@ -55,7 +58,8 @@ class SignUpUserCommandHandlerTest extends TestCase
      * @group UnitTests
      * @group Users
      * @group Application
-     * @throws \Exception
+     *
+     * @throws Exception
      */
     public function testSignUpUserCommandHandlerReturnsAValidResponse()
     {
@@ -68,10 +72,10 @@ class SignUpUserCommandHandlerTest extends TestCase
         $response = $this->handleCommand($command);
 
         $responseExpected = [
-            "id" => self::USER_UUID,
-            "userName" => self::USERNAME,
-            "email" => self::EMAIL,
-            "password" => self::PASSWORD
+            'id' => self::USER_UUID,
+            'userName' => self::USERNAME,
+            'email' => self::EMAIL,
+            'password' => self::PASSWORD,
         ];
 
         self::assertEquals($responseExpected, $response);
@@ -81,7 +85,8 @@ class SignUpUserCommandHandlerTest extends TestCase
      * @group UnitTests
      * @group Users
      * @group Application
-     * @throws \Exception
+     *
+     * @throws Exception
      */
     public function testSignUpUserCommandHandlerStoreAnUser()
     {
@@ -100,8 +105,10 @@ class SignUpUserCommandHandlerTest extends TestCase
 
     /**
      * @param $command
+     *
      * @return array
-     * @throws \Exception
+     *
+     * @throws Exception
      */
     private function handleCommand($command)
     {

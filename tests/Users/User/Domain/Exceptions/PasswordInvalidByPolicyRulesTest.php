@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Tests\Users\User\Domain\Exceptions;
 
@@ -9,7 +11,7 @@ class PasswordInvalidByPolicyRulesTest extends TestCase
 {
     private const TEST_MESSAGE = 'TestMessage';
     private const TEST_CODE = 2;
-    private const INVALID_PASSWORD_DEFAULT_MESSAGE = "Password invalid by policy rules";
+    private const INVALID_PASSWORD_DEFAULT_MESSAGE = 'Password invalid by policy rules';
 
     /**
      * @group UnitTests
@@ -44,7 +46,7 @@ class PasswordInvalidByPolicyRulesTest extends TestCase
     {
         $exception = PasswordInvalidByPolicyRulesException::build(self::TEST_MESSAGE, self::TEST_CODE);
 
-        self::assertEquals($exception->getMessage(), self::TEST_MESSAGE);
-        self::assertEquals($exception->getCode(), self::TEST_CODE);
+        self::assertEquals(self::TEST_MESSAGE, $exception->getMessage());
+        self::assertEquals(self::TEST_CODE, $exception->getCode());
     }
 }

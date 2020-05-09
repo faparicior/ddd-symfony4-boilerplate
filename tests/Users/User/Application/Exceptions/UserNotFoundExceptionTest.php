@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Tests\Users\User\Application\Exceptions;
 
@@ -7,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 
 class UserNotFoundExceptionTest extends TestCase
 {
-    private const USER_NOT_FOUND_MESSAGE = "User not found";
+    private const USER_NOT_FOUND_MESSAGE = 'User not found';
 
     public function testUserNotFoundExceptionCannotBeInstantiated()
     {

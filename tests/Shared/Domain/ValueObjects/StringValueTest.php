@@ -1,9 +1,14 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Tests\Shared\Domain\ValueObjects;
 
+use App\Shared\Domain\Exceptions\DomainException;
+use App\Shared\Domain\Exceptions\InvalidStringException;
 use App\Shared\Domain\ValueObjects\StringValue;
 use PHPUnit\Framework\TestCase;
+use ReflectionException;
 
 class StringForTest extends StringValue
 {
@@ -27,7 +32,10 @@ class StringValueTest extends TestCase
      * @group UnitTests
      * @group Shared
      * @group Domain
-     * @throws \App\Shared\Domain\Exceptions\InvalidStringException
+     *
+     * @throws InvalidStringException
+     * @throws DomainException
+     * @throws ReflectionException
      */
     public function testStringValueIsAccessible()
     {
@@ -40,7 +48,10 @@ class StringValueTest extends TestCase
      * @group UnitTests
      * @group Shared
      * @group Domain
-     * @throws \App\Shared\Domain\Exceptions\InvalidStringException
+     *
+     * @throws DomainException
+     * @throws InvalidStringException
+     * @throws ReflectionException
      */
     public function testEqualsFunction()
     {
@@ -55,7 +66,9 @@ class StringValueTest extends TestCase
      * @group Shared
      * @group Domain
      *
-     * @throws \App\Shared\Domain\Exceptions\InvalidStringException
+     * @throws DomainException
+     * @throws InvalidStringException
+     * @throws ReflectionException
      */
     public function testHasToStringMagicFunction()
     {

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Tests\Users\User\Domain\ValueObjects;
 
@@ -8,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 class UserNameTest extends TestCase
 {
-    private const INVALID_BY_POLICY_RULES = "Username invalid by policy rules";
+    private const INVALID_BY_POLICY_RULES = 'Username invalid by policy rules';
 
     /**
      * @group UnitTests

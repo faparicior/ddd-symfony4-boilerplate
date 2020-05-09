@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Tests\Shared\Domain\Exceptions;
 
@@ -9,7 +11,7 @@ class InvalidEmailExceptionTest extends TestCase
 {
     const TEST_MESSAGE = 'TestMessage';
     const TEST_CODE = 2;
-    const INVALID_EMAIL_DEFAULT_MESSAGE = "Invalid Email format";
+    const INVALID_EMAIL_DEFAULT_MESSAGE = 'Invalid Email format';
 
     /**
      * @group UnitTests
@@ -32,7 +34,7 @@ class InvalidEmailExceptionTest extends TestCase
     {
         $exception = InvalidEmailException::build();
 
-        self::assertEquals($exception->getMessage(), self::INVALID_EMAIL_DEFAULT_MESSAGE);
+        self::assertEquals(self::INVALID_EMAIL_DEFAULT_MESSAGE, $exception->getMessage());
     }
 
     /**
@@ -44,7 +46,7 @@ class InvalidEmailExceptionTest extends TestCase
     {
         $exception = InvalidEmailException::build(self::TEST_MESSAGE, self::TEST_CODE);
 
-        self::assertEquals($exception->getMessage(), self::TEST_MESSAGE);
-        self::assertEquals($exception->getCode(), self::TEST_CODE);
+        self::assertEquals(self::TEST_MESSAGE, $exception->getMessage());
+        self::assertEquals(self::TEST_CODE, $exception->getCode());
     }
 }

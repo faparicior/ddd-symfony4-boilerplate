@@ -1,6 +1,8 @@
-<?php declare(strict_types=1);
+<?php
 
-namespace App\Tests\Shared\Ui\Api\Rest;
+declare(strict_types=1);
+
+namespace App\Tests\Shared\Ui\Http\Api\Rest;
 
 use App\Shared\Domain\Exceptions\DomainException;
 use App\Shared\Ui\Http\Api\Rest\AppController;
@@ -45,7 +47,7 @@ class AppControllerTest extends TestCase
     public function testAppControllerWritesErrorLogInCaseOfException()
     {
         $data = json_encode([
-            "blah" => ''
+            'blah' => '',
         ]);
 
         $request = Request::create('/test', 'POST', [], [], [], [], $data);
@@ -83,7 +85,7 @@ class AppControllerTest extends TestCase
         $response = $controller->execute($request);
 
         self::assertEquals(500, $response->getStatusCode());
-        if ($_SERVER['APP_DEBUG'] === '1') {
+        if ('1' === $_SERVER['APP_DEBUG']) {
             self::assertEquals('"Server error:TEST_SHOULD_FAIL_WITH_500_EXCEPTION"', $response->getContent());
         } else {
             self::assertEquals('""', $response->getContent());

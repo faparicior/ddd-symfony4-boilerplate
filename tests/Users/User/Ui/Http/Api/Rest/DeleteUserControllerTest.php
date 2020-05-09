@@ -1,16 +1,12 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Tests\Users\User\Ui\Http\Api\Rest;
 
-use App\Shared\Domain\Exceptions\InvalidEmailException;
-use App\Shared\Infrastructure\Services\UniqueIdProviderStub;
 use App\Tests\Uses\User\Domain\Specifications\UserSpecificationOkStub;
 use App\Users\User\Application\DeleteUser\DeleteUserCommand;
 use App\Users\User\Application\DeleteUser\DeleteUserCommandHandler;
-use App\Users\User\Application\SignUpUser\SignUpUserCommand;
-use App\Users\User\Application\SignUpUser\SignUpUserCommandHandler;
-use App\Users\User\Domain\Specifications\UserEmailIsUnique;
-use App\Users\User\Domain\Specifications\UserNameIsUnique;
 use App\Users\User\Domain\Specifications\UserSpecificationChain;
 use App\Users\User\Domain\User;
 use App\Users\User\Domain\ValueObjects\Email;
@@ -19,12 +15,10 @@ use App\Users\User\Domain\ValueObjects\UserId;
 use App\Users\User\Domain\ValueObjects\UserName;
 use App\Users\User\Infrastructure\Persistence\InMemoryUserRepository;
 use App\Users\User\Ui\Http\Api\Rest\DeleteUserController;
-use App\Users\User\Ui\Http\Api\Rest\SignUpUserController;
 use League\Tactician\CommandBus;
 use League\Tactician\Setup\QuickStart;
 use Monolog\Handler\TestHandler;
 use Monolog\Logger;
-use Ramsey\Uuid\UuidFactory;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -33,7 +27,7 @@ class DeleteUserControllerTest extends TestCase
 {
     private const USERNAME = 'JohnDoe';
     private const EMAIL = 'test.email@gmail.com';
-    private const INEXISTENT_EMAIL = 'non-email@gmail.com';
+    private const NON_EXISTENT_EMAIL = 'non-email@gmail.com';
     private const PASSWORD = ",&+3RjwAu88(tyC'";
 
     private CommandBus $bus;
@@ -70,7 +64,7 @@ class DeleteUserControllerTest extends TestCase
     public function testUserCanBeDeleted()
     {
         $data = json_encode([
-            "email" => self::EMAIL
+            'email' => self::EMAIL,
         ]);
 
         $request = Request::create('/users', 'DELETE', [], [], [], [], $data);
@@ -86,7 +80,7 @@ class DeleteUserControllerTest extends TestCase
     public function testDeleteUserReturnsBadRequestWithInexistentUser()
     {
         $data = json_encode([
-            "email" => self::INEXISTENT_EMAIL
+            'email' => self::NON_EXISTENT_EMAIL,
         ]);
 
         $request = Request::create('/users', 'DELETE', [], [], [], [], $data);

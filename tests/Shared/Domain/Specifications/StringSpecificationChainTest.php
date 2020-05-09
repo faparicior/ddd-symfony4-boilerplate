@@ -1,10 +1,13 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Tests\Shared\Domain\Specifications;
 
 use App\Shared\Domain\Specifications\StringSpecificationChain;
 use App\Shared\Domain\Specifications\StringSpecificationInterface;
 use PHPUnit\Framework\TestCase;
+use ReflectionException;
 
 class StringDummySpecification implements StringSpecificationInterface
 {
@@ -76,7 +79,7 @@ class StringSpecificationChainTest extends TestCase
      * @group Shared
      * @group Domain
      *
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
     public function testStringSpecificationChainReturnFalseIfHasNoSpecifications()
     {
@@ -85,13 +88,12 @@ class StringSpecificationChainTest extends TestCase
         self::assertFalse($specificationChain->evalSpecifications(''));
     }
 
-
     /**
      * @group UnitTests
      * @group Shared
      * @group Domain
      *
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
     public function testStringSpecificationChainReturnTrueIfHasNoSpecifications()
     {
@@ -105,7 +107,7 @@ class StringSpecificationChainTest extends TestCase
      * @group Shared
      * @group Domain
      *
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
     public function testStringSpecificationChainReturnSpecificationChainResults()
     {
@@ -114,7 +116,7 @@ class StringSpecificationChainTest extends TestCase
         self::assertTrue($specificationChain->evalSpecifications(''));
         $results = $specificationChain->getResults();
 
-        self::assertArrayHasKey('' . self::STRING_SPECIFICATION_OK_STUB . '', $results);
+        self::assertArrayHasKey(''.self::STRING_SPECIFICATION_OK_STUB.'', $results);
         self::assertTrue($results[self::STRING_SPECIFICATION_OK_STUB]['value']);
     }
 
@@ -123,14 +125,14 @@ class StringSpecificationChainTest extends TestCase
      * @group Shared
      * @group Domain
      *
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
     public function testStringSpecificationChainReturnFalseWithOneFailedSpecification()
     {
-        $specificationChain = StringSpecificationChain::build(...[(new StringSpecificationOkStub()),(new StringSpecificationFailStub()) ]);
+        $specificationChain = StringSpecificationChain::build(...[(new StringSpecificationOkStub()), (new StringSpecificationFailStub())]);
         self::assertFalse($specificationChain->evalSpecifications(''));
 
-        $specificationChain = StringSpecificationChain::build(...[(new StringSpecificationFailStub()),(new StringSpecificationOkStub()) ]);
+        $specificationChain = StringSpecificationChain::build(...[(new StringSpecificationFailStub()), (new StringSpecificationOkStub())]);
         self::assertFalse($specificationChain->evalSpecifications(''));
     }
 
@@ -139,17 +141,17 @@ class StringSpecificationChainTest extends TestCase
      * @group Shared
      * @group Domain
      *
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
     public function testStringSpecificationChainReturnSpecificationChainFailedResults()
     {
-        $specificationChain = StringSpecificationChain::build(...[(new StringSpecificationOkStub()),(new StringSpecificationFailStub()) ]);
+        $specificationChain = StringSpecificationChain::build(...[(new StringSpecificationOkStub()), (new StringSpecificationFailStub())]);
 
         self::assertFalse($specificationChain->evalSpecifications(''));
         $results = $specificationChain->getResults();
 
-        self::assertArrayHasKey('' . self::STRING_SPECIFICATION_OK_STUB . '', $results);
-        self::assertArrayHasKey('' . self::STRING_SPECIFICATION_FAIL_STUB . '', $results);
+        self::assertArrayHasKey(''.self::STRING_SPECIFICATION_OK_STUB.'', $results);
+        self::assertArrayHasKey(''.self::STRING_SPECIFICATION_FAIL_STUB.'', $results);
 
         $resultsFail = $specificationChain->getFailedResults();
 

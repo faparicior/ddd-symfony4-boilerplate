@@ -1,9 +1,13 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Tests\Shared\Domain\ValueObjects;
 
+use App\Shared\Domain\Exceptions\DomainException;
 use App\Shared\Domain\Exceptions\InvalidArgumentException;
 use App\Shared\Domain\ValueObjects\UniqueIdentifier;
+use Exception;
 use PHPUnit\Framework\TestCase;
 
 class UniqueIdentifierForTest extends UniqueIdentifier
@@ -28,7 +32,7 @@ class UniqueIdentifierTest extends TestCase
      * @group Shared
      * @group Domain
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function testUserIdCanBeCreated()
     {
@@ -42,13 +46,12 @@ class UniqueIdentifierTest extends TestCase
      * @group Shared
      * @group Domain
      *
-     * @throws InvalidArgumentException
-     * @throws \App\Shared\Domain\Exceptions\DomainException
+     * @throws DomainException
      */
     public function testUserIdCanBeCreatedFromString()
     {
         $userId = UniqueIdentifierForTest::fromString(self::USER_ID);
-        $regex = "/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/";
+        $regex = '/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/';
 
         self::assertEquals(1, preg_match($regex, $userId->value()));
     }
@@ -58,7 +61,7 @@ class UniqueIdentifierTest extends TestCase
      * @group Shared
      * @group Domain
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function testTwoNewUserIdHaveDifferentValues()
     {
@@ -73,8 +76,7 @@ class UniqueIdentifierTest extends TestCase
      * @group Shared
      * @group Domain
      *
-     * @throws InvalidArgumentException
-     * @throws \App\Shared\Domain\Exceptions\DomainException
+     * @throws DomainException
      */
     public function testCreateUserIdFailsForBadStringFormat()
     {
@@ -87,8 +89,7 @@ class UniqueIdentifierTest extends TestCase
      * @group Shared
      * @group Domain
      *
-     * @throws InvalidArgumentException
-     * @throws \App\Shared\Domain\Exceptions\DomainException
+     * @throws DomainException
      */
     public function testEqualsFunction()
     {
@@ -103,8 +104,7 @@ class UniqueIdentifierTest extends TestCase
      * @group Shared
      * @group Domain
      *
-     * @throws InvalidArgumentException
-     * @throws \App\Shared\Domain\Exceptions\DomainException
+     * @throws DomainException
      */
     public function testHasToStringMagicFunction()
     {

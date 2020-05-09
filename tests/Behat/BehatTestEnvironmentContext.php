@@ -6,11 +6,7 @@ namespace App\Tests\Behat;
 
 use Behat\Behat\Context\Context;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
-use Behat\Gherkin\Node\PyStringNode;
-use Behat\MinkExtension\Context\MinkContext;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\KernelInterface;
 
 /**
  * This context class contains the definitions of the steps used by the demo
@@ -20,14 +16,8 @@ use Symfony\Component\HttpKernel\KernelInterface;
  */
 final class BehatTestEnvironmentContext implements Context
 {
-    /** @var Response|null */
-    private $response;
-
-    /** @var string */
-    private $environment;
-
-    /** @var ApiContext */
-    private $apiContext;
+    private string $environment;
+    private ApiContext $apiContext;
 
     public function __construct(string $environment)
     {

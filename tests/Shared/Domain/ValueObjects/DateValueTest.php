@@ -1,8 +1,12 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Tests\Shared\Domain\ValueObjects;
 
 use App\Shared\Domain\ValueObjects\DateValue;
+use DateTime;
+use Exception;
 use PHPUnit\Framework\TestCase;
 
 class DateValueForTest extends DateValue
@@ -38,7 +42,7 @@ class DateValueTest extends TestCase
      * @group Shared
      * @group Domain
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function testDateCanBeCreated()
     {
@@ -52,11 +56,11 @@ class DateValueTest extends TestCase
      * @group Shared
      * @group Domain
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function testCreateDateFailsForBadStringFormat()
     {
-        self::expectException(\Exception::class);
+        self::expectException(Exception::class);
         DateValueForTest::build('2018-15-32');
     }
 
@@ -65,7 +69,7 @@ class DateValueTest extends TestCase
      * @group Shared
      * @group Domain
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function testDateStoresCorrectValue()
     {
@@ -79,7 +83,7 @@ class DateValueTest extends TestCase
      * @group Shared
      * @group Domain
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function testEqualsFunction()
     {
@@ -94,14 +98,14 @@ class DateValueTest extends TestCase
      * @group Shared
      * @group Domain
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function testDateCanBeCreatedWithTimezone()
     {
         $dateLocal = DateValueForTest::build(self::DATE, self::ASIA_SHANGHAI_TIMEZONE);
         $dateUtc = DateValueForTest::build(self::DATE, self::UTC_TIMEZONE);
 
-        self::assertTrue($dateLocal->diffInHours($dateUtc) === self::ASIA_SHANGHAI_UTC_DIFF_HOURS);
+        self::assertTrue(self::ASIA_SHANGHAI_UTC_DIFF_HOURS === $dateLocal->diffInHours($dateUtc));
     }
 
     /**
@@ -109,17 +113,17 @@ class DateValueTest extends TestCase
      * @group Shared
      * @group Domain
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function testDateCanAddHours()
     {
         $dateUtc = DateValueForTest::build(self::DATE_WITH_TIMEZONE, self::UTC_TIMEZONE);
         $dateUtcPlusOne = DateValueForTest::build(self::DATE_WITH_TIMEZONE_PLUS_ONE, self::UTC_TIMEZONE);
 
-        $dateToCompare = new \DateTime($dateUtc->value());
-        $datePlusOne = new \DateTime($dateUtcPlusOne->value());
+        $dateToCompare = new DateTime($dateUtc->value());
+        $datePlusOne = new DateTime($dateUtcPlusOne->value());
 
-        self::assertTrue($datePlusOne->diff($dateToCompare)->h === 1);
+        self::assertTrue(1 === $datePlusOne->diff($dateToCompare)->h);
     }
 
     /**
@@ -127,17 +131,16 @@ class DateValueTest extends TestCase
      * @group Shared
      * @group Domain
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function testDateCanCompareDates()
     {
         $dateUtc = DateValueForTest::build(self::DATE_WITH_TIMEZONE, self::UTC_TIMEZONE);
         $dateUtcPlusOne = $dateUtc->addHours(2);
 
-        $dateToCompare = new \DateTime($dateUtc->value());
-        $datePlusOne = new \DateTime($dateUtcPlusOne->value());
+        $dateToCompare = new DateTime($dateUtc->value());
+        $datePlusOne = new DateTime($dateUtcPlusOne->value());
 
-
-        self::assertTrue($datePlusOne->diff($dateToCompare)->h === 2);
+        self::assertTrue(2 === $datePlusOne->diff($dateToCompare)->h);
     }
 }
