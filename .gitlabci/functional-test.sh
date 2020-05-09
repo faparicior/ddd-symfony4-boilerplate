@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export APP_ENV=test
+#export APP_ENV=test
 
 cp docker/gitlab-ci/httpd.conf /etc/apache2/sites-enabled/000-default.conf
 cp /builds/fapariciorteam/ddd-symfony4-boilerplate/.env /var/www/html
