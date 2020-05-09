@@ -6,7 +6,6 @@ namespace App\Tests\Behat;
 
 use Behat\Behat\Context\Context;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
-use Symfony\Component\HttpFoundation\Response;
 
 /**
  * This context class contains the definitions of the steps used by the demo
