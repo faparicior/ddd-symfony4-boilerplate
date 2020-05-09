@@ -67,7 +67,8 @@ functional test:
             - cypress/results
         when: always
         expire_in: 1 hour
-
+    after_script:
+        - sh ./gitlabci/functional-test-compile-report.sh
 pages:
     before_script:
         - echo "Do nothing in this stage"
