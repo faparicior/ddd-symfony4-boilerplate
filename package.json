@@ -7,14 +7,13 @@
     "doc": "doc",
     "test": "tests"
   },
-  "dependencies": {
-    "cypress-multi-reporters": "^1.2.4"
-  },
   "devDependencies": {
     "cypress": "^4.5.0",
     "mochawesome": "^6.1.1",
     "mochawesome-merge": "^4.0.3",
-    "mochawesome-report-generator": "^5.1.0"
+    "mochawesome-report-generator": "^5.1.0",
+    "cypress-multi-reporters": "^1.2.4",
+    "mocha": "^7.1.2"
   },
   "scripts": {
     "clean:reports": "rm -R -f cypress/reports && mkdir cypress/reports && mkdir cypress/reports/mochareports",
