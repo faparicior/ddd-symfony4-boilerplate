@@ -13,7 +13,7 @@ apachectl restart
 rm -rf node_modules/cypress
 npm install
 
-npm testgitlab
+npm run testgitlab
 #./node_modules/.bin/cypress run --headless --spec "cypress/integration/Users/User.js"
 #cd cypress/results
 #npx marge mochawesome.json
