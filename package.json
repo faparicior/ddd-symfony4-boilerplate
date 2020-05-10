@@ -23,7 +23,7 @@
     "generate-report": "marge cypress/reports/mochareports/report.json -f report -o cypress/reports/mochareports",
     "posttest": "npm run combine-reports && npm run generate-report",
     "test": "npm run scripts || npm run posttest",
-    "testgitlab": "npm run scripts"
+    "testgitlab": "npm run clean:reports && npm run scripts"
   },
   "repository": {
     "type": "git",
