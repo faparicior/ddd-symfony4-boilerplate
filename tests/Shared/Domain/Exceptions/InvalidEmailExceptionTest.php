@@ -9,9 +9,9 @@ use PHPUnit\Framework\TestCase;
 
 class InvalidEmailExceptionTest extends TestCase
 {
-    const TEST_MESSAGE = 'TestMessage';
-    const TEST_CODE = 2;
-    const INVALID_EMAIL_DEFAULT_MESSAGE = 'Invalid Email format';
+    private const TEST_MESSAGE = 'TestMessage';
+    private const TEST_CODE = 2;
+    private const INVALID_EMAIL_DEFAULT_MESSAGE = 'Invalid Email format';
 
     /**
      * @group UnitTests

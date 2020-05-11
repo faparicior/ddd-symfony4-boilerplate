@@ -13,8 +13,8 @@ class DomainExceptionForTest extends DomainException
 
 class DomainExceptionTest extends TestCase
 {
-    const TEST_MESSAGE = 'TestMessage';
-    const TEST_CODE = 2;
+    private const TEST_MESSAGE = 'TestMessage';
+    private const TEST_CODE = 2;
 
     /**
      * @group UnitTests

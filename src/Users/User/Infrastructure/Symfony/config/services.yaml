@@ -23,6 +23,9 @@ services:
             - '@App\Users\User\Domain\Specifications\UserNameIsUnique'
             - '@App\Users\User\Domain\Specifications\UserIdIsUnique'
 
+    App\Users\User\Domain\UserRepositoryInterface:
+        alias: App\Users\User\Infrastructure\Persistence\DoctrineUserRepository
+
     App\Users\User\Domain\Specifications\UserIdIsUnique:
         factory: ['App\Users\User\Domain\Specifications\UserIdIsUnique', 'build']
         class: App\Users\User\Domain\Specifications\UserIdIsUnique
@@ -37,9 +40,6 @@ services:
 
     App\Users\User\Domain\Specifications\:
         resource: '../../../Domain/Specifications/'
-
-    App\Users\User\Domain\UserRepositoryInterface:
-        alias: App\Users\User\Infrastructure\Persistence\InMemoryUserRepository
 
     App\Users\User\Infrastructure\Persistence\:
         resource: '../../../Infrastructure/Persistence/'

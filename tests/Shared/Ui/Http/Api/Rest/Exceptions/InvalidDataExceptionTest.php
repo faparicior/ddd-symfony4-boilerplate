@@ -9,9 +9,9 @@ use PHPUnit\Framework\TestCase;
 
 class InvalidDataExceptionTest extends TestCase
 {
-    const TEST_MESSAGE = 'TestMessage';
-    const TEST_CODE = 2;
-    const INVALID_DATA_DEFAULT_MESSAGE = 'Empty data or bad json received';
+    private const TEST_MESSAGE = 'TestMessage';
+    private const TEST_CODE = 2;
+    private const INVALID_DATA_DEFAULT_MESSAGE = 'Empty data or bad json received';
 
     public function testInvalidDataExceptionCannotBeInstantiatedDirectly()
     {
