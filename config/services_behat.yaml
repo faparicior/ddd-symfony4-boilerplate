@@ -1,6 +1,6 @@
 imports:
-    - { resource: ../src/Shared/Infrastructure/Symfony/config/services_behat.yaml}
-    - { resource: ../src/Users/User/Infrastructure/Symfony/config/services_behat.yaml}
+    - { resource: ../src/Shared/Infrastructure/Symfony/config/services.yaml}
+    - { resource: ../src/Users/User/Infrastructure/Symfony/config/services.yaml}
 
 services:
     _defaults:
