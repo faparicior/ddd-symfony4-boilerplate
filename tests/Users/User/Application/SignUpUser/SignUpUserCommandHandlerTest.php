@@ -38,11 +38,8 @@ class SignUpUserCommandHandlerTest extends TestCase
     private const EMAIL = 'test.email@gmail.com';
     private const PASSWORD = ",&+3RjwAu88(tyC'";
 
-    /** @var UniqueIdProviderInterface */
-    private $uuidService;
-
-    /** @var UserRepositoryInterface */
-    private $userRepository;
+    private UniqueIdProviderInterface $uuidService;
+    private UserRepositoryInterface $userRepository;
 
     public function setUp()
     {

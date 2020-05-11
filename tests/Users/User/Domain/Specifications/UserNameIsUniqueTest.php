@@ -27,8 +27,7 @@ class UserNameIsUniqueTest extends TestCase
     private const USERNAME = 'JohnDoe';
     private const USERNAME_NEW = 'JohnDoeNew';
 
-    /** @var UserRepositoryInterface */
-    private $userRepository;
+    private UserRepositoryInterface $userRepository;
 
     public function setUp()
     {

@@ -15,15 +15,15 @@ class DateValueForTest extends DateValue
 
 class DateValueTest extends TestCase
 {
-    const DATE = '2018-01-01';
-    const DATE_DIFFERENT = '2018-01-02';
-    const DATE_WITH_TIMEZONE = '2018-02-01T00:00:00.000000Z';
-    const DATE_WITH_TIMEZONE_PLUS_ONE = '2018-02-01T01:00:00.000000Z';
-    const DATE2 = '2018-02-01';
+    private const DATE = '2018-01-01';
+    private const DATE_DIFFERENT = '2018-01-02';
+    private const DATE_WITH_TIMEZONE = '2018-02-01T00:00:00.000000Z';
+    private const DATE_WITH_TIMEZONE_PLUS_ONE = '2018-02-01T01:00:00.000000Z';
+    private const DATE2 = '2018-02-01';
 
-    const UTC_TIMEZONE = 'UTC';
-    const ASIA_SHANGHAI_TIMEZONE = 'Asia/Shanghai';
-    const ASIA_SHANGHAI_UTC_DIFF_HOURS = 8;
+    private const UTC_TIMEZONE = 'UTC';
+    private const ASIA_SHANGHAI_TIMEZONE = 'Asia/Shanghai';
+    private const ASIA_SHANGHAI_UTC_DIFF_HOURS = 8;
 
     /**
      * @group UnitTests

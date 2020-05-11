@@ -47,8 +47,8 @@ class StringSpecificationFailStub implements StringSpecificationInterface
 }
 class StringSpecificationChainTest extends TestCase
 {
-    const STRING_SPECIFICATION_OK_STUB = 'StringSpecificationOkStub';
-    const STRING_SPECIFICATION_FAIL_STUB = 'StringSpecificationFailStub';
+    private const STRING_SPECIFICATION_OK_STUB = 'StringSpecificationOkStub';
+    private const STRING_SPECIFICATION_FAIL_STUB = 'StringSpecificationFailStub';
 
     /**
      * @group UnitTests

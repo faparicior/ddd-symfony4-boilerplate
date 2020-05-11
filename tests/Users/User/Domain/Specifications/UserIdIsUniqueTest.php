@@ -24,8 +24,7 @@ class UserIdIsUniqueTest extends TestCase
 {
     private const SPECIFICATION_FAIL_MESSAGE = 'User identification is in use';
 
-    /** @var UserRepositoryInterface */
-    private $userRepository;
+    private UserRepositoryInterface $userRepository;
 
     public function setUp()
     {
