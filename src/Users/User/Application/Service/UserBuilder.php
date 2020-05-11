@@ -8,6 +8,7 @@ use App\Shared\Domain\Exceptions\DomainException;
 use App\Users\User\Domain\Exceptions\UserInvalidException;
 use App\Users\User\Domain\Specifications\UserSpecificationChain;
 use App\Users\User\Domain\User;
+use App\Users\User\Domain\UserRepositoryInterface;
 use App\Users\User\Domain\ValueObjects\Email;
 use App\Users\User\Domain\ValueObjects\Password;
 use App\Users\User\Domain\ValueObjects\UserId;
@@ -16,13 +17,25 @@ use ReflectionException;
 
 final class UserBuilder
 {
+    private UserRepositoryInterface $userRepository;
+    private UserSpecificationChain $userSpecifications;
+
+    public function __construct(UserRepositoryInterface $userRepository, UserSpecificationChain $userSpecifications)
+    {
+        $this->userRepository = $userRepository;
+        $this->userSpecifications = $userSpecifications;
+    }
+
     /**
      * @throws DomainException
      * @throws UserInvalidException
      * @throws ReflectionException
      */
-    public static function build(UserId $userId, UserName $userName, Email $email, Password $password, UserSpecificationChain $userSpecifications): User
+    public function create(UserId $userId, UserName $userName, Email $email, Password $password): User
     {
-        return User::build($userId, $userName, $email, $password, $userSpecifications);
+        $user = User::build($userId, $userName, $email, $password, $this->userSpecifications);
+        $this->userRepository->create($user);
+
+        return $user;
     }
 }

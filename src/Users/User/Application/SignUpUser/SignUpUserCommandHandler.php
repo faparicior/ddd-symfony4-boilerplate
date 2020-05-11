@@ -10,8 +10,6 @@ use App\Users\User\Application\Service\UserBuilder;
 use App\Users\User\Domain\Exceptions\PasswordInvalidByPolicyRulesException;
 use App\Users\User\Domain\Exceptions\UserInvalidException;
 use App\Users\User\Domain\Exceptions\UserNameInvalidByPolicyRulesException;
-use App\Users\User\Domain\Specifications\UserSpecificationChain;
-use App\Users\User\Domain\UserRepositoryInterface;
 use App\Users\User\Domain\ValueObjects\Email;
 use App\Users\User\Domain\ValueObjects\Password;
 use App\Users\User\Domain\ValueObjects\UserId;
@@ -22,14 +20,12 @@ use ReflectionException;
 final class SignUpUserCommandHandler
 {
     private UniqueIdProviderInterface $uniqueUuidProviderService;
-    private UserRepositoryInterface $userRepository;
-    private UserSpecificationChain $userSpecificationChain;
+    private UserBuilder $userBuilder;
 
-    public function __construct(UniqueIdProviderInterface $uniqueUuidProviderService, UserRepositoryInterface $userRepository, UserSpecificationChain $userSpecificationChain)
+    public function __construct(UniqueIdProviderInterface $uniqueUuidProviderService, UserBuilder $userBuilder)
     {
         $this->uniqueUuidProviderService = $uniqueUuidProviderService;
-        $this->userRepository = $userRepository;
-        $this->userSpecificationChain = $userSpecificationChain;
+        $this->userBuilder = $userBuilder;
     }
 
     /**
@@ -46,15 +42,12 @@ final class SignUpUserCommandHandler
     {
         $userId = $this->uniqueUuidProviderService->generate();
 
-        $user = UserBuilder::build(
+        $user = $this->userBuilder->create(
             UserId::fromString($userId),
             UserName::build($command->username()),
             Email::build($command->email()),
-            Password::build($command->password()),
-            $this->userSpecificationChain
+            Password::build($command->password())
         );
-
-        $this->userRepository->create($user);
 
         return [
             'id' => $user->userId()->value(),

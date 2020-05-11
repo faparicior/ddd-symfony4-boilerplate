@@ -23,6 +23,11 @@ services:
             - '@App\Users\User\Domain\Specifications\UserNameIsUnique'
             - '@App\Users\User\Domain\Specifications\UserIdIsUnique'
 
+    App\Users\User\Application\Service\UserBuilder:
+        arguments:
+            - '@App\Users\User\Domain\UserRepositoryInterface'
+            - '@App\Users\User\Domain\Specifications\UserSpecificationChain'
+
     App\Users\User\Domain\UserRepositoryInterface:
         alias: App\Users\User\Infrastructure\Persistence\DoctrineUserRepository
 

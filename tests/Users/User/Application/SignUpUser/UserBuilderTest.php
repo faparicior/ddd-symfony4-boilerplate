@@ -25,12 +25,20 @@ class UserBuilderTest extends TestCase
     private const PASSWORD = 'userpass';
 
     private InMemoryUserRepository $userRepository;
+    private UserBuilder $userBuilder;
 
     public function setUp()
     {
         parent::setUp();
 
         $this->userRepository = new InMemoryUserRepository();
+        $this->userBuilder = new UserBuilder(
+            $this->userRepository,
+            UserSpecificationChain::build(...[
+                UserNameIsUnique::build($this->userRepository),
+                UserEmailIsUnique::build($this->userRepository),
+            ])
+        );
     }
 
     /**
@@ -42,15 +50,11 @@ class UserBuilderTest extends TestCase
      */
     public function testUserBuilderCanCreateAnUser()
     {
-        $user = UserBuilder::build(
+        $user = $this->userBuilder->create(
             UserId::fromString(self::USER_UUID),
             UserName::build(self::USERNAME),
             Email::build(self::EMAIL),
-            Password::build(self::PASSWORD),
-            UserSpecificationChain::build(...[
-                UserNameIsUnique::build($this->userRepository),
-                UserEmailIsUnique::build($this->userRepository),
-            ])
+            Password::build(self::PASSWORD)
         );
 
         self::assertEquals(self::USER_UUID, $user->userId()->value());

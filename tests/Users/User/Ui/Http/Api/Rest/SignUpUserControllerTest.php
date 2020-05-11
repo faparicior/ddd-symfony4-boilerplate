@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\Users\User\Ui\Http\Api\Rest;
 
 use App\Shared\Infrastructure\Services\UniqueIdProviderStub;
+use App\Users\User\Application\Service\UserBuilder;
 use App\Users\User\Application\SignUpUser\SignUpUserCommand;
 use App\Users\User\Application\SignUpUser\SignUpUserCommandHandler;
 use App\Users\User\Domain\Specifications\UserEmailIsUnique;
@@ -30,14 +31,8 @@ class SignUpUserControllerTest extends TestCase
     private const PASSWORD = ",&+3RjwAu88(tyC'";
     private const INVALID_PASSWORD = ",&+3RjR'";
 
-    /** @var CommandBus */
-    private $bus;
-
-    /** @var Logger */
-    private $log;
-
-    /** @var TestHandler */
-    private $logHandler;
+    private CommandBus $bus;
+    private Logger $log;
 
     public function setUp()
     {
@@ -47,9 +42,7 @@ class SignUpUserControllerTest extends TestCase
         $uniqueUuidProviderService->setUuidToReturn(self::USER_UUID);
 
         $userRepository = new InMemoryUserRepository();
-
-        $signUpUserCommandHandler = new SignUpUserCommandHandler(
-            $uniqueUuidProviderService,
+        $userBuilder = new UserBuilder(
             $userRepository,
             UserSpecificationChain::build(...[
                 UserEmailIsUnique::build($userRepository),
@@ -57,11 +50,16 @@ class SignUpUserControllerTest extends TestCase
             ])
         );
 
+        $signUpUserCommandHandler = new SignUpUserCommandHandler(
+            $uniqueUuidProviderService,
+            $userBuilder
+        );
+
         $this->bus = QuickStart::create([SignUpUserCommand::class => $signUpUserCommandHandler]);
 
         $this->log = new Logger('testLog');
-        $this->logHandler = new TestHandler();
-        $this->log->pushHandler($this->logHandler);
+        $logHandler = new TestHandler();
+        $this->log->pushHandler($logHandler);
     }
 
     /**
