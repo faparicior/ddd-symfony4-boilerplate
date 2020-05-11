@@ -13,7 +13,7 @@ use App\Users\User\Domain\ValueObjects\UserId;
 use App\Users\User\Domain\ValueObjects\UserName;
 use ReflectionException;
 
-final class User
+class User
 {
     private UserId $userId;
     private UserName $username;
