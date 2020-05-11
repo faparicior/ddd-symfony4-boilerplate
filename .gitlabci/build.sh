@@ -2,5 +2,5 @@
 
 composer install
 
-bin/console --env=behat doctrine:database:create
-bin/console --env=behat doctrine:migrations:migrate --no-interaction
+bin/console --env=test doctrine:database:create
+bin/console --env=test doctrine:migrations:migrate --no-interaction

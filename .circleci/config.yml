@@ -41,12 +41,12 @@ jobs:
                       - ./vendor
 
             # prepare the database
-            - run: bin/console --env=behat doctrine:database:create
-            - run: bin/console --env=behat doctrine:migrations:migrate --no-interaction
+            - run: bin/console --env=test doctrine:database:create
+            - run: bin/console --env=test doctrine:migrations:migrate --no-interaction
 
             # run tests with phpunit or codecept
             - run: ./bin/simple-phpunit --config phpunit.xml --coverage-html build/coverage-report --log-junit build/logs/junit.xml --coverage-clover build/logs/clover.xml
-            - run: APP_ENV=behat bin/behat
+#            - run: APP_ENV=behat bin/behat
 
             - run: ./bin/php-coveralls
             - run: bash <(curl -s https://codecov.io/bash)

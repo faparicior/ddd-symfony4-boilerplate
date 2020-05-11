@@ -5,8 +5,8 @@ build:
     dependencies:
         override:
             - composer install --no-interaction
-            - bin/console --env=behat doctrine:database:create
-            - bin/console --env=behat doctrine:migrations:migrate --no-interaction
+            - bin/console --env=test doctrine:database:create
+            - bin/console --env=test doctrine:migrations:migrate --no-interaction
 
     nodes:
         analysis:
@@ -29,7 +29,7 @@ build:
                           file: build/clover.xml   # <- Set this to where we find the coverage data.
                           #    The path is relative to the current directory.
                           format: clover
-                    - command: 'APP_ENV=behat bin/behat'
+#                    - command: 'APP_ENV=behat bin/behat'
     tests:
         override:
             - true
