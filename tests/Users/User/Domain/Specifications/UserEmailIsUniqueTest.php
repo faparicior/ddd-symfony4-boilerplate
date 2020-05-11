@@ -25,8 +25,7 @@ class UserEmailIsUniqueTest extends TestCase
     private const USERNAME_NEW = 'JohnDoeNew';
     private const SPECIFICATION_FAIL_MESSAGE = 'User email is in use';
 
-    /** @var UserRepositoryInterface */
-    private $userRepository;
+    private UserRepositoryInterface $userRepository;
 
     public function setUp()
     {

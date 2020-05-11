@@ -28,7 +28,7 @@ class DummyException extends DomainException
 
 class AppControllerTest extends TestCase
 {
-    const TEST_ERROR_MESSAGE = 'test error message';
+    private const TEST_ERROR_MESSAGE = 'test error message';
     private CommandBus $bus;
     private Logger $log;
     private TestHandler $logHandler;
