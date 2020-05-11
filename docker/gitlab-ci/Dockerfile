@@ -12,10 +12,11 @@ RUN apt -y update \
     && groupadd -r devel -g 1000 \
     && useradd --no-log-init -u 1000 -r -g devel devel \
     && apt -y install git libzip-dev unzip nodejs npm \
+    && npm install npm@latest -g \
     && docker-php-ext-install zip \
     && pecl install xdebug-2.9.4 \
     && echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug.ini \
     && echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/xdebug.ini \
     && echo "xdebug.remote_autostart=off" >> /usr/local/etc/php/conf.d/xdebug.ini
 
-#COPY ./docker/gitlab-ci/httpd.conf /etc/apache2/sites-enabled/000-default.conf
+COPY httpd.conf /etc/apache2/sites-enabled/000-default.conf
