@@ -6,9 +6,9 @@ namespace App\Users\User\Application\SignUpUser;
 
 use App\Shared\Domain\Exceptions\DomainException;
 use App\Shared\Infrastructure\Services\UniqueIdProviderInterface;
+use App\Users\User\Application\Exceptions\UserInvalidException;
 use App\Users\User\Application\Service\UserCreator;
 use App\Users\User\Domain\Exceptions\PasswordInvalidByPolicyRulesException;
-use App\Users\User\Domain\Exceptions\UserInvalidException;
 use App\Users\User\Domain\Exceptions\UserNameInvalidByPolicyRulesException;
 use App\Users\User\Domain\ValueObjects\Email;
 use App\Users\User\Domain\ValueObjects\Password;
