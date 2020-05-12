@@ -16,11 +16,6 @@ class StringForTest extends StringValue
 
 class StringValueTest extends TestCase
 {
-    /**
-     * @group UnitTests
-     * @group Shared
-     * @group Domain
-     */
     public function testStringValueCannotBeInstantiatedDirectly()
     {
         self::expectException(\Error::class);
@@ -29,10 +24,6 @@ class StringValueTest extends TestCase
     }
 
     /**
-     * @group UnitTests
-     * @group Shared
-     * @group Domain
-     *
      * @throws InvalidStringException
      * @throws DomainException
      * @throws ReflectionException
@@ -45,10 +36,6 @@ class StringValueTest extends TestCase
     }
 
     /**
-     * @group UnitTests
-     * @group Shared
-     * @group Domain
-     *
      * @throws DomainException
      * @throws InvalidStringException
      * @throws ReflectionException
@@ -62,10 +49,6 @@ class StringValueTest extends TestCase
     }
 
     /**
-     * @group UnitTests
-     * @group Shared
-     * @group Domain
-     *
      * @throws DomainException
      * @throws InvalidStringException
      * @throws ReflectionException

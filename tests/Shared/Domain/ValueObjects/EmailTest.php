@@ -20,11 +20,6 @@ class EmailTest extends TestCase
     private const INVALID_EMAIL = 'test,@test.de';
     private const INVALID_EMAIL_MESSAGE = 'Invalid Email format';
 
-    /**
-     * @group UnitTests
-     * @group Shared
-     * @group Domain
-     */
     public function testEmailCannotBeInstantiated()
     {
         self::expectException(\Error::class);
@@ -32,10 +27,6 @@ class EmailTest extends TestCase
     }
 
     /**
-     * @group UnitTests
-     * @group Shared
-     * @group Domain
-     *
      * @throws InvalidEmailException
      * @throws DomainException
      */
@@ -47,10 +38,6 @@ class EmailTest extends TestCase
     }
 
     /**
-     * @group UnitTests
-     * @group Shared
-     * @group Domain
-     *
      * @throws InvalidEmailException
      * @throws DomainException
      */
@@ -62,10 +49,6 @@ class EmailTest extends TestCase
     }
 
     /**
-     * @group UnitTests
-     * @group Shared
-     * @group Domain
-     *
      * @throws InvalidEmailException
      * @throws DomainException
      */
@@ -77,10 +60,6 @@ class EmailTest extends TestCase
     }
 
     /**
-     * @group UnitTests
-     * @group Shared
-     * @group Domain
-     *
      * @throws InvalidEmailException
      * @throws DomainException
      */
@@ -93,10 +72,6 @@ class EmailTest extends TestCase
     }
 
     /**
-     * @group UnitTests
-     * @group Shared
-     * @group Domain
-     *
      * @throws InvalidEmailException
      * @throws DomainException
      */

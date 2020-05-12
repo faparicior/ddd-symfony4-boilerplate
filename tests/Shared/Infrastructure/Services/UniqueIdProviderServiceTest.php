@@ -12,10 +12,6 @@ use Ramsey\Uuid\UuidFactory;
 class UniqueIdProviderServiceTest extends TestCase
 {
     /**
-     * @group UnitTests
-     * @group Shared
-     * @group Infrastructure
-     *
      * @throws Exception
      */
     public function testUniqueUuidProvideCanCreateValidUuids()

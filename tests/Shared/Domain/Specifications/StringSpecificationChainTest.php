@@ -50,11 +50,6 @@ class StringSpecificationChainTest extends TestCase
     private const STRING_SPECIFICATION_OK_STUB = 'StringSpecificationOkStub';
     private const STRING_SPECIFICATION_FAIL_STUB = 'StringSpecificationFailStub';
 
-    /**
-     * @group UnitTests
-     * @group Shared
-     * @group Domain
-     */
     public function testStringSpecificationChainCannotBeInstantiatedDirectly()
     {
         self::expectException(\Error::class);
@@ -62,11 +57,6 @@ class StringSpecificationChainTest extends TestCase
         new StringSpecificationChain();
     }
 
-    /**
-     * @group UnitTests
-     * @group Shared
-     * @group Domain
-     */
     public function testStringSpecificationChainCanBeCreated()
     {
         $specificationChain = StringSpecificationChain::build(...[(new StringDummySpecification())]);
@@ -75,10 +65,6 @@ class StringSpecificationChainTest extends TestCase
     }
 
     /**
-     * @group UnitTests
-     * @group Shared
-     * @group Domain
-     *
      * @throws ReflectionException
      */
     public function testStringSpecificationChainReturnFalseIfHasNoSpecifications()
@@ -89,10 +75,6 @@ class StringSpecificationChainTest extends TestCase
     }
 
     /**
-     * @group UnitTests
-     * @group Shared
-     * @group Domain
-     *
      * @throws ReflectionException
      */
     public function testStringSpecificationChainReturnTrueIfHasNoSpecifications()
@@ -103,10 +85,6 @@ class StringSpecificationChainTest extends TestCase
     }
 
     /**
-     * @group UnitTests
-     * @group Shared
-     * @group Domain
-     *
      * @throws ReflectionException
      */
     public function testStringSpecificationChainReturnSpecificationChainResults()
@@ -121,10 +99,6 @@ class StringSpecificationChainTest extends TestCase
     }
 
     /**
-     * @group UnitTests
-     * @group Shared
-     * @group Domain
-     *
      * @throws ReflectionException
      */
     public function testStringSpecificationChainReturnFalseWithOneFailedSpecification()
@@ -137,10 +111,6 @@ class StringSpecificationChainTest extends TestCase
     }
 
     /**
-     * @group UnitTests
-     * @group Shared
-     * @group Domain
-     *
      * @throws ReflectionException
      */
     public function testStringSpecificationChainReturnSpecificationChainFailedResults()

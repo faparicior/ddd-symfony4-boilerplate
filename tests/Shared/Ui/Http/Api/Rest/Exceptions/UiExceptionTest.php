@@ -16,11 +16,6 @@ class UiExceptionTest extends TestCase
     private const TEST_MESSAGE = 'TestMessage';
     private const TEST_CODE = 2;
 
-    /**
-     * @group UnitTests
-     * @group Shared
-     * @group Domain
-     */
     public function testExceptionCannotBeInstantiatedDirectly()
     {
         self::expectException(\Error::class);
@@ -28,11 +23,6 @@ class UiExceptionTest extends TestCase
         new UiExceptionForTest();
     }
 
-    /**
-     * @group UnitTests
-     * @group Shared
-     * @group Domain
-     */
     public function testExceptionCanBeBuilt()
     {
         $exception = UiExceptionForTest::build();
@@ -40,11 +30,6 @@ class UiExceptionTest extends TestCase
         self::assertInstanceOf(UiExceptionForTest::class, $exception);
     }
 
-    /**
-     * @group UnitTests
-     * @group Shared
-     * @group Domain
-     */
     public function testExceptionCanBeCreatedWithMessageAndStatusCode()
     {
         $exception = UiExceptionForTest::build(self::TEST_MESSAGE, self::TEST_CODE);

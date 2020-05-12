@@ -28,10 +28,6 @@ class UniqueIdentifierTest extends TestCase
     }
 
     /**
-     * @group UnitTests
-     * @group Shared
-     * @group Domain
-     *
      * @throws Exception
      */
     public function testUserIdCanBeCreated()
@@ -42,10 +38,6 @@ class UniqueIdentifierTest extends TestCase
     }
 
     /**
-     * @group UnitTests
-     * @group Shared
-     * @group Domain
-     *
      * @throws DomainException
      */
     public function testUserIdCanBeCreatedFromString()
@@ -57,10 +49,6 @@ class UniqueIdentifierTest extends TestCase
     }
 
     /**
-     * @group UnitTests
-     * @group Shared
-     * @group Domain
-     *
      * @throws Exception
      */
     public function testTwoNewUserIdHaveDifferentValues()
@@ -72,10 +60,6 @@ class UniqueIdentifierTest extends TestCase
     }
 
     /**
-     * @group UnitTests
-     * @group Shared
-     * @group Domain
-     *
      * @throws DomainException
      */
     public function testCreateUserIdFailsForBadStringFormat()
@@ -85,10 +69,6 @@ class UniqueIdentifierTest extends TestCase
     }
 
     /**
-     * @group UnitTests
-     * @group Shared
-     * @group Domain
-     *
      * @throws DomainException
      */
     public function testEqualsFunction()
@@ -100,10 +80,6 @@ class UniqueIdentifierTest extends TestCase
     }
 
     /**
-     * @group UnitTests
-     * @group Shared
-     * @group Domain
-     *
      * @throws DomainException
      */
     public function testHasToStringMagicFunction()

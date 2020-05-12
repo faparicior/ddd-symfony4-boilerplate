@@ -13,11 +13,6 @@ class IntegerForTest extends IntegerValue
 
 class IntegerValueTest extends TestCase
 {
-    /**
-     * @group UnitTests
-     * @group Shared
-     * @group Domain
-     */
     public function testIntegerValueCannotBeInstantiatedDirectly()
     {
         self::expectException(\Error::class);
@@ -25,11 +20,6 @@ class IntegerValueTest extends TestCase
         new IntegerForTest();
     }
 
-    /**
-     * @group UnitTests
-     * @group Shared
-     * @group Domain
-     */
     public function testIntegerValueIsAccessible()
     {
         $integer = IntegerForTest::build(12);
@@ -37,11 +27,6 @@ class IntegerValueTest extends TestCase
         self::assertEquals(12, $integer->value());
     }
 
-    /**
-     * @group UnitTests
-     * @group Shared
-     * @group Domain
-     */
     public function testEqualsFunction()
     {
         $integer = IntegerForTest::build(14);

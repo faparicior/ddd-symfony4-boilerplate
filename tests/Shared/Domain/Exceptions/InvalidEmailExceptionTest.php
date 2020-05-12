@@ -13,11 +13,6 @@ class InvalidEmailExceptionTest extends TestCase
     private const TEST_CODE = 2;
     private const INVALID_EMAIL_DEFAULT_MESSAGE = 'Invalid Email format';
 
-    /**
-     * @group UnitTests
-     * @group Users
-     * @group Domain
-     */
     public function testInvalidEmailExceptionCannotBeInstantiatedDirectly()
     {
         self::expectException(\Error::class);
@@ -25,11 +20,6 @@ class InvalidEmailExceptionTest extends TestCase
         new InvalidEmailException();
     }
 
-    /**
-     * @group UnitTests
-     * @group Users
-     * @group Domain
-     */
     public function testInvalidEmailExceptionCanBeCreatedWithDefaultMessage()
     {
         $exception = InvalidEmailException::build();
@@ -37,11 +27,6 @@ class InvalidEmailExceptionTest extends TestCase
         self::assertEquals(self::INVALID_EMAIL_DEFAULT_MESSAGE, $exception->getMessage());
     }
 
-    /**
-     * @group UnitTests
-     * @group Users
-     * @group Domain
-     */
     public function testInvalidEmailExceptionCanBeCreatedWithMessageAndStatusCode()
     {
         $exception = InvalidEmailException::build(self::TEST_MESSAGE, self::TEST_CODE);

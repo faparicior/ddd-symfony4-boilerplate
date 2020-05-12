@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace App\Tests\Shared\Domain\ValueObjects;
 
@@ -25,11 +23,6 @@ class DateValueTest extends TestCase
     private const ASIA_SHANGHAI_TIMEZONE = 'Asia/Shanghai';
     private const ASIA_SHANGHAI_UTC_DIFF_HOURS = 8;
 
-    /**
-     * @group UnitTests
-     * @group Shared
-     * @group Domain
-     */
     public function testDateCannotBeInstantiated()
     {
         self::expectException(\Error::class);
@@ -38,10 +31,6 @@ class DateValueTest extends TestCase
     }
 
     /**
-     * @group UnitTests
-     * @group Shared
-     * @group Domain
-     *
      * @throws Exception
      */
     public function testDateCanBeCreated()
@@ -52,10 +41,6 @@ class DateValueTest extends TestCase
     }
 
     /**
-     * @group UnitTests
-     * @group Shared
-     * @group Domain
-     *
      * @throws Exception
      */
     public function testCreateDateFailsForBadStringFormat()
@@ -65,10 +50,6 @@ class DateValueTest extends TestCase
     }
 
     /**
-     * @group UnitTests
-     * @group Shared
-     * @group Domain
-     *
      * @throws Exception
      */
     public function testDateStoresCorrectValue()
@@ -79,10 +60,6 @@ class DateValueTest extends TestCase
     }
 
     /**
-     * @group UnitTests
-     * @group Shared
-     * @group Domain
-     *
      * @throws Exception
      */
     public function testEqualsFunction()
@@ -94,10 +71,6 @@ class DateValueTest extends TestCase
     }
 
     /**
-     * @group UnitTests
-     * @group Shared
-     * @group Domain
-     *
      * @throws Exception
      */
     public function testDateCanBeCreatedWithTimezone()
@@ -109,10 +82,6 @@ class DateValueTest extends TestCase
     }
 
     /**
-     * @group UnitTests
-     * @group Shared
-     * @group Domain
-     *
      * @throws Exception
      */
     public function testDateCanAddHours()
@@ -127,10 +96,6 @@ class DateValueTest extends TestCase
     }
 
     /**
-     * @group UnitTests
-     * @group Shared
-     * @group Domain
-     *
      * @throws Exception
      */
     public function testDateCanCompareDates()

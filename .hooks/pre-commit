@@ -4,26 +4,38 @@
 
 echo "Running tests.. ";
 
+$output = '';
+
 exec('docker ps | grep webapp_php | wc -l', $output, $returnCode);
 
-
 if ($returnCode === 0) {
+    $dockerExecutor = "run";
     if($output[0] === "1") {
-        exec('docker-compose exec php "bin/php-cs-fixer" fix', $output, $returnCode);
-        exec('docker-compose run php "bin/simple-phpunit"', $output, $returnCode);
-    } else {
-        exec('docker-compose run php "bin/php-cs-fixer" fix', $output, $returnCode);
-        exec('docker-compose run php "bin/simple-phpunit"', $output, $returnCode);
+        $dockerExecutor = "exec";
+        executeCommand('php "bin/php-cs-fixer" fix --dry-run', $dockerExecutor);
+        $dockerExecutor = "run";
+        executeCommand('php "bin/simple-phpunit"', $dockerExecutor);
+//        exec('docker-compose run php "bin/php-cs-fixer" fix', $output, $returnCode);
+//        exec('docker-compose run php "bin/simple-phpunit"', $output, $returnCode);
     }
-}
-
-if ($returnCode !== 0) {
-  // Show full output
-  echo PHP_EOL . implode($output, PHP_EOL) . PHP_EOL;
-  echo "Aborting commit.." . PHP_EOL;
-  exit(1);
 }
 
 // Show summary (last line)
 echo array_pop($output) . PHP_EOL;
 exit(0);
+
+function evalCode($returnCode, $output)
+{
+    if ($returnCode !== 0) {
+        // Show full output
+        echo PHP_EOL . implode($output, PHP_EOL) . PHP_EOL;
+        echo "Aborting commit.." . PHP_EOL;
+        exit(1);
+    }
+}
+
+function executeCommand($command, $dockerExecutor)
+{
+    exec('docker-compose '.$dockerExecutor.' '.$command, $output, $returnCode);
+    evalCode($returnCode, $output);
+}

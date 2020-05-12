@@ -17,11 +17,22 @@
     </php>
 
     <testsuites>
-        <testsuite name="Project Test Suite">
+        <testsuite name="all">
             <directory>tests</directory>
         </testsuite>
+        <testsuite name="ui">
+            <directory>tests/Shared/UI</directory>
+            <directory>tests/Users/User/UI</directory>
+        </testsuite>
+        <testsuite name="application">
+            <directory>tests/Shared/Application</directory>
+            <directory>tests/Users/User/Application</directory>
+        </testsuite>
+        <testsuite name="domain">
+            <directory>tests/Shared/Domain</directory>
+            <directory>tests/Users/User/Domain</directory>
+        </testsuite>
     </testsuites>
-
 
     <filter>
         <whitelist>
