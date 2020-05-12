@@ -6,11 +6,11 @@ namespace App\Tests\Users\User\Application\SignUpUser;
 
 use App\Shared\Infrastructure\Services\UniqueIdProviderInterface;
 use App\Shared\Infrastructure\Services\UniqueIdProviderStub;
-use App\Users\User\Application\Service\UserBuilder;
+use App\Users\User\Application\Service\UserCreator;
 use App\Users\User\Application\SignUpUser\SignUpUserCommand;
 use App\Users\User\Application\SignUpUser\SignUpUserCommandHandler;
-use App\Users\User\Domain\Specifications\UserSpecificationChain;
-use App\Users\User\Domain\Specifications\UserSpecificationInterface;
+use App\Users\User\Application\Specifications\CreateUserSpecificationChain;
+use App\Users\User\Application\Specifications\UserSpecificationInterface;
 use App\Users\User\Domain\User;
 use App\Users\User\Domain\UserRepositoryInterface;
 use App\Users\User\Domain\ValueObjects\UserId;
@@ -41,7 +41,7 @@ class SignUpUserCommandHandlerTest extends TestCase
 
     private UniqueIdProviderInterface $uuidService;
     private UserRepositoryInterface $userRepository;
-    private UserBuilder $userBuilder;
+    private UserCreator $userBuilder;
 
     public function setUp()
     {
@@ -51,17 +51,13 @@ class SignUpUserCommandHandlerTest extends TestCase
         $this->uuidService->setUuidToReturn(self::USER_UUID);
 
         $this->userRepository = new InMemoryUserRepository();
-        $this->userBuilder = new UserBuilder(
+        $this->userBuilder = new UserCreator(
             $this->userRepository,
-            UserSpecificationChain::build(...[new UserSpecificationStub()])
+            CreateUserSpecificationChain::build(...[new UserSpecificationStub()])
         );
     }
 
     /**
-     * @group UnitTests
-     * @group Users
-     * @group Application
-     *
      * @throws Exception
      */
     public function testSignUpUserCommandHandlerReturnsAValidResponse()
@@ -85,10 +81,6 @@ class SignUpUserCommandHandlerTest extends TestCase
     }
 
     /**
-     * @group UnitTests
-     * @group Users
-     * @group Application
-     *
      * @throws Exception
      */
     public function testSignUpUserCommandHandlerStoreAnUser()

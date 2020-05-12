@@ -11,11 +11,6 @@ class UserIdTest extends TestCase
 {
     private const USER_ID = '00000000-0000-4000-8000-000000000000';
 
-    /**
-     * @group UnitTests
-     * @group Users
-     * @group Domain
-     */
     public function testUserIdCannotBeInstantiatedDirectly()
     {
         self::expectException(\Error::class);
@@ -23,11 +18,6 @@ class UserIdTest extends TestCase
         new UserId();
     }
 
-    /**
-     * @group UnitTests
-     * @group Users
-     * @group Domain
-     */
     public function testUserIdCanBeBuilt()
     {
         $regex = '/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/';

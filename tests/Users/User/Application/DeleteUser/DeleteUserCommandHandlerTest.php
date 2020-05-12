@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace App\Tests\Users\User\Application\DeleteUser;
 
-use App\Tests\Uses\User\Domain\Specifications\UserSpecificationOkStub;
 use App\Users\User\Application\DeleteUser\DeleteUserCommand;
 use App\Users\User\Application\DeleteUser\DeleteUserCommandHandler;
 use App\Users\User\Application\Exceptions\UserNotFoundException;
-use App\Users\User\Domain\Specifications\UserSpecificationChain;
 use App\Users\User\Domain\User;
 use App\Users\User\Domain\UserRepositoryInterface;
 use App\Users\User\Domain\ValueObjects\Email;
@@ -37,16 +35,11 @@ class DeleteUserCommandHandlerTest extends TestCase
             UserId::build(),
             UserName::build(self::USERNAME),
             Email::build(self::EMAIL),
-            Password::build(self::PASSWORD),
-            UserSpecificationChain::build(new UserSpecificationOkStub())
+            Password::build(self::PASSWORD)
         ));
     }
 
     /**
-     * @group UnitTests
-     * @group Users
-     * @group Application
-     *
      * @throws Exception
      */
     public function testDeleteUserCommandHandlerReturnsAValidResponse()
@@ -59,10 +52,6 @@ class DeleteUserCommandHandlerTest extends TestCase
     }
 
     /**
-     * @group UnitTests
-     * @group Users
-     * @group Application
-     *
      * @throws Exception
      */
     public function testDeleteUserCommandHandlerDeleteTheUser()

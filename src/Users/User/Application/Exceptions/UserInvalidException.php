@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Users\User\Domain\Exceptions;
+namespace App\Users\User\Application\Exceptions;
 
-use App\Shared\Domain\Exceptions\DomainException;
+use App\Shared\Application\Exceptions\ApplicationException;
 use Throwable;
 
-class UserInvalidException extends DomainException
+class UserInvalidException extends ApplicationException
 {
     public const INVALID_USER_MESSAGE = 'User is not valid due to policy chain';
 

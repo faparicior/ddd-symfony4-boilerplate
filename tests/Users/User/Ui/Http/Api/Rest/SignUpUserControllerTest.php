@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace App\Tests\Users\User\Ui\Http\Api\Rest;
 
 use App\Shared\Infrastructure\Services\UniqueIdProviderStub;
-use App\Users\User\Application\Service\UserBuilder;
+use App\Users\User\Application\Service\UserCreator;
 use App\Users\User\Application\SignUpUser\SignUpUserCommand;
 use App\Users\User\Application\SignUpUser\SignUpUserCommandHandler;
-use App\Users\User\Domain\Specifications\UserEmailIsUnique;
-use App\Users\User\Domain\Specifications\UserNameIsUnique;
-use App\Users\User\Domain\Specifications\UserSpecificationChain;
+use App\Users\User\Application\Specifications\CreateUserSpecificationChain;
+use App\Users\User\Application\Specifications\UserEmailIsUnique;
+use App\Users\User\Application\Specifications\UserNameIsUnique;
 use App\Users\User\Infrastructure\Persistence\InMemoryUserRepository;
 use App\Users\User\Ui\Http\Api\Rest\SignUpUserController;
 use League\Tactician\CommandBus;
@@ -42,9 +42,9 @@ class SignUpUserControllerTest extends TestCase
         $uniqueUuidProviderService->setUuidToReturn(self::USER_UUID);
 
         $userRepository = new InMemoryUserRepository();
-        $userBuilder = new UserBuilder(
+        $userBuilder = new UserCreator(
             $userRepository,
-            UserSpecificationChain::build(...[
+            CreateUserSpecificationChain::build(...[
                 UserEmailIsUnique::build($userRepository),
                 UserNameIsUnique::build($userRepository),
             ])
@@ -62,11 +62,6 @@ class SignUpUserControllerTest extends TestCase
         $this->log->pushHandler($logHandler);
     }
 
-    /**
-     * @group UnitTests
-     * @group Users
-     * @group Ui
-     */
     public function testUserCanSignUp()
     {
         $data = json_encode([
@@ -92,11 +87,6 @@ class SignUpUserControllerTest extends TestCase
         self::assertEquals(Response::HTTP_OK, $response->getStatusCode());
     }
 
-    /**
-     * @group UnitTests
-     * @group Users
-     * @group Ui
-     */
     public function testUserWithIncorrectEmailCannotSignUp()
     {
         $data = json_encode([
@@ -114,11 +104,6 @@ class SignUpUserControllerTest extends TestCase
         self::assertEquals(Response::HTTP_BAD_REQUEST, $response->getStatusCode());
     }
 
-    /**
-     * @group UnitTests
-     * @group Users
-     * @group Ui
-     */
     public function testUserWithEmptyPasswordCannotSignUp()
     {
         $data = json_encode([
@@ -136,11 +121,6 @@ class SignUpUserControllerTest extends TestCase
         self::assertEquals(Response::HTTP_BAD_REQUEST, $response->getStatusCode());
     }
 
-    /**
-     * @group UnitTests
-     * @group Users
-     * @group Ui
-     */
     public function testUserWithEmptyUsernameCannotSignUp()
     {
         $data = json_encode([

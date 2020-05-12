@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace App\Tests\Users\User\Ui\Http\Api\Rest;
 
-use App\Tests\Uses\User\Domain\Specifications\UserSpecificationOkStub;
 use App\Users\User\Application\DeleteUser\DeleteUserCommand;
 use App\Users\User\Application\DeleteUser\DeleteUserCommandHandler;
-use App\Users\User\Domain\Specifications\UserSpecificationChain;
 use App\Users\User\Domain\User;
 use App\Users\User\Domain\ValueObjects\Email;
 use App\Users\User\Domain\ValueObjects\Password;
@@ -43,8 +41,7 @@ class DeleteUserControllerTest extends TestCase
             UserId::build(),
             UserName::build(self::USERNAME),
             Email::build(self::EMAIL),
-            Password::build(self::PASSWORD),
-            UserSpecificationChain::build(new UserSpecificationOkStub())
+            Password::build(self::PASSWORD)
         ));
 
         $deleteUserCommandHandler = new DeleteUserCommandHandler($userRepository);
@@ -56,11 +53,6 @@ class DeleteUserControllerTest extends TestCase
         $this->log->pushHandler($logHandler);
     }
 
-    /**
-     * @group UnitTests
-     * @group Users
-     * @group Ui
-     */
     public function testUserCanBeDeleted()
     {
         $data = json_encode([

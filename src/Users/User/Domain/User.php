@@ -4,14 +4,10 @@ declare(strict_types=1);
 
 namespace App\Users\User\Domain;
 
-use App\Shared\Domain\Exceptions\DomainException;
-use App\Users\User\Domain\Exceptions\UserInvalidException;
-use App\Users\User\Domain\Specifications\UserSpecificationChain;
 use App\Users\User\Domain\ValueObjects\Email;
 use App\Users\User\Domain\ValueObjects\Password;
 use App\Users\User\Domain\ValueObjects\UserId;
 use App\Users\User\Domain\ValueObjects\UserName;
-use ReflectionException;
 
 class User
 {
@@ -28,39 +24,11 @@ class User
         $this->password = $password;
     }
 
-    /**
-     * @return static
-     *
-     * @throws DomainException
-     * @throws ReflectionException
-     * @throws UserInvalidException
-     */
-    public static function build(UserId $userId, UserName $userName, Email $email, Password $password, UserSpecificationChain $specificationChain): self
+    public static function build(UserId $userId, UserName $userName, Email $email, Password $password): self
     {
         $user = new static($userId, $userName, $email, $password);
 
-        self::guard($specificationChain, $user);
-
         return $user;
-    }
-
-    /**
-     * @param $user
-     *
-     * @throws DomainException
-     * @throws UserInvalidException;
-     * @throws ReflectionException
-     */
-    private static function guard(UserSpecificationChain $specificationChain, User $user): void
-    {
-        if (isset($specificationChain)) {
-            $isValid = $specificationChain->evalSpecifications($user);
-
-            if (!$isValid) {
-                $specificationsFailed = $specificationChain->getFailedResults();
-                throw UserInvalidException::build(implode(', ', $specificationsFailed));
-            }
-        }
     }
 
     public function userId(): UserId

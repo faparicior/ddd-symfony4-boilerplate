@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Users\User\Domain\Specifications;
+namespace App\Users\User\Application\Specifications;
 
 use App\Users\User\Domain\User;
 use App\Users\User\Domain\UserRepositoryInterface;
 
-class UserEmailIsUnique implements UserSpecificationInterface
+class UserIdIsUnique implements UserSpecificationInterface
 {
-    public const SPECIFICATION_FAIL_MESSAGE = 'User email is in use';
+    public const SPECIFICATION_FAIL_MESSAGE = 'User identification is in use';
 
     private UserRepositoryInterface $userRepository;
 
@@ -25,7 +25,7 @@ class UserEmailIsUnique implements UserSpecificationInterface
 
     public function isSatisfiedBy(User $userToFind): bool
     {
-        $user = $this->userRepository->findByEmail($userToFind->email());
+        $user = $this->userRepository->findById($userToFind->userId());
 
         return is_null($user);
     }

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Users\User\Domain\Specifications;
+namespace App\Users\User\Application\Specifications;
 
 use App\Users\User\Domain\User;
 use App\Users\User\Domain\UserRepositoryInterface;

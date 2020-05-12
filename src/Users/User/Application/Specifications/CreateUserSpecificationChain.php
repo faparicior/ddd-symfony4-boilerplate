@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Users\User\Domain\Specifications;
+namespace App\Users\User\Application\Specifications;
 
 use App\Shared\Domain\Specifications\SpecificationChain;
 use App\Users\User\Domain\User;
 use ReflectionException;
 
-final class UserSpecificationChain extends SpecificationChain
+final class CreateUserSpecificationChain extends SpecificationChain
 {
     final private function __construct(UserSpecificationInterface ...$specifications)
     {

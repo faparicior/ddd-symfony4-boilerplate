@@ -13,11 +13,6 @@ class StringNotEmptyTest extends TestCase
     private const INVALID_STRING = '';
     private const SPECIFICATION_FAIL_MESSAGE = 'String value empty';
 
-    /**
-     * @group UnitTests
-     * @group Users
-     * @group Domain
-     */
     public function testStringNotEmptyCannotBeInstantiatedDirectly()
     {
         self::expectException(\Error::class);
@@ -25,11 +20,6 @@ class StringNotEmptyTest extends TestCase
         new StringNotEmpty();
     }
 
-    /**
-     * @group UnitTests
-     * @group Users
-     * @group Domain
-     */
     public function testStringNotEmptyValidationReturnsTrue()
     {
         $specification = StringNotEmpty::build();
@@ -37,11 +27,6 @@ class StringNotEmptyTest extends TestCase
         self::assertTrue($specification->isSatisfiedBy(self::VALID_STRING));
     }
 
-    /**
-     * @group UnitTests
-     * @group Users
-     * @group Domain
-     */
     public function testStringNotEmptyValidationReturnsFalse()
     {
         $specification = StringNotEmpty::build();

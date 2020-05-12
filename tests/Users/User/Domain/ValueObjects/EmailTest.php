@@ -9,11 +9,6 @@ use PHPUnit\Framework\TestCase;
 
 class EmailTest extends TestCase
 {
-    /**
-     * @group UnitTests
-     * @group Users
-     * @group Domain
-     */
     public function testEmailCannotBeInstantiatedDirectly()
     {
         self::expectException(\Error::class);
@@ -21,11 +16,6 @@ class EmailTest extends TestCase
         new Email();
     }
 
-    /**
-     * @group UnitTests
-     * @group Users
-     * @group Domain
-     */
     public function testEmailCanBeBuilt()
     {
         $email = Email::build('test@test.de');

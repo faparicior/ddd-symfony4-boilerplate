@@ -14,11 +14,6 @@ class PasswordTest extends TestCase
 {
     private const INVALID_PASSWORD_MESSAGE = 'Password invalid by policy rules';
 
-    /**
-     * @group UnitTests
-     * @group Users
-     * @group Domain
-     */
     public function testPasswordCannotBeInstantiatedDirectly()
     {
         self::expectException(\Error::class);
@@ -27,10 +22,6 @@ class PasswordTest extends TestCase
     }
 
     /**
-     * @group UnitTests
-     * @group Users
-     * @group Domain
-     *
      * @throws DomainException
      * @throws PasswordInvalidByPolicyRulesException
      * @throws ReflectionException
@@ -44,10 +35,6 @@ class PasswordTest extends TestCase
     }
 
     /**
-     * @group UnitTests
-     * @group Shared
-     * @group Domain
-     *
      * @throws PasswordInvalidByPolicyRulesException
      * @throws DomainException
      * @throws ReflectionException

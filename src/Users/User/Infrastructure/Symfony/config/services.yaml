@@ -16,32 +16,35 @@ services:
         tags:
         - { name: tactician.handler, command: App\Users\User\Application\DeleteUser\DeleteUserCommand }
 
-    App\Users\User\Domain\Specifications\UserSpecificationChain:
-        factory: ['App\Users\User\Domain\Specifications\UserSpecificationChain', 'build']
+    App\Users\User\Application\Specifications\CreateUserSpecificationChain:
+        factory: ['App\Users\User\Application\Specifications\CreateUserSpecificationChain', 'build']
         arguments:
-            - '@App\Users\User\Domain\Specifications\UserEmailIsUnique'
-            - '@App\Users\User\Domain\Specifications\UserNameIsUnique'
-            - '@App\Users\User\Domain\Specifications\UserIdIsUnique'
+            - '@App\Users\User\Application\Specifications\UserEmailIsUnique'
+            - '@App\Users\User\Application\Specifications\UserNameIsUnique'
+            - '@App\Users\User\Application\Specifications\UserIdIsUnique'
 
-    App\Users\User\Application\Service\UserBuilder:
+    App\Users\User\Application\Service\UserCreator:
         arguments:
             - '@App\Users\User\Domain\UserRepositoryInterface'
-            - '@App\Users\User\Domain\Specifications\UserSpecificationChain'
+            - '@App\Users\User\Application\Specifications\CreateUserSpecificationChain'
 
     App\Users\User\Domain\UserRepositoryInterface:
         alias: App\Users\User\Infrastructure\Persistence\DoctrineUserRepository
 
-    App\Users\User\Domain\Specifications\UserIdIsUnique:
-        factory: ['App\Users\User\Domain\Specifications\UserIdIsUnique', 'build']
-        class: App\Users\User\Domain\Specifications\UserIdIsUnique
+    App\Users\User\Application\Specifications\UserIdIsUnique:
+        factory: ['App\Users\User\Application\Specifications\UserIdIsUnique', 'build']
+        class: App\Users\User\Application\Specifications\UserIdIsUnique
 
-    App\Users\User\Domain\Specifications\UserEmailIsUnique:
-        factory: ['App\Users\User\Domain\Specifications\UserEmailIsUnique', 'build']
-        class: App\Users\User\Domain\Specifications\UserEmailIsUnique
+    App\Users\User\Application\Specifications\UserEmailIsUnique:
+        factory: ['App\Users\User\Application\Specifications\UserEmailIsUnique', 'build']
+        class: App\Users\User\Application\Specifications\UserEmailIsUnique
 
-    App\Users\User\Domain\Specifications\UserNameIsUnique:
-        factory: ['App\Users\User\Domain\Specifications\UserNameIsUnique', 'build']
-        class: App\Users\User\Domain\Specifications\UserNameIsUnique
+    App\Users\User\Application\Specifications\UserNameIsUnique:
+        factory: ['App\Users\User\Application\Specifications\UserNameIsUnique', 'build']
+        class: App\Users\User\Application\Specifications\UserNameIsUnique
+
+    App\Users\User\Application\Specifications\:
+        resource: '../../../Application/Specifications/'
 
     App\Users\User\Domain\Specifications\:
         resource: '../../../Domain/Specifications/'

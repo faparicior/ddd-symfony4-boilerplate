@@ -2,14 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Users\User\Domain\Specifications;
+namespace App\Tests\Users\User\Application\Specifications;
 
 use App\Shared\Domain\Exceptions\DomainException;
+use App\Users\User\Application\Specifications\UserEmailIsUnique;
+use App\Users\User\Application\Specifications\UserNameIsUnique;
 use App\Users\User\Domain\Exceptions\PasswordInvalidByPolicyRulesException;
 use App\Users\User\Domain\Exceptions\UserNameInvalidByPolicyRulesException;
-use App\Users\User\Domain\Specifications\UserEmailIsUnique;
-use App\Users\User\Domain\Specifications\UserNameIsUnique;
-use App\Users\User\Domain\Specifications\UserSpecificationChain;
 use App\Users\User\Domain\User;
 use App\Users\User\Domain\UserRepositoryInterface;
 use App\Users\User\Domain\ValueObjects\Email;
@@ -53,10 +52,7 @@ class UserNameIsUniqueTest extends TestCase
             UserId::build(),
             UserName::build(self::USERNAME),
             Email::build('test@test.de'),
-            Password::build('123456789'),
-            UserSpecificationChain::build(...[
-                UserNameIsUnique::build($this->userRepository),
-            ])
+            Password::build('123456789')
         );
 
         $this->userRepository->create($user);
@@ -67,10 +63,7 @@ class UserNameIsUniqueTest extends TestCase
             UserId::build(),
             UserName::build(self::USERNAME_NEW),
             Email::build('test2@test.de'),
-            Password::build('123456789'),
-            UserSpecificationChain::build(...[
-                UserNameIsUnique::build($this->userRepository),
-            ])
+            Password::build('123456789')
         );
 
         self::assertTrue($specification->isSatisfiedBy($userNew));
@@ -87,10 +80,7 @@ class UserNameIsUniqueTest extends TestCase
             UserId::build(),
             UserName::build(self::USERNAME),
             Email::build('test@test.de'),
-            Password::build('123456789'),
-            UserSpecificationChain::build(...[
-                UserNameIsUnique::build($this->userRepository),
-            ])
+            Password::build('123456789')
         );
 
         $this->userRepository->create($user);
@@ -99,10 +89,7 @@ class UserNameIsUniqueTest extends TestCase
             UserId::build(),
             UserName::build(self::USERNAME),
             Email::build('test2@test.de'),
-            Password::build('123456789'),
-            UserSpecificationChain::build(...[
-                UserEmailIsUnique::build($this->userRepository),
-            ])
+            Password::build('123456789')
         );
 
         $specification = UserNameIsUnique::build($this->userRepository);

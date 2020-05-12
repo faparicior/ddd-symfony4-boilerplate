@@ -6,7 +6,7 @@ namespace App\Users\User\Application\SignUpUser;
 
 use App\Shared\Domain\Exceptions\DomainException;
 use App\Shared\Infrastructure\Services\UniqueIdProviderInterface;
-use App\Users\User\Application\Service\UserBuilder;
+use App\Users\User\Application\Service\UserCreator;
 use App\Users\User\Domain\Exceptions\PasswordInvalidByPolicyRulesException;
 use App\Users\User\Domain\Exceptions\UserInvalidException;
 use App\Users\User\Domain\Exceptions\UserNameInvalidByPolicyRulesException;
@@ -20,9 +20,9 @@ use ReflectionException;
 final class SignUpUserCommandHandler
 {
     private UniqueIdProviderInterface $uniqueUuidProviderService;
-    private UserBuilder $userBuilder;
+    private UserCreator $userBuilder;
 
-    public function __construct(UniqueIdProviderInterface $uniqueUuidProviderService, UserBuilder $userBuilder)
+    public function __construct(UniqueIdProviderInterface $uniqueUuidProviderService, UserCreator $userBuilder)
     {
         $this->uniqueUuidProviderService = $uniqueUuidProviderService;
         $this->userBuilder = $userBuilder;

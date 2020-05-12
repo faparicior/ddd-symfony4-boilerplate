@@ -13,11 +13,6 @@ class SignUpUserCommandTest extends TestCase
     private const EMAIL = 'test@test.de';
     private const PASSWORD = 'userpass';
 
-    /**
-     * @group UnitTests
-     * @group Users
-     * @group Application
-     */
     public function testSignUpUserCommandCannotBeInstantiatedDirectly()
     {
         self::expectException(\Error::class);
@@ -25,11 +20,6 @@ class SignUpUserCommandTest extends TestCase
         new SignUpUserCommand();
     }
 
-    /**
-     * @group UnitTests
-     * @group Users
-     * @group Application
-     */
     public function testSignUpUserCommandCanBeBuilt()
     {
         $signUpUserCommand = SignUpUserCommand::build(

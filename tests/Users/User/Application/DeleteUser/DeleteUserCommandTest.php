@@ -11,11 +11,6 @@ class DeleteUserCommandTest extends TestCase
 {
     private const EMAIL = 'test@test.de';
 
-    /**
-     * @group UnitTests
-     * @group Users
-     * @group Application
-     */
     public function testDeleteUserCommandCannotBeInstantiatedDirectly()
     {
         self::expectException(\Error::class);
@@ -23,11 +18,6 @@ class DeleteUserCommandTest extends TestCase
         new DeleteUserCommand();
     }
 
-    /**
-     * @group UnitTests
-     * @group Users
-     * @group Application
-     */
     public function testDeleteUserCommandCanBeBuilt()
     {
         $deleteUserCommand = DeleteUserCommand::build(
