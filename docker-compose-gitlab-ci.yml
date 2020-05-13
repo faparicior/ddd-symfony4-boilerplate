@@ -5,7 +5,7 @@ services:
         build:
             context: ./docker/apache
             dockerfile: Dockerfile
-        image: webapp_gitlab-ci
+        image: registry.gitlab.com/fapariciorteam/ddd-symfony4-boilerplate:latest
         container_name: webapp_gitlab-ci
         volumes:
             - ./:/var/www/html/

@@ -1,4 +1,5 @@
-image: "php:7.4-apache-buster"
+#image: "php:7.4-apache-buster"
+image: "registry.gitlab.com/fapariciorteam/ddd-symfony4-boilerplate:latest"
 
 # Cache libraries in between jobs
 cache:
