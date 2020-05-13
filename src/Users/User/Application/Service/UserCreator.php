@@ -12,6 +12,7 @@ use App\Users\User\Domain\ValueObjects\Email;
 use App\Users\User\Domain\ValueObjects\Password;
 use App\Users\User\Domain\ValueObjects\UserId;
 use App\Users\User\Domain\ValueObjects\UserName;
+use ReflectionException;
 
 final class UserCreator
 {
@@ -26,6 +27,7 @@ final class UserCreator
 
     /**
      * @throws UserInvalidException
+     * @throws ReflectionException
      */
     public function create(UserId $userId, UserName $userName, Email $email, Password $password): User
     {
@@ -39,6 +41,7 @@ final class UserCreator
 
     /**
      * @throws UserInvalidException
+     * @throws ReflectionException
      */
     private function guard(User $user): void
     {
