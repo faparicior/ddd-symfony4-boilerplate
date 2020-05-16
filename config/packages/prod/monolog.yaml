@@ -21,3 +21,6 @@ monolog:
             handler: deprecation
             max_level: info
             channels: ["php"]
+        rollbar:
+            type: service
+            id: Rollbar\Monolog\Handler\RollbarHandler

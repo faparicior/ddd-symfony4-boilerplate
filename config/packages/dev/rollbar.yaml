@@ -1,0 +1,4 @@
+rollbar:
+  enabled: true
+  access_token: '%env(ROLLBAR_TOKEN)%'
+  environment: '%env(APP_ENV)%'

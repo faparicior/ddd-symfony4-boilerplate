@@ -9,4 +9,6 @@ return [
     League\Tactician\Bundle\TacticianBundle::class => ['all' => true],
     Symfony\Bundle\MonologBundle\MonologBundle::class => ['all' => true],
     Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle::class => ['dev' => true, 'test' => true, 'behat' => true],
+    Sentry\SentryBundle\SentryBundle::class => ['all' => true],
+    Rollbar\Symfony\RollbarBundle\RollbarBundle::class => ['all' => true],
 ];

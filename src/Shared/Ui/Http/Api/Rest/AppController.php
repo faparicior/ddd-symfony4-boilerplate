@@ -11,20 +11,26 @@ use App\Shared\Ui\Http\Api\Rest\Exceptions\UiException;
 use Exception;
 use League\Tactician\CommandBus;
 use Psr\Log\LoggerInterface;
+use Rollbar\Rollbar;
+use Sentry\Severity;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Throwable;
+use function Sentry\captureException;
+use function Sentry\captureMessage;
 
 abstract class AppController
 {
     protected CommandBus $bus;
     private LoggerInterface $logger;
+    private LoggerInterface $domainLogger;
 
-    public function __construct(CommandBus $bus, LoggerInterface $logger)
+    public function __construct(CommandBus $bus, LoggerInterface $logger, LoggerInterface $domainLogger)
     {
         $this->bus = $bus;
         $this->logger = $logger;
+        $this->domainLogger = $domainLogger;
     }
 
     public function execute(Request $request): JsonResponse
@@ -32,7 +38,9 @@ abstract class AppController
         try {
             $response = $this->evalCall($request->getContent());
         } catch (DomainException | ApplicationException | UiException $exception) {
-            $this->logger->error($exception->getMessage(), [$exception->getTraceAsString()]);
+            $this->domainLogger->info($exception->getMessage(), [$exception->getTraceAsString()]);
+            captureMessage($exception->getMessage(), Severity::info());
+            Rollbar::info($exception->getMessage());
 
             return JsonResponse::create(
                 $exception->getMessage(),
@@ -42,6 +50,7 @@ abstract class AppController
             $this->logger->error($exception->getMessage(), [$exception->getTraceAsString()]);
 
             $message = ('1' === $_SERVER['APP_DEBUG']) ? 'Server error:'.$exception->getMessage() : '';
+            captureException($exception);
 
             return JsonResponse::create(
                 $message,

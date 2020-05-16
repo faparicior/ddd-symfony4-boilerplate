@@ -11,6 +11,8 @@
         "league/tactician-doctrine": "^1.1",
         "nesbot/carbon": "^2.25",
         "ramsey/uuid": "^3.8",
+        "rollbar/rollbar-php-symfony-bundle": "3.*",
+        "sentry/sentry-symfony": "^3.5",
         "symfony/apache-pack": "^1.0",
         "symfony/console": "4.3.*",
         "symfony/css-selector": "4.3.*",

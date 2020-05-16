@@ -1,4 +1,6 @@
 monolog:
+    channels:
+        ["domain"]
     handlers:
         main:
             type: fingers_crossed
@@ -10,3 +12,12 @@ monolog:
             type: stream
             path: "%kernel.logs_dir%/%kernel.environment%.log"
             level: debug
+        loggly:
+            type: loggly
+            token: "0c16f082-f2f2-4f6d-bb0f-3cfbc280b292"
+            level: error
+            tag: symfony-app
+            channels: ["domain"]
+        rollbar:
+            type: service
+            id: Rollbar\Monolog\Handler\RollbarHandler
