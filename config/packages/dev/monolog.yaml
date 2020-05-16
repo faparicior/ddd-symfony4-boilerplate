@@ -21,7 +21,7 @@ monolog:
             channels: ["!event", "!doctrine", "!console"]
         loggly:
             type: loggly
-            token: '%env(LOGGLY_TOKEN))%'
+            token: '%env(LOGGLY_TOKEN)%'
             level: info
             tag: symfony-app
             channels: ["domain"]
