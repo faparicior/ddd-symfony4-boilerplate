@@ -1,11 +1,13 @@
 monolog:
+    channels:
+      ["domain"]
     handlers:
         main:
             type: stream
             path: "%kernel.logs_dir%/%kernel.environment%.log"
             level: debug
             channels: ["!event"]
-        # uncomment to get logging in your browser
+        # uncomment to get logging in your browserstream
         # you may have to allow bigger header sizes in your Web server configuration
         #firephp:
         #    type: firephp
@@ -17,6 +19,12 @@ monolog:
             type: console
             process_psr_3_messages: false
             channels: ["!event", "!doctrine", "!console"]
+        loggly:
+            type: loggly
+            token: '%env(LOGGLY_TOKEN))%'
+            level: info
+            tag: symfony-app
+            channels: ["domain"]
         rollbar:
             type: service
             id: Rollbar\Monolog\Handler\RollbarHandler

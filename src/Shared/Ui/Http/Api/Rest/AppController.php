@@ -48,9 +48,9 @@ abstract class AppController
             );
         } catch (Throwable $exception) {
             $this->logger->error($exception->getMessage(), [$exception->getTraceAsString()]);
+            captureException($exception);
 
             $message = ('1' === $_SERVER['APP_DEBUG']) ? 'Server error:'.$exception->getMessage() : '';
-            captureException($exception);
 
             return JsonResponse::create(
                 $message,

@@ -14,8 +14,8 @@ monolog:
             level: debug
         loggly:
             type: loggly
-            token: "0c16f082-f2f2-4f6d-bb0f-3cfbc280b292"
-            level: error
+            token: '%env(LOGGLY_TOKEN))%'
+            level: info
             tag: symfony-app
             channels: ["domain"]
         rollbar:
