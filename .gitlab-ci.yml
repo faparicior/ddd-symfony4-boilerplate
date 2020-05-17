@@ -54,6 +54,8 @@ unit test:
             - build
             - doc/hugo/public
         expire_in: 1 hour
+    after_script:
+        - sh ./.gitlabci/test-hugo-pages.sh
 
 functional test:
     stage: test

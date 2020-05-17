@@ -13,9 +13,7 @@ use App\Users\User\Domain\ValueObjects\UserId;
 use App\Users\User\Domain\ValueObjects\UserName;
 use App\Users\User\Infrastructure\Persistence\InMemoryUserRepository;
 use App\Users\User\Ui\Http\Api\Rest\DeleteUserController;
-use League\Tactician\CommandBus;
 use League\Tactician\Setup\QuickStart;
-use Monolog\Handler\TestHandler;
 use Monolog\Logger;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,8 +26,7 @@ class DeleteUserControllerTest extends TestCase
     private const NON_EXISTENT_EMAIL = 'non-email@gmail.com';
     private const PASSWORD = ",&+3RjwAu88(tyC'";
 
-    private CommandBus $bus;
-    private Logger $log;
+    private DeleteUserController $controller;
 
     public function setUp()
     {
@@ -46,11 +43,12 @@ class DeleteUserControllerTest extends TestCase
 
         $deleteUserCommandHandler = new DeleteUserCommandHandler($userRepository);
 
-        $this->bus = QuickStart::create([DeleteUserCommand::class => $deleteUserCommandHandler]);
+        $bus = QuickStart::create([DeleteUserCommand::class => $deleteUserCommandHandler]);
 
-        $this->log = new Logger('testLog');
-        $logHandler = new TestHandler();
-        $this->log->pushHandler($logHandler);
+        $log = new Logger('genericLog');
+        $domainLog = new Logger('domainLog');
+
+        $this->controller = new DeleteUserController($bus, $log, $domainLog);
     }
 
     public function testUserCanBeDeleted()
@@ -61,9 +59,7 @@ class DeleteUserControllerTest extends TestCase
 
         $request = Request::create('/users', 'DELETE', [], [], [], [], $data);
 
-        $controller = new DeleteUserController($this->bus, $this->log);
-
-        $response = $controller->execute($request);
+        $response = $this->controller->execute($request);
 
         self::assertJsonStringEqualsJsonString('{}', $response->getContent());
         self::assertEquals(Response::HTTP_OK, $response->getStatusCode());
@@ -77,9 +73,7 @@ class DeleteUserControllerTest extends TestCase
 
         $request = Request::create('/users', 'DELETE', [], [], [], [], $data);
 
-        $controller = new DeleteUserController($this->bus, $this->log);
-
-        $response = $controller->execute($request);
+        $response = $this->controller->execute($request);
 
         self::assertEquals('"User not found"', $response->getContent());
         self::assertEquals(Response::HTTP_BAD_REQUEST, $response->getStatusCode());

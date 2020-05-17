@@ -6,7 +6,6 @@ namespace App\Tests\Shared\Ui\Http\Api\Rest;
 
 use App\Shared\Domain\Exceptions\DomainException;
 use App\Shared\Ui\Http\Api\Rest\AppController;
-use League\Tactician\CommandBus;
 use League\Tactician\Setup\QuickStart;
 use Monolog\Handler\TestHandler;
 use Monolog\Logger;
@@ -29,22 +28,27 @@ class DummyException extends DomainException
 class AppControllerTest extends TestCase
 {
     private const TEST_ERROR_MESSAGE = 'test error message';
-    private CommandBus $bus;
-    private Logger $log;
     private TestHandler $logHandler;
+    private DummyAppController $controller;
+    private TestHandler $domainLogHandler;
 
     public function setUp()
     {
         parent::setUp();
 
-        $this->bus = QuickStart::create([]);
+        $bus = QuickStart::create([]);
 
-        $this->log = new Logger('testLog');
+        $log = new Logger('genericLog');
+        $domainLog = new Logger('domainLog');
         $this->logHandler = new TestHandler();
-        $this->log->pushHandler($this->logHandler);
+        $this->domainLogHandler = new TestHandler();
+        $log->pushHandler($this->logHandler);
+        $domainLog->pushHandler($this->domainLogHandler);
+
+        $this->controller = new DummyAppController($bus, $log, $domainLog);
     }
 
-    public function testAppControllerWritesErrorLogInCaseOfException()
+    public function testAppControllerWritesErrorLogInCaseOfDomainException()
     {
         $data = json_encode([
             'blah' => '',
@@ -52,12 +56,10 @@ class AppControllerTest extends TestCase
 
         $request = Request::create('/test', 'POST', [], [], [], [], $data);
 
-        $controller = new DummyAppController($this->bus, $this->log);
-
-        $response = $controller->execute($request);
+        $response = $this->controller->execute($request);
 
         self::assertEquals(Response::HTTP_BAD_REQUEST, $response->getStatusCode());
-        self::assertTrue($this->logHandler->hasErrorThatContains(self::TEST_ERROR_MESSAGE));
+        self::assertTrue($this->domainLogHandler->hasInfoThatContains(self::TEST_ERROR_MESSAGE));
     }
 
     public function testAppControllerReturnsBadRequestWithInvalidVoidData()
@@ -66,23 +68,19 @@ class AppControllerTest extends TestCase
 
         $request = Request::create('/test', 'POST', [], [], [], [], $data);
 
-        $controller = new DummyAppController($this->bus, $this->log);
-
-        $response = $controller->execute($request);
+        $response = $this->controller->execute($request);
 
         self::assertEquals(400, $response->getStatusCode());
         self::assertEquals('"Empty data or bad json received"', $response->getContent());
     }
 
-    public function testAppControllerCatchUnexpectedException()
+    public function testAppControllerCatchUnexpectedExceptionAndLogsIt()
     {
         $data = 'TEST_SHOULD_FAIL_WITH_500_EXCEPTION';
 
         $request = Request::create('/test', 'POST', [], [], [], [], $data);
 
-        $controller = new DummyAppController($this->bus, $this->log);
-
-        $response = $controller->execute($request);
+        $response = $this->controller->execute($request);
 
         self::assertEquals(500, $response->getStatusCode());
         if ('1' === $_SERVER['APP_DEBUG']) {
@@ -90,5 +88,6 @@ class AppControllerTest extends TestCase
         } else {
             self::assertEquals('""', $response->getContent());
         }
+        self::assertTrue($this->logHandler->hasErrorThatContains('TEST_SHOULD_FAIL_WITH_500_EXCEPTION'));
     }
 }

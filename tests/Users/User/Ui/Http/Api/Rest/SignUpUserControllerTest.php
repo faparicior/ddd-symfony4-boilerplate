@@ -13,7 +13,6 @@ use App\Users\User\Application\Specifications\UserEmailIsUnique;
 use App\Users\User\Application\Specifications\UserNameIsUnique;
 use App\Users\User\Infrastructure\Persistence\InMemoryUserRepository;
 use App\Users\User\Ui\Http\Api\Rest\SignUpUserController;
-use League\Tactician\CommandBus;
 use League\Tactician\Setup\QuickStart;
 use Monolog\Handler\TestHandler;
 use Monolog\Logger;
@@ -31,8 +30,7 @@ class SignUpUserControllerTest extends TestCase
     private const PASSWORD = ",&+3RjwAu88(tyC'";
     private const INVALID_PASSWORD = ",&+3RjR'";
 
-    private CommandBus $bus;
-    private Logger $log;
+    private SignUpUserController $controller;
 
     public function setUp()
     {
@@ -55,11 +53,14 @@ class SignUpUserControllerTest extends TestCase
             $userBuilder
         );
 
-        $this->bus = QuickStart::create([SignUpUserCommand::class => $signUpUserCommandHandler]);
+        $bus = QuickStart::create([SignUpUserCommand::class => $signUpUserCommandHandler]);
 
-        $this->log = new Logger('testLog');
+        $log = new Logger('genericLog');
+        $domainLog = new Logger('domainLog');
+        $this->controller = new SignUpUserController($bus, $log, $domainLog);
+
         $logHandler = new TestHandler();
-        $this->log->pushHandler($logHandler);
+        $log->pushHandler($logHandler);
     }
 
     public function testUserCanSignUp()
@@ -72,9 +73,7 @@ class SignUpUserControllerTest extends TestCase
 
         $request = Request::create('/users', 'POST', [], [], [], [], $data);
 
-        $controller = new SignUpUserController($this->bus, $this->log);
-
-        $response = $controller->execute($request);
+        $response = $this->controller->execute($request);
 
         $expectedResponse = json_encode([
             'id' => self::USER_UUID,
@@ -97,9 +96,7 @@ class SignUpUserControllerTest extends TestCase
 
         $request = Request::create('/users', 'POST', [], [], [], [], $data);
 
-        $controller = new SignUpUserController($this->bus, $this->log);
-
-        $response = $controller->execute($request);
+        $response = $this->controller->execute($request);
 
         self::assertEquals(Response::HTTP_BAD_REQUEST, $response->getStatusCode());
     }
@@ -114,9 +111,7 @@ class SignUpUserControllerTest extends TestCase
 
         $request = Request::create('/users', 'POST', [], [], [], [], $data);
 
-        $controller = new SignUpUserController($this->bus, $this->log);
-
-        $response = $controller->execute($request);
+        $response = $this->controller->execute($request);
 
         self::assertEquals(Response::HTTP_BAD_REQUEST, $response->getStatusCode());
     }
@@ -131,9 +126,7 @@ class SignUpUserControllerTest extends TestCase
 
         $request = Request::create('/users', 'POST', [], [], [], [], $data);
 
-        $controller = new SignUpUserController($this->bus, $this->log);
-
-        $response = $controller->execute($request);
+        $response = $this->controller->execute($request);
 
         self::assertEquals(Response::HTTP_BAD_REQUEST, $response->getStatusCode());
     }
