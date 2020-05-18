@@ -5,6 +5,10 @@ build:
     dependencies:
         override:
             - composer install --no-interaction
+            - cp .env.dist .env
+            - sed -i "s#SENTRY_DSN_#"$SENTRY_DSN"#g" .env
+            - sed -i "s#ROLLBAR_TOKEN_#"$ROLLBAR_TOKEN"#g" .env
+            - sed -i "s#LOGGY_TOKEN_#"$LOGGY_TOKEN"#g" .env
             - bin/console --env=test doctrine:database:create
             - bin/console --env=test doctrine:migrations:migrate --no-interaction
 
