@@ -27,13 +27,10 @@ jobs:
             - run: composer install -n --prefer-dist
 
             - run: composer require --dev php-coveralls/php-coveralls
-            - run:
-                name: Configure environment
-                command: |
-                    cp .env.dist .env
-                    sed -i "s/SENTRY_DSN_/$SENTRY_DSN/g" .env
-                    sed -i "s/ROLLBAR_TOKEN_/$ROLLBAR_TOKEN/g" .env
-                    sed -i "s/LOGGY_TOKEN_/$LOGGY_TOKEN/g" .env
+            - run: cp .env.dist .env
+            - run: sed -i "s/SENTRY_DSN_/"$SENTRY_DSN"/g" .env
+            - run: sed -i "s/ROLLBAR_TOKEN_/"$ROLLBAR_TOKEN"/g" .env
+            - run: sed -i "s/LOGGY_TOKEN_/"$LOGGY_TOKEN"/g" .env
 
             - run:
                 name: Setup Code Climate test-reporter
