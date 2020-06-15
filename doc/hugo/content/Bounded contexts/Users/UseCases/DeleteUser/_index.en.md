@@ -5,7 +5,7 @@ domain_events: ["UserDeleted"]
 business_rules: ["User is the same as logged"]
 ---
 
-{{<imgnewtab src="delete-user-usecase.png" alt="User signIn usecase"  srcfile="delete-user-usecase.graphml">}}
+{{<imgnewtab src="delete-user-usecase.png" alt="User signIn usecase">}}
 
 ### Calls
 ---
