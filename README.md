@@ -22,4 +22,4 @@
 
 [Coverage report](https://fapariciorteam.gitlab.io/ddd-symfony4-boilerplate)
 
-[Coverage dashboard](https://fapariciorteam.gitlab.io/ddd-symfony4-boilerplate/dashboard.html)
+[Coverage dashboard](https://fapariciorteam.gitlab.io/ddd-symfony4-boilerplate/coverage/dashboard.html)
