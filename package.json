@@ -13,7 +13,7 @@
     "mochawesome-merge": "^4.0.3",
     "mochawesome-report-generator": "^5.1.0",
     "cypress-multi-reporters": "^1.2.4",
-    "mocha": "^7.1.2"
+    "mocha": "^10.2.0"
   },
   "scripts": {
     "clean:reports": "rm -R -f cypress/reports && mkdir cypress/reports && mkdir cypress/reports/mochareports",
